@@ -35,23 +35,67 @@
 	}
 </script>
 <!--//ResponsiveTabs-->
+<style>
+	.list-left{
+		z-index: 100;
+		height: 50%;
+		width: 10%;
+		background: rgba(87, 136, 152, 0.42);
+		float: left;
+		margin-left: 2%;
+		margin-top: 10%;
+		position: absolute;
+	}
+	ol, ul {
+		color: #ffffff;
+	}
+	li:hover
+	{
+		background-color: #285A81; 
+	}
+	li{
+	}
+	li div{
+		padding: 0.5em;
+	}
+	a{
+		color: pink;
+	}
+	a:hover{
+		color: rgb(247, 242, 243)
+	}
+	h2{text-align: center;
+		margin-bottom: 18px;
+		margin-top: 10px;
+	}
+</style>
+
 </head>
 <body>
 	
-
+	<!-- right -->
+	<div class="list-left" id="leftDiv">
+		<ul>
+			<h2>目录</h2>
+			<li><div>第一章：阿里的撒地方</div></li>
+			<li><div>第二章：阿里的撒地方</div></li>
+			<li><div>第三章：阿里的撒地方</div></li>
+			<li><div>第四章：阿里的撒地方</div></li>
+			<li><div>第五章：阿里的撒地方</div></li>
+			<li><div>第六章：阿里的撒地方</div></li>
+			<li><div>第7章：阿里的撒地方</div></li>
+			<li><div>第八章：阿里的撒地方</div></li>
+			<li><div>More <a href="http://www.baidu.com">>>>></a></div></li>
+		</ul>		
+	</div>
 
 	<!-- main -->
 	<div class="main">
-		<!-- left -->
-		<div class="main-row" id="leftDiv">
-				<h2>左边div</h2>			
-		</div>
-
 		<h1>Welcome</h1>
-		<div class="main-info w3l">
+		
+		
 
-
-			
+		<div class="main-info w3l">	
 			<div class="main-row"><!-- main-row-one -->
 				<div class="profile-grid logo wthree">
 					<img src="images/img1.jpg" alt="">
@@ -74,10 +118,7 @@
 			</div>	
 		</div>	
 
-		<!-- right -->
-		<div class="main-row" id="rightDiv">
-				<h2>右边div</h2>				
-		</div>
+		
 	</div>	
 	<!-- main -->
 </body>
