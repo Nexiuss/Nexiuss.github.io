@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nexius</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Nexius</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 11 Sep 2024 11:12:13 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First</title>
+      <link>http://localhost:1313/posts/first/</link>
+      <pubDate>Wed, 11 Sep 2024 11:12:13 +0800</pubDate>
+      <guid>http://localhost:1313/posts/first/</guid>
+      <description>&lt;h1 id=&#34;hello-world&#34;&gt;Hello World!&lt;/h1&gt;&#xA;&lt;p&gt;This is my blog.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hello, world!</title>
+      <link>http://localhost:1313/projects/ros/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/ros/</guid>
+      <description>&lt;h1 id=&#34;projects&#34;&gt;Projects&lt;/h1&gt;&#xA;&lt;h1 id=&#34;ros-vuenodejs餐馆点餐系统&#34;&gt;ros-vue+Nodejs餐馆点餐系统&lt;/h1&gt;&#xA;&lt;h4 id=&#34;项目地址&#34;&gt;项目地址&lt;/h4&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/Nexiuss/ros&#34;&gt;https://github.com/Nexiuss/ros&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h4 id=&#34;介绍说明&#34;&gt;介绍说明&lt;/h4&gt;&#xA;&lt;p&gt;该项目基于vue、node以及MySQL数据库。分为移动端的前台点餐和后台数据管理两个部分。&lt;/p&gt;&#xA;&lt;h4 id=&#34;移动端&#34;&gt;移动端&lt;/h4&gt;&#xA;&lt;p&gt;使用了原生vue进行构建页面，通过axios进行后台数据调用。&#xA;功能： 客人通过扫描桌面的二维码进入到移动点餐页面，该过程中实现了桌号的绑定，通过桌号标识实现单点数据同信。&lt;/p&gt;&#xA;&lt;h4 id=&#34;后台管理系统&#34;&gt;后台管理系统&lt;/h4&gt;&#xA;&lt;p&gt;登录： node+MySQL+token实现&#xA;功能： 后台用户管理、菜品管理、客服点菜管理&lt;/p&gt;&#xA;&lt;h4 id=&#34;部署&#34;&gt;部署&lt;/h4&gt;&#xA;&lt;p&gt;查看doc文档&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
