@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/blog/</loc>
+    <loc>https://nexiuss.github.io/tags/blog/</loc>
     <lastmod>2024-09-11T18:12:56+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://nexiuss.github.io/</loc>
     <lastmod>2024-09-11T18:12:56+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://nexiuss.github.io/posts/</loc>
     <lastmod>2024-09-11T18:12:56+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://nexiuss.github.io/tags/</loc>
     <lastmod>2024-09-11T18:12:56+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/tomcat%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/</loc>
+    <loc>https://nexiuss.github.io/posts/tomcat%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2024-09-11T18:12:56+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/first/</loc>
+    <loc>https://nexiuss.github.io/posts/first/</loc>
     <lastmod>2024-09-11T11:12:13+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://nexiuss.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/nexius-blog/</loc>
+    <loc>https://nexiuss.github.io/projects/nexius-blog/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/ros/</loc>
+    <loc>https://nexiuss.github.io/projects/ros/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://nexiuss.github.io/projects/</loc>
   </url>
 </urlset>
