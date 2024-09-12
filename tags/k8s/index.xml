@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>K8s on Nexius</title>
-    <link>http://localhost:1313/tags/k8s/</link>
+    <link>https://nexiuss.github.io/tags/k8s/</link>
     <description>Recent content in K8s on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Thu, 12 Sep 2024 13:07:27 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nexiuss.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker启动</title>
-      <link>http://localhost:1313/posts/docker%E5%90%AF%E5%8A%A8/</link>
+      <link>https://nexiuss.github.io/posts/docker%E5%90%AF%E5%8A%A8/</link>
       <pubDate>Thu, 12 Sep 2024 13:07:27 +0800</pubDate>
-      <guid>http://localhost:1313/posts/docker%E5%90%AF%E5%8A%A8/</guid>
+      <guid>https://nexiuss.github.io/posts/docker%E5%90%AF%E5%8A%A8/</guid>
       <description>&lt;h1 id=&#34;docker启动&#34;&gt;Docker启动&lt;/h1&gt;&#xA;&lt;h3 id=&#34;engine配置&#34;&gt;engine配置&lt;/h3&gt;&#xA;&lt;h4 id=&#34;初始配置&#34;&gt;初始配置&lt;/h4&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#xA;  &amp;#34;builder&amp;#34;: {&#xA;    &amp;#34;gc&amp;#34;: {&#xA;      &amp;#34;defaultKeepStorage&amp;#34;: &amp;#34;20GB&amp;#34;,&#xA;      &amp;#34;enabled&amp;#34;: true&#xA;    }&#xA;  },&#xA;  &amp;#34;experimental&amp;#34;: false,&#xA;  &amp;#34;features&amp;#34;: {&#xA;    &amp;#34;buildkit&amp;#34;: true&#xA;  }&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;配置&#34;&gt;配置&lt;/h4&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#xA;  &amp;#34;experimental&amp;#34;: true,&#xA;  &amp;#34;debug&amp;#34;: true,&#xA;  &amp;#34;registry-mirrors&amp;#34;: [&amp;#34;http://hub-mirror.c.163.com&amp;#34;]&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;reids&#34;&gt;reids&lt;/h3&gt;&#xA;&lt;p&gt;&lt;code&gt;docker run -it -d --name redis -p 6379:6379 redis --bind 0.0.0.0 --protected-mode no &lt;/code&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;rabbitmq&#34;&gt;rabbitmq&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;创建卷&#xA;&lt;code&gt;docker volume create rabbitmq-home&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;运行&#xA;&lt;code&gt;docker run -id --name=rabbitmq -v rabbitmq-home:/var/lib/rabbitmq -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=swsk33 -e RABBITMQ_DEFAULT_PASS=123456 rabbitmq:management &lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;rocketmq&#34;&gt;rocketmq&lt;/h3&gt;&#xA;&lt;p&gt;拉镜像&#xA;&lt;code&gt;docker pull rocketmqinc/rocketmq&lt;/code&gt;&lt;/p&gt;</description>
     </item>
   </channel>
