@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Docker启动</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, docker, k8s, oracle'>
+
+    <meta property="og:url" content="http://localhost:1313/posts/docker%E5%90%AF%E5%8A%A8/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Docker启动">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="http://localhost:1313/images/docker.png">
+    <meta property="og:image:secure_url" content="http://localhost:1313/images/docker.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Docker启动">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="http://localhost:1313/posts/docker%E5%90%AF%E5%8A%A8/">
+    <meta property="twitter:url" content="http://localhost:1313/posts/docker%E5%90%AF%E5%8A%A8/">
+    <meta name="twitter:image" content="http://localhost:1313/images/docker.png">
+
+    
+    <link rel="canonical" href="http://localhost:1313/posts/docker%E5%90%AF%E5%8A%A8/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.9a920d7dabdbad8363b6a0a94e29a9dfebdb7ee64cfcb193a0145e512ef2bdab.js" integrity="sha256-mpINfavbrYNjtqCpTimp3&#43;vbfuZM/LGToBReUS7yvas="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="http://localhost:1313/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="http://localhost:1313/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/posts/" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/projects/" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/tags/" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/index.xml" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Docker启动</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">September 12, 2024
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="http://localhost:1313/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="http://localhost:1313/tags/docker">docker</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="http://localhost:1313/tags/k8s">k8s</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="http://localhost:1313/tags/oracle">oracle</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="docker启动">Docker启动</h1>
+<h3 id="engine配置">engine配置</h3>
+<h4 id="初始配置">初始配置</h4>
+<pre tabindex="0"><code>{
+  &#34;builder&#34;: {
+    &#34;gc&#34;: {
+      &#34;defaultKeepStorage&#34;: &#34;20GB&#34;,
+      &#34;enabled&#34;: true
+    }
+  },
+  &#34;experimental&#34;: false,
+  &#34;features&#34;: {
+    &#34;buildkit&#34;: true
+  }
+}
+</code></pre><h4 id="配置">配置</h4>
+<pre tabindex="0"><code>{
+  &#34;experimental&#34;: true,
+  &#34;debug&#34;: true,
+  &#34;registry-mirrors&#34;: [&#34;http://hub-mirror.c.163.com&#34;]
+}
+</code></pre><h3 id="reids">reids</h3>
+<p><code>docker run -it -d --name redis -p 6379:6379 redis --bind 0.0.0.0 --protected-mode no </code></p>
+<h3 id="rabbitmq">rabbitmq</h3>
+<ul>
+<li>创建卷
+<code>docker volume create rabbitmq-home</code></li>
+<li>运行
+<code>docker run -id --name=rabbitmq -v rabbitmq-home:/var/lib/rabbitmq -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=swsk33 -e RABBITMQ_DEFAULT_PASS=123456 rabbitmq:management </code></li>
+</ul>
+<h3 id="rocketmq">rocketmq</h3>
+<p>拉镜像
+<code>docker pull rocketmqinc/rocketmq</code></p>
+<p>启动nameserver</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--privileged<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name rmqnamesrv <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/namesrv/logs:/root/logs  <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/namesrv/store:/root/store <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>apache/rocketmq sh mqnamesrv
+</span></span></code></pre></div><p>启动broker</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 10911:10911 -p 10909:10909 -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/broker/logs:/root/logs -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/broker/store:/root/store --name rmqbrokerv2 --link rmqnamesrv:namesrv -e <span style="color:#e6db74">&#34;NAMESRV_ADDR=namesrv:9876&#34;</span> dyrnq/rocketmq:4.8.0 sh mqbroker -c ../conf/broker.conf
+</span></span></code></pre></div><h3 id="zookeeper">zookeeper</h3>
+<p><code>docker run -d --name zookeeper -p 2181:2181 zookeeper </code></p>
+<h3 id="nacos">nacos</h3>
+<h4 id="docker-compose">docker-compose</h4>
+<ul>
+<li>
+<p>git clone
+<code>https://github.com/nacos-group/nacos-docker.git cd nacos-docker</code></p>
+</li>
+<li>
+<p>单机模式 Derby
+<code>docker-compose -f example/standalone-derby.yaml up</code></p>
+</li>
+<li>
+<p>单机模式 MySQL</p>
+<ol>
+<li>如果希望使用MySQL5.7
+<code>docker-compose -f example/standalone-mysql-5.7.yaml up</code></li>
+<li>如果希望使用MySQL8
+<code>docker-compose -f example/standalone-mysql-8.yaml up</code></li>
+</ol>
+</li>
+<li>
+<p>集群模式
+<code>docker-compose -f example/cluster-hostname.yaml up </code></p>
+</li>
+<li>
+<p>服务注册
+<code>curl -X POST 'http://127.0.0.1:8848/nacos/v1/ns/instance?serviceName=nacos.naming.serviceName&amp;ip=20.18.7.10&amp;port=8080' 服务发现</code></p>
+</li>
+<li>
+<p>服务发现
+<code>curl -X GET 'http://127.0.0.1:8848/nacos/v1/ns/instance/list?serviceName=nacos.naming.serviceName </code></p>
+</li>
+<li>
+<p>发布配置
+<code>curl -X POST &quot;http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=nacos.cfg.dataId&amp;group=test&amp;content=helloWorld </code></p>
+</li>
+<li>
+<p>获取配置
+<code> curl -X GET &quot;http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=nacos.cfg.dataId&amp;group=test</code></p>
+</li>
+</ul>
+<p><a href="https://nacos.io/zh-cn/docs/quick-start-docker.html">NACOS参考文档</a></p>
+<h4 id="docker-run">docker run</h4>
+<ul>
+<li>启动命令</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name nacos-server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 8848:8848 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 9848:9848 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 9849:9849 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MODE<span style="color:#f92672">=</span>standalone <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e SPRING_DATASOURCE_PLATFORM<span style="color:#f92672">=</span>mysql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_HOST<span style="color:#f92672">=</span>host.docker.internal <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">3306</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_USER<span style="color:#f92672">=</span>root <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_PASSWORD<span style="color:#f92672">=</span><span style="color:#ae81ff">123456</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_DB_NAME<span style="color:#f92672">=</span>nacos <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e TIME_ZONE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Asia/Shanghai&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-d nacos/nacos-server:v2.2.3-slim
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 拷贝配置</span>
+</span></span><span style="display:flex;"><span>docker cp -a nacos-server:/home/nacos /Users/nexius/Docker/nacos
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 关闭该容器</span>
+</span></span><span style="display:flex;"><span>docker stop nacos-server
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 删除该容器</span>
+</span></span><span style="display:flex;"><span>docker rm nacos-server
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#再次运行</span>
+</span></span><span style="display:flex;"><span>docker run <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name nacos-server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 8848:8848 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 9848:9848 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 9849:9849 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MODE<span style="color:#f92672">=</span>standalone <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e SPRING_DATASOURCE_PLATFORM<span style="color:#f92672">=</span>mysql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_HOST<span style="color:#f92672">=</span>host.docker.internal <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">3306</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_USER<span style="color:#f92672">=</span>root <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_PASSWORD<span style="color:#f92672">=</span><span style="color:#ae81ff">123456</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_DB_NAME<span style="color:#f92672">=</span>nacos <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e TIME_ZONE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Asia/Shanghai&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/nacos/conf:/home/nacos/conf <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/nacos/logs:/home/nacos/logs <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/nacos/data:/home/nacos/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-d nacos/nacos-server:v2.2.3-slim
+</span></span></code></pre></div><h3 id="oceanbase">oceanbase</h3>
+<pre tabindex="0"><code># 根据当前容器部署最大规格的实例
+docker run -p 2881:2881 --name obstandalone -d oceanbase/oceanbase-ce
+
+# 部署 mini 的独立实例
+docker run -p 2881:2881 --name obstandalone -e MINI_MODE=1 -d oceanbase/oceanbase-ce
+</code></pre><h3 id="nginx">nginx</h3>
+<pre tabindex="0"><code>docker run -d -p 8080:80  \
+              -p 8443:443  \
+ --name nginxweb \
+ --link answer-server:answerserver \
+ -v /opt/docker/nginx/html:/usr/share/nginx/html \
+ -v /opt/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
+ -v /opt/docker/nginx/conf/conf.d:/etc/nginx/conf.d \
+ -v /opt/docker/nginx/logs:/var/log/nginx \
+ nginx
+</code></pre><p>-d # 表示在一直在后台运行容器
+-p 80:80 # 对端口进行映射，将本地8081端口映射到容器内部的80端口
+&ndash;name # 设置创建的容器名称
+-v # 将本地目录(文件)挂载到容器指定目录；
+&ndash;link answer-server:answerserver 这计划是指需要转向本机docker容器的别名</p>
+<p><a href="https://zhuanlan.zhihu.com/p/114603487">参考文档</a></p>
+<p>快速启动：</p>
+<pre tabindex="0"><code>docker run -d -p 8080:80 -p 8443:443 \
+-v /Users/nexius/Docker/nginx/html:/usr/share/nginx/html \
+-v /Users/nexius/Docker/nginx/conf/conf.d:/etc/nginx/conf.d \
+-v /Users/nexius/Docker/nginx/nginx.conf:/etc/nginx/nginx.conf \
+-v /Users/nexius/Docker/docker/nginx/logs:/var/log/nginx \
+--name nginx nginx
+</code></pre><p>发现问题：
+macos在docker中不支持docker host模式，只能通过host.docker.internal的方式访问宿主机</p>
+<h3 id="微服务">微服务</h3>
+<h4 id="gateway">gateway</h4>
+<ol>
+<li>Dockerfile</li>
+</ol>
+<pre tabindex="0"><code>FROM openjdk:8
+
+ENV JAR_VERSION=&#34;1.0.13.0-SNAPSHOT&#34; \
+	TZ=Asia/Shanghai \
+	APP_WORKDIR=&#34;/nexius/dev&#34; \
+	APP_NAME=&#34;gateway&#34; \
+	APP_PORT=8080 \
+	JAVA_OPTS=&#34;-Xms256m -Xmx512m&#34; \
+	SKYWALKING_CONF=&#34;&#34; \
+	NACOS_DEFAULT=&#34; -Dspring.cloud.nacos.server-addr=nacos:8848 -Dspring.cloud.nacos.config.shared-configs[0].data-id=PUBLIC-COMMON.properties -Dspring.cloud.nacos.config.shared-configs[0].refresh=false -Dspring.cloud.nacos.config.shared-configs[0].group=DEFAULT_GROUP -Dspring.cloud.nacos.config.namespace=insurance-upgrade -Dspring.cloud.nacos.config.group=DEFAULT_GROUP -Dremote-config.base.boot.config-center.type=2 -Dremote-config.base.boot.discovery.type=3 -Dapollo.bootstrap.enabled=false -Dspring.cloud.nacos.username=nacos -Dspring.cloud.nacos.password=nacos&#34; \
+	NACOS_CONF=&#34;&#34; \
+	OTHER_CONF=&#34;&#34;
+
+WORKDIR ${APP_WORKDIR}
+
+ADD ${APP_NAME}-${JAR_VERSION}.jar  ./gateway/
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone
+
+EXPOSE $APP_PORT
+
+ENTRYPOINT java ${JAVA_OPTS} ${SKYWALKING_CONF} ${NACOS_DEFAULT} ${NACOS_CONF} ${OTHER_CONF} -jar ./gateway/${APP_NAME}-${JAR_VERSION}.jar
+</code></pre><ol start="2">
+<li>启动命令</li>
+</ol>
+<pre tabindex="0"><code>docker run -d -p 8666:8666 \
+--name gateway \
+-e NACOS_CONF=&#34;-Dspring.cloud.nacos.config.namespace=ats-dd -Dspring.cloud.nacos.server-addr=host.docker.internal:8848&#34; gateway/v1
+</code></pre><h3 id="oracle">oracle</h3>
+<p>MAC Apple chip（MAC m1、m2芯片，ARM架构）因为底层不支持oracle，需要colima来或者其他反正来虚拟化X86
+方案支持：
+1.colima <a href="https://github.com/abiosoft/colima/blob/main/docs/FAQ.md">colima参考文档</a>
+2.Buildx <a href="https://juejin.cn/post/7000018934686547999">Buildx参考文档</a>
+经过多方面考虑，决定使用colima</p>
+<h4 id="colima废弃">colima(废弃)</h4>
+<ol>
+<li>安装colima（默认已经安装docker）
+<code>brew install colima</code></li>
+<li>启动colima
+<code>colima start --arch x86_64 --memory 3 --network-address</code>
+&ndash;network-address的命令在mac才有效，表示映射本地网络，且需首次需要输入密码，重启colima才能生效</li>
+<li>检查colima状态
+<code>colima list</code></li>
+<li>启动oracle容器</li>
+</ol>
+<ul>
+<li>oracle19C
+Oracle 12C引入了CDB与PDB的新特性，在ORACLE 12C数据库引入的多租用户环境（Multitenant Environment）中，允许一个数据库容器（CDB）承载多个可插拔数据库（PDB）
+参考<a href="https://blog.csdn.net/Mr_Gent/article/details/109996420">oracle19C</a></li>
+</ul>
+<pre tabindex="0"><code>docker run -d --name ora19c \
+--privileged \
+--memory=4096M \
+-p 1523:1521/tcp -p 5502:5500/tcp \
+-e ORACLE_SID=ORCLCDB \
+-e ORACLE_PDB=ORCLPDB \
+-e ORACLE_PWD=WElcome12345## \
+-e INIT_SGA_SIZE=2048M \
+-e INIT_PGA_SIZE=500MB \
+-e ORACLE_EDITION=EE \
+-e ORACLE_CHARACTERSET=AL32UTF8 \
+-e ENABLE_ARCHIVELOG=true \
+-v /Users/bcurtis/Build_Software/data/19c:/opt/oracle/oradata \
+container-registry.oracle.com/database/enterprise:19.3.0.0
+</code></pre><ul>
+<li>oracle12C
+参考文档：<a href="https://oralytics.com/2022/09/22/running-oracle-database-on-docker-on-apple-m1-chip/">M1 启动oracle</a></li>
+</ul>
+<pre tabindex="0"><code>docker run -d -p 1521:1521 \
+-e ORACLE_PASSWORD=123456 \
+-v oracle-volume:/Users/nexius/Docker/oracle/oradata gvenzl/oracle-xe
+</code></pre><ol start="5">
+<li>配置与登录
+登录system
+<code>sqlplus system/123456@//localhost/XEPDB1</code>
+创建用户
+<code>create user nexius identified by 123456 default tablespace users</code>
+分配权限
+<code>grant connect, resource to nexius;</code>
+退出登录
+<code>exit</code>
+重新登录
+<code>sqlplus nexius/123456@//localhost/XEPDB1</code>
+6.切换docker context
+docker 查看上下文
+<code>ocker context ls</code>
+docker 切换上下文
+<code>docker context use colima</code></li>
+<li>停止colima
+<code>colima stop</code></li>
+</ol>
+<h4 id="最新-2023-08-23">最新 2023-08-23</h4>
+<p>安装后，不确定性能问题，还是效率问题，电脑发热比较严重，方案废弃</p>
+<h3 id="oracle19c-docker-m2正式版">oracle19c docker m2（正式版）</h3>
+<h4 id="参考文档">参考文档：</h4>
+<p><a href="https://zenn.dev/gentaro_23/articles/001-oracle-container">https://zenn.dev/gentaro_23/articles/001-oracle-container</a></p>
+<h4 id="准备">准备</h4>
+<p>安装介质下载地址：
+<a href="https://www.oracle.com/database/technologies/oracle19c-linux-arm64-downloads.html">https://www.oracle.com/database/technologies/oracle19c-linux-arm64-downloads.html</a>
+docker image下载地址：
+<a href="https://github.com/oracle/docker-images.git">https://github.com/oracle/docker-images.git</a></p>
+<h4 id="构建">构建</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 创建目录</span>
+</span></span><span style="display:flex;"><span>mkdir ~/oracle
+</span></span><span style="display:flex;"><span>cd ~/oracle
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 下载</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/oracle/docker-images.git
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 拷贝</span>
+</span></span><span style="display:flex;"><span>cp LINUX.ARM64_1919000_db_home.zip ~/oracle/docker-images/OracleDatabase/SingleInstance/dockerfiles/19.3.0/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 构建</span>
+</span></span><span style="display:flex;"><span>cd ~/oracle/docker-images/OracleDatabase/SingleInstance/dockerfiles
+</span></span><span style="display:flex;"><span>./buildContainerImage.sh -v 19.3.0 -e
+</span></span></code></pre></div><h4 id="启动容器">启动容器</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name oracle19c <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 1521:1521 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 5500:5500 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/oracle/oradata/oracle19c:/opt/oracle/oradata <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--ulimit nofile<span style="color:#f92672">=</span>1024:65536 --ulimit nproc<span style="color:#f92672">=</span>2047:16384 --ulimit stack<span style="color:#f92672">=</span>10485760:33554432 --ulimit memlock<span style="color:#f92672">=</span><span style="color:#ae81ff">3221225472</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e ORACLE_PWD<span style="color:#f92672">=</span>password1234 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>oracle/database:19.3.0-ee
+</span></span></code></pre></div><p>容器将自动初始化，并拷贝文件</p>
+<h4 id="检查">检查</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查询oracle信息详情</span>
+</span></span><span style="display:flex;"><span>lsnrctl status
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看oralce服务信息</span>
+</span></span><span style="display:flex;"><span>lsnrctl services
+</span></span></code></pre></div><h4 id="连接">连接</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it oracle19c sqlplus sys/&lt;your password&gt;@//localhost:1521/&lt;your service name&gt; as sysdba
+</span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus system/&lt;your password&gt;@//localhost:1521/&lt;your service name&gt;
+</span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus pdbadmin/&lt;your password&gt;@//localhost:1521/&lt;Your PDB name&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如</span>
+</span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus sys/password1234@//localhost:1521/orclcdb as sysdba
+</span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus system/password1234@//localhost:1521/orclcdb
+</span></span></code></pre></div><h4 id="扩展-oracle实例-orclpdb1和orclcdb的区别">扩展 ：oracle实例 ORCLPDB1和orclcdb的区别</h4>
+<ul>
+<li>jdbc:oracle:thin:@//xxx:1521/ORCLPDB1：此URL连接到名为“ORCLPDB1.在Oracle多租户体系结构中，容器数据库（CDB）可以托管多个PDB。PDB充当CDB内的单独数据库。当您想要直接连接到特定PDB时，将使用此URL</li>
+<li>jdbc:oracle:thin:@//xxx:1521/ORCLCDB：此URL连接到容器数据库（CDB）本身，而不是特定的PDB。CDB是包含多个PDB的主数据库。当连接到CDB时，您可以访问和管理其中的所有PDB。此URL通常在需要执行管理任务或访问CDB级别的功能时使用。
+选择使用哪个URL取决于应用程序的要求：</li>
+</ul>
+<ol>
+<li>如果您的应用程序需要与特定的PDB进行交互，例如执行SQL语句或在该PDB中执行数据访问操作，则应在连接中使用jdbc:oracle:thin:@//xxx:1521/ORCLPDB1</li>
+<li>如果您的应用程序需要管理访问权限或需要在CDB级别执行任务，则可以使用jdbc:oracle:thin:@//xxx:1521/ORCLCDB</li>
+</ol>
+<h4 id="配置-1">配置</h4>
+<h5 id="创建目录">创建目录</h5>
+<p><code>create directory mydump as '/opt/oracle/oradata/dump'</code></p>
+<h5 id="创建表空间">创建表空间</h5>
+<p><code>CREATE TABLESPACE TS_ECP DATAFILE  '/opt/oracle/oradata/tablespace/TS_ECP' SIZE 200 M AUTOEXTEND ON NEXT 200 M;</code></p>
+<h4 id="创建用户">创建用户</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">user</span> oracleuser identified <span style="color:#66d9ef">by</span> <span style="color:#ae81ff">123456</span> <span style="color:#66d9ef">default</span> tablespace TS_TABLE_TMS;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 授权
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">grant</span> <span style="color:#66d9ef">connect</span>,resource,dba <span style="color:#66d9ef">TO</span> oracleuser;
+</span></span></code></pre></div><p>参考文档：
+<a href="https://blog.csdn.net/qq_31835117/article/details/105258811">https://blog.csdn.net/qq_31835117/article/details/105258811</a></p>
+<h3 id="dm8">DM8</h3>
+<p>达梦8
+pull镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull qinchz/dm8-arm64
+</span></span></code></pre></div><p>启动</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 5236:5236 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name dm8 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/dm8/data:/home/dmdba/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>qinchz/dm8-arm64
+</span></span></code></pre></div><p>初始化数据库</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 查询表空间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> tablespace_name <span style="color:#66d9ef">from</span> dba_tablespaces;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 查询用户
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> username <span style="color:#66d9ef">from</span> dba_users;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 创建表空间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> TABLESPACE  TEST DATAFILE <span style="color:#e6db74">&#39;TEST.DBF&#39;</span> <span style="color:#66d9ef">SIZE</span> <span style="color:#ae81ff">300</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 创建用户
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">user</span> nexius identified <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#34;123456789&#34;</span> <span style="color:#66d9ef">default</span> tablespace TEST <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">index</span> tablespace TEST;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 授权
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">grant</span> <span style="color:#e6db74">&#34;RESOURCE&#34;</span>,<span style="color:#e6db74">&#34;PUBLIC&#34;</span>,<span style="color:#e6db74">&#34;DBA&#34;</span>,<span style="color:#e6db74">&#34;VTI&#34;</span> <span style="color:#66d9ef">to</span> nexius;
+</span></span></code></pre></div><h4 id="dem-达梦统一运维监控">DEM 达梦统一运维监控</h4>
+<p><a href="https://blog.csdn.net/qinchaozengh/article/details/128038287">参考文档</a>
+docker-compose</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;2.1&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tomcat</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">user</span>: <span style="color:#ae81ff">root</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">tomcat</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">tomcat:8.5.84-jre8</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">privileged</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=&#34;Asia/Shanghai&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">8080</span>:<span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/Users/chaz/dev/docker/data/dm8/tomcat/webapps:/Users/nexius/Docker/DEMwebapps</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#- /Users/chaz/dev/docker/data/dm8/tomcat/conf:/Users/nexius/Docker/DEMconf</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#- /Users/chaz/dev/docker/data/dm8/tomcat/logs:/Users/nexius/Docker/DEMlogs</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#- /Users/chaz/dev/docker/data/dm8/tomcat/bin:/Users/nexius/Docker/DEMbin</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#- /Users/chaz/dev/docker/data/dm8/bin:/opt/dmdbms/bin</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/etc/localtime:/etc/localtime</span>
+</span></span></code></pre></div><h3 id="minio">minio</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker run -p 9000:9000 -p 9090:9090 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name minio <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-d --restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e <span style="color:#e6db74">&#34;MINIO_ACCESS_KEY=mbti&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e <span style="color:#e6db74">&#34;MINIO_SECRET_KEY=mbti@123&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/minio/data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>minio/minio server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>/data --console-address <span style="color:#e6db74">&#34;:9090&#34;</span> -address <span style="color:#e6db74">&#34;:9000&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 The Marauders</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
