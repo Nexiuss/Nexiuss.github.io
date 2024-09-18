@@ -17,26 +17,26 @@
     
 
     
-    <title>Tags</title>
-    <meta name="description" content="Sky above, sand below and peace within">
-    <meta name="keywords" content='blog, gokarna, hugo'>
+    <title>@NacosValue和@Value的区别</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, spring, nacos'>
 
-    <meta property="og:url" content="https://nexiuss.github.io/tags/">
+    <meta property="og:url" content="https://nexiuss.github.io/posts/@nacosvalue%E5%92%8C@value%E7%9A%84%E5%8C%BA%E5%88%AB/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Tags">
-    <meta property="og:description" content="Sky above, sand below and peace within">
-    <meta property="og:image" content="https://nexiuss.github.io/images/logo.jpg">
-    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta property="og:title" content="@NacosValue和@Value的区别">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/path/to/image.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/path/to/image.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tags">
-    <meta name="twitter:description" content="Sky above, sand below and peace within">
-    <meta property="twitter:domain" content="https://nexiuss.github.io/tags/">
-    <meta property="twitter:url" content="https://nexiuss.github.io/tags/">
-    <meta name="twitter:image" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta name="twitter:title" content="@NacosValue和@Value的区别">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/@nacosvalue%E5%92%8C@value%E7%9A%84%E5%8C%BA%E5%88%AB/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/@nacosvalue%E5%92%8C@value%E7%9A%84%E5%8C%BA%E5%88%AB/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/path/to/image.png">
 
     
-    <link rel="canonical" href="https://nexiuss.github.io/tags/">
+    <link rel="canonical" href="https://nexiuss.github.io/posts/@nacosvalue%E5%92%8C@value%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -181,72 +181,107 @@
     </nav>
 </header>
 <main id="content">
-<div class="container tags-list">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>@NacosValue和@Value的区别</h1>
 
-    <h1 class="list-title">Tags</h1>
-    
-    <ul class="post-tags">
         
-        <li class="post-tag">
-            <a href="/tags/blog/">
-                <div class="tag-name">blog</div>
-                <div class="tag-posts-count">4</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/docker/">
-                <div class="tag-name">docker</div>
-                <div class="tag-posts-count">2</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/hugo/">
-                <div class="tag-name">hugo</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/k8s/">
-                <div class="tag-name">k8s</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/nacos/">
-                <div class="tag-name">nacos</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/oracle/">
-                <div class="tag-name">oracle</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/spring/">
-                <div class="tag-name">spring</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/tomcat/">
-                <div class="tag-name">tomcat</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-    </ul>
-    
 
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">September 18, 2024
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/spring">spring</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/nacos">nacos</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="nacosvalue-和value的区别">@NacosValue 和@Value的区别</h1>
+<ul>
+<li>这两个注解都可以用于获取配置属性的值，但在使用方式和适用场景上有一些异同之处。</li>
+</ul>
+<h2 id="相同点">相同点：</h2>
+<ul>
+<li>两者都可以将配置属性的值注入到类的字段或方法参数中。</li>
+<li>都支持 Spring 表达式语言（SpEL）来引用其他属性或进行运算。</li>
+</ul>
+<h2 id="不同点">不同点：</h2>
+<ul>
+<li>来源：@Value 注解是 Spring 框架提供的注解，可用于读取各种配置文件（如 properties、yml 等），而 @NacosValue 注解是 Alibaba Nacos 提供的注解，专门用于从 Nacos 配置中心获取属性值。</li>
+<li>动态刷新：@Value 注解默认情况下不支持动态刷新，即配置变化后不会自动重新注入新值，而 @NacosValue 注解通过设置 autoRefreshed = true 可以实现配置动态刷新，当 Nacos 配置发生变化时，自动更新对应的属性值。</li>
+<li>配置优先级：对于相同属性名的配置，@NacosValue 注解优先级高于 @Value 注解。也就是说，如果同时在 Nacos 和其他配置文件（如 bootstrap.properties、application.properties）中存在相同属性名的配置，那么 @NacosValue 注解获取的是 Nacos 中的属性值。</li>
+</ul>
+<p>根据具体的需求，选择合适的注解来获取配置属性的值。如果你使用 Nacos 作为配置中心并希望实现动态刷新，可以选择 @NacosValue 注解；如果要读取其他类型的配置文件或不需要动态刷新，可以选择 @Value 注解。</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
 </div>
+
+
+
+    
 
         </main><footer class="footer">
     
