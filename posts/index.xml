@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Sep 2024 17:14:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Oct 2024 15:39:32 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin lambda表达式</title>
+      <link>https://nexiuss.github.io/posts/kotlinlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+      <pubDate>Fri, 11 Oct 2024 15:39:32 +0800</pubDate>
+      <guid>https://nexiuss.github.io/posts/kotlinlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+      <description>&lt;h1 id=&#34;kotlin-lambda表达式&#34;&gt;Kotlin lambda表达式&lt;/h1&gt;&#xA;&lt;h2 id=&#34;lambda-表达式语法&#34;&gt;“Lambda 表达式语法”&lt;/h2&gt;&#xA;&lt;p&gt;Lambda 表达式的完整语法形式如下：&#xA;&lt;code&gt;val sum: (Int, Int) -&amp;gt; Int = { x: Int, y: Int -&amp;gt; x + y }&lt;/code&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;lambda 表达式总是括在花括号中。&lt;/li&gt;&#xA;&lt;li&gt;完整语法形式的参数声明放在花括号内，并有可选的类型标注。&lt;/li&gt;&#xA;&lt;li&gt;函数体跟在一个 -&amp;gt; 之后。&lt;/li&gt;&#xA;&lt;li&gt;如果推断出的该 lambda 的返回类型不是 Unit，那么该 lambda 主体中的最后一个（或可能是单个）表达式会视为返回值。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;如果将所有可选标注都留下，看起来如下：&#xA;&lt;code&gt;val sum = { x: Int, y: Int -&amp;gt; x + y }&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;传递末尾的-lambda-表达式&#34;&gt;“传递末尾的 lambda 表达式”&lt;/h2&gt;&#xA;&lt;p&gt;按照 Kotlin 惯例，如果函数的最后一个参数是函数，那么作为相应参数传入的 lambda&#xA;表达式可以放在圆括号之外：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-kt&#34; data-lang=&#34;kt&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 完整代码&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;items.fold(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        acc, e &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; acc * e&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    })&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;val product = items.fold(1) { acc, e -&amp;gt; acc * e }&lt;/code&gt;&#xA;这种语法也称为拖尾 lambda 表达式。&#xA;如果该 lambda 表达式是调用时唯一的参数，那么圆括号可以完全省略：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>@NacosValue和@Value的区别</title>
       <link>https://nexiuss.github.io/posts/@nacosvalue%E5%92%8C@value%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
