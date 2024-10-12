@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Vue3中hooks函数封装和使用</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, vue, 设计模式'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/vue3%E4%B8%ADhooks%E5%87%BD%E6%95%B0%E5%B0%81%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Vue3中hooks函数封装和使用">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/path/to/image.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/path/to/image.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vue3中hooks函数封装和使用">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/vue3%E4%B8%ADhooks%E5%87%BD%E6%95%B0%E5%B0%81%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/vue3%E4%B8%ADhooks%E5%87%BD%E6%95%B0%E5%B0%81%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/path/to/image.png">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/vue3%E4%B8%ADhooks%E5%87%BD%E6%95%B0%E5%B0%81%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.9a920d7dabdbad8363b6a0a94e29a9dfebdb7ee64cfcb193a0145e512ef2bdab.js" integrity="sha256-mpINfavbrYNjtqCpTimp3&#43;vbfuZM/LGToBReUS7yvas="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Vue3中hooks函数封装和使用</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">October 12, 2024
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/vue">vue</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="vue3中hooks函数封装和使用">Vue3中hooks函数封装和使用</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/661652964">摘抄自：知乎</a></p>
+<h2 id="一hooks-是什么">一、hooks 是什么</h2>
+<ul>
+<li>vue3 中的 hooks 就是函数的一种写法，就是将文件的一些单独功能的 js 代码进行抽离出来进行封装使用。</li>
+<li>它的主要作用是 Vue3 借鉴了 React 的一种机制，用于在函数组件中共享状态逻辑和副作用，从而实现代码的可复用性。</li>
+</ul>
+<p><strong>注意:</strong> 其实 hooks 和 vue2 中的 mixin 有点类似，但是相对 mixins 而言， hooks 更清楚复用功能代码的来源, 更清晰易懂。</p>
+<h2 id="二hooks-的优点">二、hooks 的优点</h2>
+<ul>
+<li>hooks 作为独立逻辑的组件封装，其内部的属性、函数等和外部组件具有响应式依附的作用。</li>
+<li>自定义 hook 的作用类似于 vue2 中的 mixin 技术，使用方便，易于上手。</li>
+<li>使用 Vue3 的组合 API 封装的可复用，高内聚低耦合。</li>
+</ul>
+<h2 id="三自定义-hook-需要满足的规范">三、自定义 hook 需要满足的规范</h2>
+<ol>
+<li>具备可复用功能，才需要抽离为 hooks 独立文件;</li>
+<li>函数名/文件名以 use 开头，形如: useXX;</li>
+<li>引用时将响应式变量或者方法显式解构暴露出来；</li>
+</ol>
+<p>示例如下：</p>
+<p><code>const{ nameRef, Fn } = useXX()</code></p>
+<h2 id="四hooks-和-utils-区别">四、hooks 和 utils 区别</h2>
+<ul>
+<li><strong>相同点：</strong>
+通过 hooks 和 utils 函数封装， 可以实现组件间共享和复用，提高代码的可重用性和可维护性。</li>
+<li><strong>异同点：</strong></li>
+</ul>
+<ol>
+<li><strong>表现形式不同：</strong> hooks 是在 utils 的基础上再包一层组件级别的东西(钩子函数等)；utils 一般用于封装相应的逻辑函数，没有组件的东西；</li>
+<li><strong>数据是否具有响应式：</strong> hooks 中如果涉及到 ref，reactive，computed 这些 api 的数据，是具有响应式的；而 utils 只是单纯提取公共方法就不具备响应式；</li>
+<li><strong>作用范围不同：</strong> hooks 封装，可以将组件的状态和生命周期方法提取出来，并在多个组件之间共享和重用；utils 通常是指一些辅助函数或工具方法，用于实现一些常见的操作或提供特定功能。</li>
+</ol>
+<ul>
+<li><strong>总结：</strong>
+utils 是通用的工具函数，而 hooks 是对 utils 的一种封装，用于在组件中共享状态逻辑和副作用。
+通过使用 hooks，您可以简化代码，并使其更具可读性和可维护性。</li>
+</ul>
+<h2 id="五hooks-和-mixin-区别">五、hooks 和 mixin 区别</h2>
+<ul>
+<li>
+<p><strong>相同点：</strong>
+hooks 和 mixin，都是常用代码逻辑抽离手段，方便进行代码复用；</p>
+</li>
+<li>
+<p><strong>异同点：</strong></p>
+</li>
+</ul>
+<ol>
+<li><strong>语法和用法不同:</strong> Hooks 是在 Vue 3 的 Composition API 中引入的一种函数式编程的方式，而 Mixins 是在 Vue 2 中的一种对象混入机制。Hooks 使用函数的方式定义和使用，而 Mixins 则是通过对象的方式进行定义和应用。</li>
+<li><strong>组合性和灵活性不同：</strong> Hooks 允许开发者根据逻辑功能来组合代码，封装为自定义 Hook 函数，提高代码复用率。而 Mixins 在组件中的属性和方法会与组件本身的属性和方法进行合并，可能会导致命名冲突或不可预料的行为。</li>
+<li><strong>响应式系统不同：</strong> Vue 3 的 Composition API 使用了一个新的响应式系统，可以通过 reactive 和 ref 来创建响应式数据，可以更精确地控制组件的更新和依赖追踪。而 Mixins 使用 Vue 2 的响应式系统，对数据的追踪和更新较为简单，可能存在一些性能上的问题。</li>
+<li><strong>生命周期钩子不同：</strong> 在 Vue 3 的 Composition API 中，可以使用 onMounted、onUpdated 等钩子函数来替代 Vue 2 中的生命周期钩子，可以更灵活地管理组件的生命周期。Mixins 依然使用 Vue 2 的生命周期钩子。</li>
+</ol>
+<ul>
+<li>mixins 的优缺点
+<strong>优点：</strong> 组件中相同代码逻辑复用；
+<strong>缺点：</strong></li>
+</ul>
+<ol>
+<li>变量来源不明确：变量来源不明确（隐式传入），不利于阅读，使代码变得难以维护。</li>
+<li>命名冲突：多个 mixins 的生命周期会融合到一起运行，但是同名属性、同名方法无法融合，可能会导致冲突。</li>
+<li>滥用会造成维护问题：mixins 和组件可能出现多对多的关系，复杂度较高（即一个组件可以引用多个 mixins，一个 mixins 也可以被多个组件引用）。
+<strong>注：</strong> VUE3 提出的 Composition API 旨在解决这些问题。mixins 的缺点是 Composition API 背后的主要动因之一，Composition API 受到 React Hooks 的启发。
+<strong>hooks 代码：</strong>
+useCount.ts 函数示例：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ref</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">onMounted</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">computed</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">exportdefaultfunctionuseCount</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">constcount</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ref</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">constdoubleCount</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">computed</span>(() <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span><span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">constincrease</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">delta</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">returncount</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">delta</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">count</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">doubleCount</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">increase</span>
+</span></span><span style="display:flex;"><span>	};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>useCount 在组件中调用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">importuseCount</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@/hooks/useCount&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { (<span style="color:#a6e22e">count</span>, <span style="color:#a6e22e">doubleCount</span>, <span style="color:#a6e22e">increase</span>)
+</span></span><span style="display:flex;"><span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">useCount</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">constnewCount</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">increase</span>(<span style="color:#ae81ff">10</span>); <span style="color:#75715e">// 输出: 10
+</span></span></span></code></pre></div><p>Mixins 的代码:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">exportdefaultconstcountMixin</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">data() {</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">count</span>: <span style="color:#66d9ef">0</span>
+</span></span><span style="display:flex;"><span>		};
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">computed</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">doubleCount() {</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">returnthis</span>.<span style="color:#a6e22e">count</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">increase</span>(<span style="color:#a6e22e">delta</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">returnthis</span>.<span style="color:#a6e22e">count</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">delta</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	};
+</span></span></code></pre></div><p>Mixins 在组件中调用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">setuplang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ts&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">importcountMixin</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@/mixin/countMixin&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">exportdefault</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mixins</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">countMixin</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mounted() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">doubleCount</span>) <span style="color:#75715e">// 输出: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">constnewCount</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setIncrease</span>(<span style="color:#ae81ff">10</span>) <span style="color:#75715e">// 输出: 10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setIncrease</span>(<span style="color:#a6e22e">count</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">increase</span>(<span style="color:#a6e22e">count</span>)
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>这两个示例展示了使用 Hooks 和 Mixins 的代码风格和组织方式的不同。Hooks 使用函数式的方式来定义逻辑和状态，而 Mixins 则是通过对象的方式进行组合和共享代码。</p>
+<p>Vue3 自定义 Hooks 是组件下的函数作用域的，而 Vue2 时代的 Mixins 是组件下的全局作用域。全局作用域有时候是不可控的，就像 var 和 let 这些变量声明关键字一样，const 和 let 是 var 的修正。Composition Api 正是对 Vue2 时代 Option Api 高耦合和随处可见 this 的黑盒的修正，Vue3 自定义 Hooks 是一种进步。</p>
+<h2 id="六hooks-函数封装示例">六、hooks 函数封装示例</h2>
+<ul>
+<li><strong>示例 1：数据导出(useDownload)</strong>
+useDownload 函数封装：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ElNotification</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;element-plus&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @description 接收数据流生成 blob，创建链接，下载文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @param {any} data 导出的文件blob数据 (必传)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @param {String} tempName 导出的文件名 (必传)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @param {Boolean} isNotify 是否有导出消息提示 (默认为 true)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @param {String} fileType 导出的文件格式 (默认为.xlsx)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">useDownloadParam</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tempName</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">isNotify</span> <span style="color:#f92672">?</span> <span style="color:#f92672">:</span><span style="color:#66d9ef">boolean</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fileType</span> <span style="color:#f92672">?</span> <span style="color:#f92672">:</span><span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">useDownload</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tempName</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">isNotify</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fileType</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;.xlsx&#39;</span>,
+</span></span><span style="display:flex;"><span>}<span style="color:#f92672">:</span> <span style="color:#a6e22e">useDownloadParam</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isNotify</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ElNotification</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;温馨提示&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;如果数据庞大会导致下载缓慢哦，请您耐心等待！&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;info&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">duration</span>: <span style="color:#66d9ef">3000</span>,
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">blob</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newBlob</span>([<span style="color:#a6e22e">data</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 兼容 edge 不支持 createObjectURL 方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#39;msSaveOrOpenBlob&#39;</span><span style="color:#a6e22e">innavigator</span>) <span style="color:#66d9ef">return</span> window.<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">msSaveOrOpenBlob</span>(<span style="color:#a6e22e">blob</span>, <span style="color:#a6e22e">tempName</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">fileType</span>) <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">blobUrl</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">createObjectURL</span>(<span style="color:#a6e22e">blob</span>) <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exportFile</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;a&#39;</span>) <span style="color:#66d9ef">export</span> <span style="color:#a6e22e">File</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">display</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;none&#39;</span><span style="color:#66d9ef">export</span> <span style="color:#a6e22e">File</span>.<span style="color:#a6e22e">download</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`$ {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      tempName
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    $ {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      fileType
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }`</span><span style="color:#66d9ef">export</span> <span style="color:#a6e22e">File</span>.<span style="color:#a6e22e">href</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blobUrl</span> document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">exportFile</span>) <span style="color:#66d9ef">export</span> <span style="color:#a6e22e">File</span>.<span style="color:#a6e22e">click</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 去除下载对 url 的影响
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">removeChild</span>(<span style="color:#a6e22e">exportFile</span>) window.<span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">revokeObjectURL</span>(<span style="color:#a6e22e">blobUrl</span>)
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">error</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>useDownload 在组件中使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">useDownload</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@/hooks/useDownload&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">constuserForm</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">reactive</span>({}) <span style="color:#a6e22e">constuserListExport</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">newPromise</span>(<span style="color:#a6e22e">resolve</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$Request</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">url</span>: <span style="color:#66d9ef">$Urls.userListExport</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;post&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">userForm</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">responseType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;blob&#34;</span>
+</span></span><span style="display:flex;"><span>    }).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">res</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">useDownload</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">res.data</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">tempName</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#e6db74">&#34;用户列表&#34;</span>
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">res</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p><strong>示例 2：加减计数(useCount)</strong>
+useCount 函数封装：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">computed</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ref</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Ref</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义hook方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">typeCountResultProps</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">count</span>: <span style="color:#66d9ef">Ref</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">number</span> <span style="color:#f92672">&gt;</span> ,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">multiple</span>: <span style="color:#66d9ef">Ref</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">number</span> <span style="color:#f92672">&gt;</span> ,
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 计算属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">increase</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">delta</span> <span style="color:#f92672">?</span> <span style="color:#f92672">:</span><span style="color:#66d9ef">number</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span><span style="color:#66d9ef">void</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">decrease</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">delta</span> <span style="color:#f92672">?</span> <span style="color:#f92672">:</span><span style="color:#66d9ef">number</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span><span style="color:#66d9ef">void</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">exportdefaultfunctionuseCount</span>(<span style="color:#a6e22e">initValue</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">CountResultProps</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constcount</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ref</span>(<span style="color:#a6e22e">initValue</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constmultiple</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">computed</span>(() <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span><span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constincrease</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">delta</span> <span style="color:#f92672">?</span> <span style="color:#f92672">:</span><span style="color:#66d9ef">number</span>) <span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">typeofdelta</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;undefined&#39;</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">delta</span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constdecrease</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">delta</span> <span style="color:#f92672">?</span> <span style="color:#f92672">:</span><span style="color:#66d9ef">number</span>) <span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">typeofdelta</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;undefined&#39;</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">-=</span> <span style="color:#a6e22e">delta</span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">count</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">increase</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">decrease</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">multiple</span>,
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>useCount 函数在组件中使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">count</span><span style="color:#f92672">:</span>{{<span style="color:#a6e22e">count</span>}}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">倍数</span><span style="color:#f92672">:</span>{{<span style="color:#a6e22e">multiple</span>}}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">button@click</span><span style="color:#e6db74">=&#34;increase(1)&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">加一</span>
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">button@click</span><span style="color:#e6db74">=&#34;decrease(1)&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">减一</span>
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#a6e22e">在模版中直接使用hooks中的方法作为回调函数</span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">setuplang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ts&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">importuseCount</span> <span style="color:#a6e22e">from</span><span style="color:#e6db74">&#34;@/hooks/useCount&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span>{<span style="color:#a6e22e">count</span>,<span style="color:#a6e22e">multiple</span>,<span style="color:#a6e22e">increase</span>,<span style="color:#a6e22e">decrease</span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">useCount</span>(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h3 id="示例-3获取鼠标触发点坐标usemouseposition">示例 3：获取鼠标触发点坐标(useMousePosition)</h3>
+<p>useMousePosition 函数封装：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ref</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onMounted</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onUnmounted</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Ref</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">interfaceMousePosition</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">x</span>: <span style="color:#66d9ef">Ref</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">number</span> <span style="color:#f92672">&gt;</span> ;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">y</span>: <span style="color:#66d9ef">Ref</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">number</span> <span style="color:#f92672">&gt;</span> ;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">exportdefaultfunctionuseMousePosition</span>() <span style="color:#f92672">:</span> <span style="color:#a6e22e">MousePosition</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ref</span>(<span style="color:#ae81ff">0</span>) <span style="color:#a6e22e">consty</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ref</span>(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constupdateMouse</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">MouseEvent</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">x</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">pageX</span> <span style="color:#a6e22e">y</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">pageY</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onMounted</span>(() <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#a6e22e">updateMouse</span>)
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onUnmounted</span>(() <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">removeEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#a6e22e">updateMouse</span>)
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">x</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">y</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>useMousePosition 在组件中使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">X</span><span style="color:#f92672">:</span> {{ <span style="color:#a6e22e">x</span> }}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Y</span><span style="color:#f92672">:</span> {{ <span style="color:#a6e22e">y</span> }}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ts&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">importuseMousePosition</span> <span style="color:#a6e22e">from</span><span style="color:#e6db74">&#39;@/hooks/useMousePosition&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span>{ <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">useMousePosition</span>();
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h3 id="七hooks-函数封装细节归纳">七、hooks 函数封装细节归纳</h3>
+<ul>
+<li>
+<ol>
+<li>hooks 函数接收参数写法；</li>
+</ol>
+</li>
+</ul>
+<p>写法 1：参数通过 props 接收，先定义参数类型，内部再解构；</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">commonRequest</span>(<span style="color:#a6e22e">params</span>: <span style="color:#66d9ef">Axios.AxiosParams</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">url</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">method</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">responseType</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;json&#39;</span>
+</span></span><span style="display:flex;"><span>  } <span style="color:#f92672">=</span> <span style="color:#a6e22e">params</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>写法 2：接收传参对象，先设置默认值，再定义参数类型</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">DeprecationParam</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">from</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">replacement</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">useDeprecated</span> <span style="color:#f92672">=</span> ({
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">from</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">replacement</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;API&#39;</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#f92672">:</span> <span style="color:#a6e22e">DeprecationParam</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{}
+</span></span></code></pre></div><ol start="2">
+<li>解构重命名写法</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// setup中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">list</span>: <span style="color:#66d9ef">goodsList</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getList</span>: <span style="color:#66d9ef">getGoodsList</span>
+</span></span><span style="display:flex;"><span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">useList</span>(<span style="color:#a6e22e">axios</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">&#39;/url/get/goods&#39;</span>)) <span style="color:#66d9ef">const</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">list</span>: <span style="color:#66d9ef">recommendList</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getList</span>: <span style="color:#66d9ef">getRecommendList</span>
+</span></span><span style="display:flex;"><span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">useList</span>(<span style="color:#a6e22e">axios</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">&#39;/url/get/recommendGoods&#39;</span>))
+</span></span></code></pre></div><ol start="3">
+<li>KeyboardEvent 为鼠标按键类型</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">useEscapeKeydown</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">handler</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">KeyboardEvent</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span><span style="color:#66d9ef">void</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span>{}
+</span></span></code></pre></div><h2 id="八总结">八、总结</h2>
+<p>Vue2 时代 Option Api ，data、methos、watch&hellip;..分开写，这种是碎片化的分散的，代码一多就容易高耦合，维护时来回切换代码是繁琐的！</p>
+<p>Vue3 时代 Composition Api，通过利用各种 Hooks 和自定义 Hooks 将碎片化的响应式变量和方法按功能分块写，实现高内聚低耦合。</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 The Marauders</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

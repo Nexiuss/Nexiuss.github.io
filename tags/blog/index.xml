@@ -6,8 +6,15 @@
     <description>Recent content in Blog on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 11 Oct 2024 15:39:32 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2024 15:02:26 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue3中hooks函数封装和使用</title>
+      <link>https://nexiuss.github.io/posts/vue3%E4%B8%ADhooks%E5%87%BD%E6%95%B0%E5%B0%81%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sat, 12 Oct 2024 15:02:26 +0800</pubDate>
+      <guid>https://nexiuss.github.io/posts/vue3%E4%B8%ADhooks%E5%87%BD%E6%95%B0%E5%B0%81%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;h1 id=&#34;vue3中hooks函数封装和使用&#34;&gt;Vue3中hooks函数封装和使用&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/661652964&#34;&gt;摘抄自：知乎&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;一hooks-是什么&#34;&gt;一、hooks 是什么&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;vue3 中的 hooks 就是函数的一种写法，就是将文件的一些单独功能的 js 代码进行抽离出来进行封装使用。&lt;/li&gt;&#xA;&lt;li&gt;它的主要作用是 Vue3 借鉴了 React 的一种机制，用于在函数组件中共享状态逻辑和副作用，从而实现代码的可复用性。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;注意:&lt;/strong&gt; 其实 hooks 和 vue2 中的 mixin 有点类似，但是相对 mixins 而言， hooks 更清楚复用功能代码的来源, 更清晰易懂。&lt;/p&gt;&#xA;&lt;h2 id=&#34;二hooks-的优点&#34;&gt;二、hooks 的优点&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;hooks 作为独立逻辑的组件封装，其内部的属性、函数等和外部组件具有响应式依附的作用。&lt;/li&gt;&#xA;&lt;li&gt;自定义 hook 的作用类似于 vue2 中的 mixin 技术，使用方便，易于上手。&lt;/li&gt;&#xA;&lt;li&gt;使用 Vue3 的组合 API 封装的可复用，高内聚低耦合。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;三自定义-hook-需要满足的规范&#34;&gt;三、自定义 hook 需要满足的规范&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;具备可复用功能，才需要抽离为 hooks 独立文件;&lt;/li&gt;&#xA;&lt;li&gt;函数名/文件名以 use 开头，形如: useXX;&lt;/li&gt;&#xA;&lt;li&gt;引用时将响应式变量或者方法显式解构暴露出来；&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;示例如下：&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;const{ nameRef, Fn } = useXX()&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;四hooks-和-utils-区别&#34;&gt;四、hooks 和 utils 区别&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;相同点：&lt;/strong&gt;&#xA;通过 hooks 和 utils 函数封装， 可以实现组件间共享和复用，提高代码的可重用性和可维护性。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;异同点：&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;表现形式不同：&lt;/strong&gt; hooks 是在 utils 的基础上再包一层组件级别的东西(钩子函数等)；utils 一般用于封装相应的逻辑函数，没有组件的东西；&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;数据是否具有响应式：&lt;/strong&gt; hooks 中如果涉及到 ref，reactive，computed 这些 api 的数据，是具有响应式的；而 utils 只是单纯提取公共方法就不具备响应式；&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;作用范围不同：&lt;/strong&gt; hooks 封装，可以将组件的状态和生命周期方法提取出来，并在多个组件之间共享和重用；utils 通常是指一些辅助函数或工具方法，用于实现一些常见的操作或提供特定功能。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;总结：&lt;/strong&gt;&#xA;utils 是通用的工具函数，而 hooks 是对 utils 的一种封装，用于在组件中共享状态逻辑和副作用。&#xA;通过使用 hooks，您可以简化代码，并使其更具可读性和可维护性。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;五hooks-和-mixin-区别&#34;&gt;五、hooks 和 mixin 区别&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;相同点：&lt;/strong&gt;&#xA;hooks 和 mixin，都是常用代码逻辑抽离手段，方便进行代码复用；&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Kotlin lambda表达式</title>
       <link>https://nexiuss.github.io/posts/kotlinlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
