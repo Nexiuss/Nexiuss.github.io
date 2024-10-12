@@ -17,26 +17,26 @@
     
 
     
-    <title>Posts</title>
-    <meta name="description" content="Sky above, sand below and peace within">
-    <meta name="keywords" content='blog, gokarna, hugo'>
+    <title>Kotlin lambda表达式</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, kotlin'>
 
-    <meta property="og:url" content="https://nexiuss.github.io/posts/">
+    <meta property="og:url" content="https://nexiuss.github.io/posts/kotlin%E4%B8%ADlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Posts">
-    <meta property="og:description" content="Sky above, sand below and peace within">
-    <meta property="og:image" content="https://nexiuss.github.io/images/logo.jpg">
-    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta property="og:title" content="Kotlin lambda表达式">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/path/to/image.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/path/to/image.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Posts">
-    <meta name="twitter:description" content="Sky above, sand below and peace within">
-    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/">
-    <meta property="twitter:url" content="https://nexiuss.github.io/posts/">
-    <meta name="twitter:image" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta name="twitter:title" content="Kotlin lambda表达式">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/kotlin%E4%B8%ADlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/kotlin%E4%B8%ADlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/path/to/image.png">
 
     
-    <link rel="canonical" href="https://nexiuss.github.io/posts/">
+    <link rel="canonical" href="https://nexiuss.github.io/posts/kotlin%E4%B8%ADlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -181,101 +181,116 @@
     </nav>
 </header>
 <main id="content">
-    <div class="container list-posts">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Kotlin lambda表达式</h1>
 
-    <h1 class="list-title">Posts</h1>
+        
 
-    
+        
+	
+	
+	
+	
+        
 
-    <h2 class="posts-year">2024</h2><div class="post-title">
-     <a href="https://nexiuss.github.io/posts/vue3%E4%B8%ADhooks%E5%87%BD%E6%95%B0%E5%B0%81%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" class="post-link">Vue3中hooks函数封装和使用</a>
-     
-     
-     
-     
+	
 
-     
+	
 
-     
-      <div class="flex-break"></div>
-      <span class="post-date">October 12, 2024</span>
-     
-</div>
-<div class="post-title">
-     <a href="https://nexiuss.github.io/posts/kotlin%E4%B8%ADlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-link">Kotlin lambda表达式</a>
-     
-     
-     
-     
+	
+          <small role="doc-subtitle">A blog post</small>
+	
 
-     
+	
+          <p class="post-date">October 11, 2024
+           
+          </p>
+	
 
-     
-      <div class="flex-break"></div>
-      <span class="post-date">October 11, 2024</span>
-     
-</div>
-<div class="post-title">
-     <a href="https://nexiuss.github.io/posts/@nacosvalue%E5%92%8C@value%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-link">@NacosValue和@Value的区别</a>
-     
-     
-     
-     
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/kotlin">kotlin</a></li>
+           
+         
+        </ul>
+    </div>
 
-     
+    <div class="post-content">
+        <h1 id="kotlin-lambda表达式">Kotlin lambda表达式</h1>
+<h2 id="lambda-表达式语法">“Lambda 表达式语法”</h2>
+<p>Lambda 表达式的完整语法形式如下：
+<code>val sum: (Int, Int) -&gt; Int = { x: Int, y: Int -&gt; x + y }</code></p>
+<ul>
+<li>lambda 表达式总是括在花括号中。</li>
+<li>完整语法形式的参数声明放在花括号内，并有可选的类型标注。</li>
+<li>函数体跟在一个 -&gt; 之后。</li>
+<li>如果推断出的该 lambda 的返回类型不是 Unit，那么该 lambda 主体中的最后一个（或可能是单个）表达式会视为返回值。</li>
+</ul>
+<p>如果将所有可选标注都留下，看起来如下：
+<code>val sum = { x: Int, y: Int -&gt; x + y }</code></p>
+<h2 id="传递末尾的-lambda-表达式">“传递末尾的 lambda 表达式”</h2>
+<p>按照 Kotlin 惯例，如果函数的最后一个参数是函数，那么作为相应参数传入的 lambda
+表达式可以放在圆括号之外：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kt" data-lang="kt"><span style="display:flex;"><span><span style="color:#75715e">// 完整代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>items.fold(<span style="color:#ae81ff">0</span>, {
+</span></span><span style="display:flex;"><span>        acc, e <span style="color:#f92672">-&gt;</span> acc * e
+</span></span><span style="display:flex;"><span>    })
+</span></span></code></pre></div><p><code>val product = items.fold(1) { acc, e -&gt; acc * e }</code>
+这种语法也称为拖尾 lambda 表达式。
+如果该 lambda 表达式是调用时唯一的参数，那么圆括号可以完全省略：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kt" data-lang="kt"><span style="display:flex;"><span><span style="color:#75715e">// 完整代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>run({()<span style="color:#f92672">-&gt;</span>println(<span style="color:#e6db74">&#34;...&#34;</span>)})
+</span></span></code></pre></div><p><code>run { println(&quot;...&quot;) }</code></p>
+<h2 id="it单个参数的隐式名称">it：单个参数的隐式名称</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kt" data-lang="kt"><span style="display:flex;"><span><span style="color:#75715e">// 完整代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ints.filter { (<span style="color:#66d9ef">it</span>: Int) <span style="color:#f92672">-&gt;</span> Boolean = <span style="color:#66d9ef">it</span> &gt; <span style="color:#ae81ff">0</span> }
+</span></span></code></pre></div><p><code>ints.filter { it &gt; 0 }</code></p>
 
-     
-      <div class="flex-break"></div>
-      <span class="post-date">September 18, 2024</span>
-     
-</div>
-<div class="post-title">
-     <a href="https://nexiuss.github.io/posts/docker%E5%90%AF%E5%8A%A8/" class="post-link">Docker启动</a>
-     
-     
-     
-     
+        
+    </div>
 
-     
-
-     
-      <div class="flex-break"></div>
-      <span class="post-date">September 12, 2024</span>
-     
-</div>
-<div class="post-title">
-     <a href="https://nexiuss.github.io/posts/tomcat%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/" class="post-link">Tomcat容器部署</a>
-     
-     
-     
-     
-
-     
-
-     
-      <div class="flex-break"></div>
-      <span class="post-date">September 11, 2024</span>
-     
-</div>
-<div class="post-title">
-     <a href="https://nexiuss.github.io/posts/first/" class="post-link">First</a>
-     
-     
-     
-     
-
-     
-
-     
-      <div class="flex-break"></div>
-      <span class="post-date">September 11, 2024</span>
-     
-</div>
+    <div class="prev-next">
+        
+    </div>
 
     
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
 
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
 </div>
 
+
+
+    
 
         </main><footer class="footer">
     
