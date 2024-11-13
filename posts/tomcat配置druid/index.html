@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Tomcat配置druid</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, druid, tomcat'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/tomcat%E9%85%8D%E7%BD%AEdruid/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tomcat配置druid">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/images/druid.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/druid.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tomcat配置druid">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/tomcat%E9%85%8D%E7%BD%AEdruid/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/tomcat%E9%85%8D%E7%BD%AEdruid/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/druid.png">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/tomcat%E9%85%8D%E7%BD%AEdruid/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.9a920d7dabdbad8363b6a0a94e29a9dfebdb7ee64cfcb193a0145e512ef2bdab.js" integrity="sha256-mpINfavbrYNjtqCpTimp3&#43;vbfuZM/LGToBReUS7yvas="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Tomcat配置druid</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">November 13, 2024
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/druid">druid</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/tomcat">tomcat</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="tomcat配置druid">Tomcat配置druid</h1>
+<h2 id="流程概述">流程概述</h2>
+<ol>
+<li>在/home/tomcat/apache-tomcat-8.5.31/lib目录</li>
+</ol>
+<ul>
+<li>删除tomcat-dbcp.jar</li>
+<li>追加druid-1.1.9.jar</li>
+</ul>
+<ol start="2">
+<li>改Tomcat web.xml配置</li>
+<li>改Tomcat context.xml配置</li>
+<li>检查项目中是否有权限拦截的，需要放开拦截，改项目的web.xml</li>
+<li>如果druid没加载上，再改catalina.properties</li>
+<li>验证地址： {ip}:{host}/{project_name}/druid/login.html</li>
+</ol>
+<h2 id="修改tomcat下的webxml里面增加druid配置">修改tomcat下的web.xml，里面增加druid配置</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- druid view --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;servlet&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;servlet-name&gt;</span>DruidStatView<span style="color:#f92672">&lt;/servlet-name&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;servlet-class&gt;</span>com.alibaba.druid.support.http.StatViewServlet<span style="color:#f92672">&lt;/servlet-class&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;init-param&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- 允许清空统计数据 --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;param-name&gt;</span>resetEnable<span style="color:#f92672">&lt;/param-name&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;param-value&gt;</span>true<span style="color:#f92672">&lt;/param-value&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/init-param&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;init-param&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- 用户名 --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;param-name&gt;</span>loginUsername<span style="color:#f92672">&lt;/param-name&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;param-value&gt;</span>admin<span style="color:#f92672">&lt;/param-value&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/init-param&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;init-param&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- 密码 --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;param-name&gt;</span>loginPassword<span style="color:#f92672">&lt;/param-name&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;param-value&gt;</span>admin<span style="color:#f92672">&lt;/param-value&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/init-param&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/servlet&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;servlet-mapping&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;servlet-name&gt;</span>DruidStatView<span style="color:#f92672">&lt;/servlet-name&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;url-pattern&gt;</span>/druid/*<span style="color:#f92672">&lt;/url-pattern&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/servlet-mapping&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- druid view --&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 连接池 启用 Web 监控统计功能    start--&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;filter&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;filter-name&gt;</span>DruidWebStatFilter<span style="color:#f92672">&lt;/filter-name&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;filter-class&gt;</span>com.alibaba.druid.support.http.WebStatFilter<span style="color:#f92672">&lt;/filter-class&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;init-param&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-name&gt;</span>exclusions<span style="color:#f92672">&lt;/param-name&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-value&gt;</span>*.js ,*.gif ,*.jpg ,*.png ,*.css ,*.ico ,*.map,/druid/*<span style="color:#f92672">&lt;/param-value&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;/init-param&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;init-param&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-name&gt;</span>sessionStatMaxCount<span style="color:#f92672">&lt;/param-name&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-value&gt;</span>2000<span style="color:#f92672">&lt;/param-value&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;/init-param&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;init-param&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-name&gt;</span>sessionStatEnable<span style="color:#f92672">&lt;/param-name&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-value&gt;</span>true<span style="color:#f92672">&lt;/param-value&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;/init-param&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;init-param&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-name&gt;</span>principalSessionName<span style="color:#f92672">&lt;/param-name&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-value&gt;</span>session_user_key<span style="color:#f92672">&lt;/param-value&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;/init-param&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;init-param&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-name&gt;</span>profileEnable<span style="color:#f92672">&lt;/param-name&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;param-value&gt;</span>true<span style="color:#f92672">&lt;/param-value&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;/init-param&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/filter&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;filter-mapping&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;filter-name&gt;</span>DruidWebStatFilter<span style="color:#f92672">&lt;/filter-name&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;url-pattern&gt;</span>/*<span style="color:#f92672">&lt;/url-pattern&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/filter-mapping&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">&lt;!-- 连接池 启用 Web 监控统计功能   end--&gt;</span>
+</span></span></code></pre></div><h2 id="contextxml配置">context.xml配置</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;Resource</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;prpDataSource&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">auth=</span><span style="color:#e6db74">&#34;Container&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;javax.sql.DataSource&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">factory=</span><span style="color:#e6db74">&#34;com.alibaba.druid.pool.DruidDataSourceFactory&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">defaultTransactionIsolation=</span><span style="color:#e6db74">&#34;READ_COMMITTED&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">username=</span><span style="color:#e6db74">&#34;用户名&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">password=</span><span style="color:#e6db74">&#34;密码&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">filters=</span><span style="color:#e6db74">&#34;stat,wall&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">driverClassName=</span><span style="color:#e6db74">&#34;oracle.jdbc.OracleDriver&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">url=</span><span style="color:#e6db74">&#34;jdbc:oracle:thin:@ip:端口:service&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">maxActive=</span><span style="color:#e6db74">&#34;96&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">minIdle=</span><span style="color:#e6db74">&#34;8&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">removeabandoned=</span><span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">removeabandonedtimeout=</span><span style="color:#e6db74">&#34;60&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">logabandoned=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/Resource&gt;</span>
+</span></span></code></pre></div><h2 id="如果druid没加载上再改catalinaproperties">如果druid没加载上，再改catalina.properties</h2>
+<p>增加：druid-1.1.9.jar</p>
+<h2 id="页面访问">页面访问</h2>
+<h3 id="登陆界面">登陆界面</h3>
+<ul>
+<li>{ip}:{host}/{project_name}/druid/login.html</li>
+</ul>
+<p>用户名密码，请参考web.xml中的loginUsername属性
+<img src="/images/druid/login.png" alt="登陆界面"></p>
+<h3 id="首页">首页</h3>
+<ul>
+<li>{ip}:{host}/{project_name}/druid/index.html
+<img src="/images/druid/index.png" alt="首页"></li>
+</ul>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 The Marauders</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
