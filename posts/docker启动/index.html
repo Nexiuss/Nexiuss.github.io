@@ -528,7 +528,15 @@ docker image下载地址：
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 如</span>
 </span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus sys/password1234@//localhost:1521/orclcdb as sysdba
 </span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus system/password1234@//localhost:1521/orclcdb
+</span></span></code></pre></div><h4 id="切换pdb">切换PDB</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span><span style="color:#75715e">-- 查看当前PDB
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">show</span> con_name
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 查看所有PDB
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> name,open_mode <span style="color:#66d9ef">from</span> v$pdbs;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 切换PDB
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">session</span> <span style="color:#66d9ef">set</span> container<span style="color:#f92672">=</span>ORCLPDB1;
 </span></span></code></pre></div><h4 id="扩展-oracle实例-orclpdb1和orclcdb的区别">扩展 ：oracle实例 ORCLPDB1和orclcdb的区别</h4>
+<p>oracle从12c开始增加了增加了CDB和PDB的概念，数据库引入的多租用户环境（Multitenant Environment）中，允许一个数据库容器（CDB）承载多个可插拔数据库（PDB）。CDB全称为Container Database，中文翻译为数据库容器，PDB全称为Pluggable Database，即可插拔数据库。在ORACLE 12C之前，实例与数据库是一对一或多对一关系（RAC）：即一个实例只能与一个数据库相关联，数据库可以被多个实例所加载。而实例与数据库不可能是一对多的关系。当进入ORACLE 12C后，实例与数据库可以是一对多的关系</p>
 <ul>
 <li>jdbc:oracle:thin:@//xxx:1521/ORCLPDB1：此URL连接到名为“ORCLPDB1.在Oracle多租户体系结构中，容器数据库（CDB）可以托管多个PDB。PDB充当CDB内的单独数据库。当您想要直接连接到特定PDB时，将使用此URL</li>
 <li>jdbc:oracle:thin:@//xxx:1521/ORCLCDB：此URL连接到容器数据库（CDB）本身，而不是特定的PDB。CDB是包含多个PDB的主数据库。当连接到CDB时，您可以访问和管理其中的所有PDB。此URL通常在需要执行管理任务或访问CDB级别的功能时使用。
