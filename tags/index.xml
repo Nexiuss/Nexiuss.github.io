@@ -6,13 +6,34 @@
     <description>Recent content in Tags on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 13 Nov 2024 13:26:17 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 21 Nov 2024 10:51:56 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Blog</title>
       <link>https://nexiuss.github.io/tags/blog/</link>
-      <pubDate>Wed, 13 Nov 2024 13:26:17 +0800</pubDate>
+      <pubDate>Thu, 21 Nov 2024 10:51:56 +0800</pubDate>
       <guid>https://nexiuss.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>https://nexiuss.github.io/tags/java/</link>
+      <pubDate>Thu, 21 Nov 2024 10:51:56 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SQL</title>
+      <link>https://nexiuss.github.io/tags/sql/</link>
+      <pubDate>Thu, 21 Nov 2024 10:51:56 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/sql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>事务</title>
+      <link>https://nexiuss.github.io/tags/%E4%BA%8B%E5%8A%A1/</link>
+      <pubDate>Thu, 21 Nov 2024 10:51:56 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/%E4%BA%8B%E5%8A%A1/</guid>
       <description></description>
     </item>
     <item>

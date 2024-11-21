@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>事务工具类</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, java, SQL, 事务'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/%E4%BA%8B%E5%8A%A1%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="事务工具类">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/path/to/image.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/path/to/image.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="事务工具类">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/%E4%BA%8B%E5%8A%A1%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/%E4%BA%8B%E5%8A%A1%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/path/to/image.png">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/%E4%BA%8B%E5%8A%A1%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.9a920d7dabdbad8363b6a0a94e29a9dfebdb7ee64cfcb193a0145e512ef2bdab.js" integrity="sha256-mpINfavbrYNjtqCpTimp3&#43;vbfuZM/LGToBReUS7yvas="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>事务工具类</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">November 21, 2024
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/java">java</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/sql">SQL</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/%E4%BA%8B%E5%8A%A1">事务</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="事务工具类">事务工具类</h1>
+<p>TransactionManager.java</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransactionManager</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">static</span> Logger logger <span style="color:#f92672">=</span> LoggerFactory.<span style="color:#a6e22e">getLogger</span>(TransactionManager.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/** 是否开启了事务 **/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> ThreadLocal<span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;</span> open <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadLocal();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/** 使用ThreadLocal来存储每个线程的嵌套层次 **/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> ThreadLocal<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> transactionLevelHolder <span style="color:#f92672">=</span> ThreadLocal.<span style="color:#a6e22e">withInitial</span>(() <span style="color:#f92672">-&gt;</span> 0);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 数据库连接ThreadLocal
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 当某个线程第一次调用 getConnection 方法时，如果该线程还没有为 connectionHolder 设置值，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 那么 withInitial 提供的初始化方法会被调用，创建一个新的数据库连接并返回。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 这样，每个线程都有自己独立的数据库连接，确保线程安全和事务管理的独立性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> ThreadLocal<span style="color:#f92672">&lt;</span>Connection<span style="color:#f92672">&gt;</span> connectionHolder <span style="color:#f92672">=</span> ThreadLocal.<span style="color:#a6e22e">withInitial</span>(() <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>        Connection connection;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (FGBiz.<span style="color:#a6e22e">dspCenter</span>.<span style="color:#a6e22e">dbConnectionSet</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(<span style="color:#e6db74">&#34;获取数据库连接失败&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">long</span> begin <span style="color:#f92672">=</span> System.<span style="color:#a6e22e">currentTimeMillis</span>();
+</span></span><span style="display:flex;"><span>            connection <span style="color:#f92672">=</span> ConnSet.<span style="color:#a6e22e">getDataSource</span>().<span style="color:#a6e22e">getConnection</span>();
+</span></span><span style="display:flex;"><span>            logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;获取数据库连接耗时：{} ms&#34;</span>,System.<span style="color:#a6e22e">currentTimeMillis</span>()<span style="color:#f92672">-</span>begin);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(<span style="color:#e6db74">&#34;获取数据库连接失败&#34;</span>, e);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            connection.<span style="color:#a6e22e">setAutoCommit</span>(<span style="color:#66d9ef">false</span>); <span style="color:#75715e">// 关闭自动提交，开启事务管理</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> createProxyConnection(connection);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (SQLException e) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(<span style="color:#e6db74">&#34;关闭自动提交，开启事务管理失败&#34;</span>, e);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 开始事务</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">beginTransaction</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> transactionLevel <span style="color:#f92672">=</span> transactionLevelHolder.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (transactionLevel <span style="color:#f92672">==</span> 0) {
+</span></span><span style="display:flex;"><span>            getConnection(); <span style="color:#75715e">// 确保连接已创建并设置为非自动提交</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        transactionLevelHolder.<span style="color:#a6e22e">set</span>(transactionLevel <span style="color:#f92672">+</span> 1);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Connection <span style="color:#a6e22e">getConnection</span>() {
+</span></span><span style="display:flex;"><span>        open .<span style="color:#a6e22e">set</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> connectionHolder.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 提交事务</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">commit</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> transactionLevel <span style="color:#f92672">=</span> transactionLevelHolder.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (transactionLevel <span style="color:#f92672">==</span> 1) {
+</span></span><span style="display:flex;"><span>            Connection connection <span style="color:#f92672">=</span> connectionHolder.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (connection <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>connection.<span style="color:#a6e22e">isClosed</span>()) {
+</span></span><span style="display:flex;"><span>                    connection.<span style="color:#a6e22e">commit</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (SQLException e) {
+</span></span><span style="display:flex;"><span>                logger.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;commit失败，失败原因：&#34;</span>,e);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>                transactionLevelHolder.<span style="color:#a6e22e">set</span>(0);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (transactionLevel <span style="color:#f92672">&gt;</span> 1) {
+</span></span><span style="display:flex;"><span>            transactionLevelHolder.<span style="color:#a6e22e">set</span>(transactionLevel <span style="color:#f92672">-</span> 1);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 回滚事务</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rollback</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> transactionLevel <span style="color:#f92672">=</span> transactionLevelHolder.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (transactionLevel <span style="color:#f92672">&gt;</span> 0) {
+</span></span><span style="display:flex;"><span>            Connection connection <span style="color:#f92672">=</span> connectionHolder.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (connection <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>connection.<span style="color:#a6e22e">isClosed</span>()) {
+</span></span><span style="display:flex;"><span>                    connection.<span style="color:#a6e22e">rollback</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (SQLException e) {
+</span></span><span style="display:flex;"><span>                logger.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;rollback失败，失败原因：&#34;</span>,e);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>                transactionLevelHolder.<span style="color:#a6e22e">set</span>(0);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 注意：务必在final里关闭连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 关闭连接，并清理ThreadLocal
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">close</span>() {
+</span></span><span style="display:flex;"><span>        Connection connection <span style="color:#f92672">=</span> connectionHolder.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (connection <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>connection.<span style="color:#a6e22e">isClosed</span>()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(connection <span style="color:#66d9ef">instanceof</span> Proxy){
+</span></span><span style="display:flex;"><span>                    ((ConnectionProxy) Proxy.<span style="color:#a6e22e">getInvocationHandler</span>(connection)).<span style="color:#a6e22e">reallyClose</span>();
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                    connection.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (SQLException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>            connectionHolder.<span style="color:#a6e22e">remove</span>();
+</span></span><span style="display:flex;"><span>            open.<span style="color:#a6e22e">remove</span>();
+</span></span><span style="display:flex;"><span>            transactionLevelHolder.<span style="color:#a6e22e">remove</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//是否开启了事务</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isOpen</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> open.<span style="color:#a6e22e">get</span>() <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> open.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 创建代理连接的方法</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Connection <span style="color:#a6e22e">createProxyConnection</span>(Connection originalConnection) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (Connection) Proxy.<span style="color:#a6e22e">newProxyInstance</span>(
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">getContextClassLoader</span>(),
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">&lt;?&gt;[]</span>{Connection.<span style="color:#a6e22e">class</span>},
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> ConnectionProxy(originalConnection)
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 代理类</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConnectionProxy</span> <span style="color:#66d9ef">implements</span> InvocationHandler {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Connection originalConnection;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> isClosed <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ConnectionProxy</span>(Connection originalConnection) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">originalConnection</span> <span style="color:#f92672">=</span> originalConnection;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">invoke</span>(Object proxy, Method method, Object<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Throwable {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#34;close&#34;</span>.<span style="color:#a6e22e">equals</span>(method.<span style="color:#a6e22e">getName</span>())) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 拦截 close 方法，不执行关闭操作</span>
+</span></span><span style="display:flex;"><span>                isClosed <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>                logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;事务未结束，暂不关闭连接&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 其他方法调用原始连接的方法</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> method.<span style="color:#a6e22e">invoke</span>(originalConnection, args);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 真正关闭连接的方法</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">reallyClose</span>() <span style="color:#66d9ef">throws</span> SQLException {
+</span></span><span style="display:flex;"><span>            logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;事务结束，关闭连接&#34;</span>);
+</span></span><span style="display:flex;"><span>            originalConnection.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>TransactionUtil.java</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransactionUtil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">static</span> Logger logger <span style="color:#f92672">=</span> LoggerFactory.<span style="color:#a6e22e">getLogger</span>(TransactionUtil.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 在事务中处理业务，抛出异常将会回滚，支持事务嵌套
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param supplier 处理业务
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @return supplier返回
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param &lt;T&gt; 响应类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">doInTransaction</span>(Supplier<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> supplier) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>{
+</span></span><span style="display:flex;"><span>            logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;开始事务处理...&#34;</span>);
+</span></span><span style="display:flex;"><span>            TransactionManager.<span style="color:#a6e22e">beginTransaction</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                T apply <span style="color:#f92672">=</span> supplier.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>                TransactionManager.<span style="color:#a6e22e">commit</span>();
+</span></span><span style="display:flex;"><span>                logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;事务提交&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> apply;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                TransactionManager.<span style="color:#a6e22e">rollback</span>();
+</span></span><span style="display:flex;"><span>                logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;事务回滚&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> BusinessException(e.<span style="color:#a6e22e">getMessage</span>(),e);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">catch</span> (BusinessException e) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> e;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> BusinessException(<span style="color:#e6db74">&#34;事务提交或回滚异常&#34;</span>,e);
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>            TransactionManager.<span style="color:#a6e22e">close</span>(); <span style="color:#75715e">//关闭连接 并清理ThreadLocal</span>
+</span></span><span style="display:flex;"><span>            logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;事务处理结束&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">TransactionUtil</span>() {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>TransactionManager</strong></p>
+<ul>
+<li>这个类负责管理数据库连接和事务。</li>
+<li>使用ThreadLocal来存储每个线程的嵌套层次（transactionLevelHolder）。</li>
+<li>使用ThreadLocal来存储每个线程的数据库连接（connectionHolder）。</li>
+<li>提供了beginTransaction、commit、rollback和close方法来管理事务。</li>
+<li>提供了isOpen方法来检查是否已经开启了事务。</li>
+<li>createProxyConnection方法创建一个代理连接用于拦截close方法。</li>
+</ul>
+<p><strong>TransactionUtil</strong></p>
+<ul>
+<li>这个类提供了一个简便的API来进行事务处理。</li>
+<li>doInTransaction方法使用supplier接口来执行业务逻辑，支持事务嵌套。</li>
+<li>当异常发生时会自动回滚事务，并抛出BusinessException。</li>
+<li>最后关闭数据库连接并清理ThreadLocal。</li>
+</ul>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 The Marauders</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
