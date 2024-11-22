@@ -6,8 +6,15 @@
     <description>Recent content on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Nov 2024 10:51:56 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 22 Nov 2024 14:49:08 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用timeStamp查询date格式的数据库字段索引失效</title>
+      <link>https://nexiuss.github.io/posts/%E4%BD%BF%E7%94%A8timestamp%E6%9F%A5%E8%AF%A2date%E6%A0%BC%E5%BC%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88/</link>
+      <pubDate>Fri, 22 Nov 2024 14:49:08 +0800</pubDate>
+      <guid>https://nexiuss.github.io/posts/%E4%BD%BF%E7%94%A8timestamp%E6%9F%A5%E8%AF%A2date%E6%A0%BC%E5%BC%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88/</guid>
+      <description>&lt;h1 id=&#34;使用timestamp查询date格式的数据库字段索引失效&#34;&gt;使用timeStamp查询date格式的数据库字段索引失效&lt;/h1&gt;&#xA;&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;一次大表查询的过程中，为防止数据量太大，使用了timestamp作为查询条件来过滤一个数据库类型为date的字段,如下图所示：&#xA;&lt;code&gt;select * from t_xxx t where t.transdate&amp;gt;=timestamp &#39;2024-11-22 00:00:00&#39; and t.transdate&amp;lt;=timestamp &#39;2024-11-22 59:59:59&#39;&lt;/code&gt;&#xA;此处transdate在数据库数据类型为date类型&#xA;发现搜索时间比较长，通过explain plan 发现是transdate过滤的时候，走了全表查询&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-table&#34; data-lang=&#34;table&#34;&gt;------------------------------------------------------------------------------------------------&#xA;| Id  | Operation                | Name                | Rows  | Bytes | Cost (%CPU)| Time     |&#xA;------------------------------------------------------------------------------------------------&#xA;|*  5 |      TABLE ACCESS FULL   | S3_ACCOUNTSTATEMENT |    42 |  2562 |  1060   (1)| 00:00:01 |&#xA;------------------------------------------------------------------------------------------------&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;原因&#34;&gt;原因&lt;/h2&gt;&#xA;&lt;p&gt;通过分析发现当使用&#xA;&lt;code&gt;select * from t_xxx t where t.transdate&amp;gt;=to_date(yyyy-MM-dd HH:mm:ss,&#39;2024-11-22 00:00:00&#39;)and t.transdate&amp;lt;=to_date(yyyy-MM-dd HH:mm:ss,&#39;2024-11-22 59:59:59&#39;)&lt;/code&gt;&#xA;性能明显提升，命中的索引，通过分析得知：transdate字段类型是Date，不支持对 timestamp值进行精确匹配，故索引失效&lt;/p&gt;</description>
+    </item>
     <item>
       <title>事务工具类</title>
       <link>https://nexiuss.github.io/posts/%E4%BA%8B%E5%8A%A1%E5%B7%A5%E5%85%B7%E7%B1%BB/</link>
