@@ -17,26 +17,26 @@
     
 
     
-    <title>404 Page not found</title>
-    <meta name="description" content="Sky above, sand below and peace within">
-    <meta name="keywords" content='blog, gokarna, hugo'>
+    <title>MAC禁止或启用生成.DS_Strore文件</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, MAC, 摘抄'>
 
-    <meta property="og:url" content="https://nexiuss.github.io/404.html">
+    <meta property="og:url" content="https://nexiuss.github.io/posts/mac%E7%A6%81%E6%AD%A2%E6%88%96%E5%90%AF%E7%94%A8%E7%94%9F%E6%88%90.ds_strore%E6%96%87%E4%BB%B6/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="404 Page not found">
-    <meta property="og:description" content="Sky above, sand below and peace within">
-    <meta property="og:image" content="https://nexiuss.github.io/images/logo.jpg">
-    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta property="og:title" content="MAC禁止或启用生成.DS_Strore文件">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/path/to/image.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/path/to/image.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="404 Page not found">
-    <meta name="twitter:description" content="Sky above, sand below and peace within">
-    <meta property="twitter:domain" content="https://nexiuss.github.io/404.html">
-    <meta property="twitter:url" content="https://nexiuss.github.io/404.html">
-    <meta name="twitter:image" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta name="twitter:title" content="MAC禁止或启用生成.DS_Strore文件">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/mac%E7%A6%81%E6%AD%A2%E6%88%96%E5%90%AF%E7%94%A8%E7%94%9F%E6%88%90.ds_strore%E6%96%87%E4%BB%B6/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/mac%E7%A6%81%E6%AD%A2%E6%88%96%E5%90%AF%E7%94%A8%E7%94%9F%E6%88%90.ds_strore%E6%96%87%E4%BB%B6/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/path/to/image.png">
 
     
-    <link rel="canonical" href="https://nexiuss.github.io/404.html">
+    <link rel="canonical" href="https://nexiuss.github.io/posts/mac%E7%A6%81%E6%AD%A2%E6%88%96%E5%90%AF%E7%94%A8%E7%94%9F%E6%88%90.ds_strore%E6%96%87%E4%BB%B6/">
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -181,23 +181,111 @@
     </nav>
 </header>
 <main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>MAC禁止或启用生成.DS_Strore文件</h1>
 
-<div class="text-404">
-  <h1 class="error-emoji"></h1>
-  <h2>
-      404 ... This page does not exist, go <a href="https://nexiuss.github.io/">home</a>
-  </h2>
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">January 8, 2025
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/mac">MAC</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/%E6%91%98%E6%8A%84">摘抄</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="删除和控制-macos-上-finder-创建的-ds_store-文件"><strong>删除和控制 macOS 上 Finder 创建的 .DS_Store 文件</strong></h1>
+<p>Finder 会为每个文件夹创建 <code>.DS_Store</code> 文件来存储显示属性，如文件图标位置、排列方式等。在分享或上传文件时，通常需要手动删除这些文件，以避免与他人共享的副本出现不同的显示配置问题。</p>
+<h2 id="命令"><strong>命令</strong></h2>
+<h3 id="1-删除当前目录及其子目录下-ds_store-文件">1. 删除当前目录及其子目录下 .DS_Store 文件</h3>
+<pre tabindex="0"><code>sudo find ./ -name &#34;.DS_Store&#34; -depth -exec rm {} \;
+</code></pre><h3 id="2-设置不再创建-ds_store-文件永久生效后重启-mac-才能有效果">2. 设置不再创建 .DS_Store 文件（永久生效后重启 mac 才能有效果）</h3>
+<pre tabindex="0"><code>defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+</code></pre><h3 id="3-恢复默认行为">3. 恢复默认行为</h3>
+<pre tabindex="0"><code>defaults delete com.apple.desktopservices DSDontWriteNetworkStores
+</code></pre><h2 id="macos-新版本中提供的脚本"><strong>macOS 新版本中提供的脚本</strong></h2>
+<p>macOS 新版本中提供了一个专门的脚本来处理这一问题。该脚本名为 <code>dot_clean</code>。</p>
+<h3 id="使用-dot_clean-脚本删除-ds_store-文件">使用 dot_clean 脚本删除 .DS_Store 文件</h3>
+<pre tabindex="0"><code>/usr/sbin/dot_clean -m &#39;目录名&#39;
+</code></pre><p>支持针对特定目录设置不再创建此类文件的规则。</p>
+<h2 id="注意"><strong>注意</strong></h2>
+<ul>
+<li>在使用这些命令之前，请确保已经进入要操作的目录。</li>
+<li>请务必小心地执行这些命令，以免意外删除重要数据。</li>
+<li>如果您使用 <code>dot_clean</code> 脚本，需要在 macOS Catalina 或更高版本下才能生效。</li>
+</ul>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
 </div>
-<script>
-  const errorEmojiContainer = document.getElementsByClassName('error-emoji')[0];
-  const emojiArray = [
-    '\\(o_o)/', '(o^^)o', '(˚Δ˚)b', '(^-^*)', '(≥o≤)', '(^_^)b', '(·_·)',
-    '(=\'X\'=)', '(>_<)', '(;-;)', '\\(^Д^)/',
-  ];
-  const errorEmoji = emojiArray[Math.floor(Math.random() * emojiArray.length)];
-  errorEmojiContainer.appendChild(document.createTextNode(errorEmoji));
-</script>
 
+
+
+    
 
         </main><footer class="footer">
     

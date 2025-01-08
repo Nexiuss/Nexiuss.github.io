@@ -6,8 +6,15 @@
     <description>Recent content in Blog on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Dec 2024 11:21:14 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2025 10:47:57 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MAC禁止或启用生成.DS_Strore文件</title>
+      <link>https://nexiuss.github.io/posts/mac%E7%A6%81%E6%AD%A2%E6%88%96%E5%90%AF%E7%94%A8%E7%94%9F%E6%88%90.ds_strore%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Wed, 08 Jan 2025 10:47:57 +0800</pubDate>
+      <guid>https://nexiuss.github.io/posts/mac%E7%A6%81%E6%AD%A2%E6%88%96%E5%90%AF%E7%94%A8%E7%94%9F%E6%88%90.ds_strore%E6%96%87%E4%BB%B6/</guid>
+      <description>&lt;h1 id=&#34;删除和控制-macos-上-finder-创建的-ds_store-文件&#34;&gt;&lt;strong&gt;删除和控制 macOS 上 Finder 创建的 .DS_Store 文件&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;p&gt;Finder 会为每个文件夹创建 &lt;code&gt;.DS_Store&lt;/code&gt; 文件来存储显示属性，如文件图标位置、排列方式等。在分享或上传文件时，通常需要手动删除这些文件，以避免与他人共享的副本出现不同的显示配置问题。&lt;/p&gt;&#xA;&lt;h2 id=&#34;命令&#34;&gt;&lt;strong&gt;命令&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-删除当前目录及其子目录下-ds_store-文件&#34;&gt;1. 删除当前目录及其子目录下 .DS_Store 文件&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo find ./ -name &amp;#34;.DS_Store&amp;#34; -depth -exec rm {} \;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;2-设置不再创建-ds_store-文件永久生效后重启-mac-才能有效果&#34;&gt;2. 设置不再创建 .DS_Store 文件（永久生效后重启 mac 才能有效果）&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;3-恢复默认行为&#34;&gt;3. 恢复默认行为&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;defaults delete com.apple.desktopservices DSDontWriteNetworkStores&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;macos-新版本中提供的脚本&#34;&gt;&lt;strong&gt;macOS 新版本中提供的脚本&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;macOS 新版本中提供了一个专门的脚本来处理这一问题。该脚本名为 &lt;code&gt;dot_clean&lt;/code&gt;。&lt;/p&gt;&#xA;&lt;h3 id=&#34;使用-dot_clean-脚本删除-ds_store-文件&#34;&gt;使用 dot_clean 脚本删除 .DS_Store 文件&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/usr/sbin/dot_clean -m &amp;#39;目录名&amp;#39;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;支持针对特定目录设置不再创建此类文件的规则。&lt;/p&gt;&#xA;&lt;h2 id=&#34;注意&#34;&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;在使用这些命令之前，请确保已经进入要操作的目录。&lt;/li&gt;&#xA;&lt;li&gt;请务必小心地执行这些命令，以免意外删除重要数据。&lt;/li&gt;&#xA;&lt;li&gt;如果您使用 &lt;code&gt;dot_clean&lt;/code&gt; 脚本，需要在 macOS Catalina 或更高版本下才能生效。&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>Java启动jar包加载lib</title>
       <link>https://nexiuss.github.io/posts/java%E5%90%AF%E5%8A%A8jar%E5%8C%85%E5%8A%A0%E8%BD%BDlib/</link>
