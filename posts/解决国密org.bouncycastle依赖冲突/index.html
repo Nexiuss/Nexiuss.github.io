@@ -270,6 +270,9 @@
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/plugin&gt;</span>
 </span></span></code></pre></div><h4 id="不希望打入项目的包可以scope配置为provided">不希望打入项目的包可以scope配置为provided</h4>
 <h4 id="项目打包完成后可以使用带有shaded-bouncycastle的jar包">项目打包完成后，可以使用带有Shaded BouncyCastle的jar包</h4>
+<h4 id="补充此方案由于是修改了jar包的若使用-oracle-jdk-启动应用会导致出现以下错误">补充：此方案由于是修改了jar包的，若使用 oracle-jdk 启动应用，会导致出现以下错误：</h4>
+<pre tabindex="0"><code>Caused by: java.io.IOException: error constructing MAC: java.lang.SecurityException: JCE cannot authenticate the provider BC
+</code></pre><p>解决方式是使用非 oracle jdk，如 open jdk</p>
 <h3 id="方案二自己定义classload实现隔离">方案二：自己定义ClassLoad实现隔离</h3>
 <h4 id="sdkclassloader类">SdkClassLoader类</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SdkClassLoader</span> <span style="color:#66d9ef">extends</span> URLClassLoader {
