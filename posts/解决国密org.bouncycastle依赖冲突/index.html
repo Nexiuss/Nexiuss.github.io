@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>解决国密org.bouncycastle依赖冲突</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, jdk15on, bcprov, 国密'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/%E8%A7%A3%E5%86%B3%E5%9B%BD%E5%AF%86org.bouncycastle%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="解决国密org.bouncycastle依赖冲突">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/images/bouncycastle.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/bouncycastle.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="解决国密org.bouncycastle依赖冲突">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/%E8%A7%A3%E5%86%B3%E5%9B%BD%E5%AF%86org.bouncycastle%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/%E8%A7%A3%E5%86%B3%E5%9B%BD%E5%AF%86org.bouncycastle%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/bouncycastle.png">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/%E8%A7%A3%E5%86%B3%E5%9B%BD%E5%AF%86org.bouncycastle%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.9a920d7dabdbad8363b6a0a94e29a9dfebdb7ee64cfcb193a0145e512ef2bdab.js" integrity="sha256-mpINfavbrYNjtqCpTimp3&#43;vbfuZM/LGToBReUS7yvas="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>解决国密org.bouncycastle依赖冲突</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">January 23, 2025
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/jdk15on">jdk15on</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/bcprov">bcprov</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/%E5%9B%BD%E5%AF%86">国密</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="解决bouncycastle依赖冲突的两种方案"><strong>解决BouncyCastle依赖冲突的两种方案</strong></h1>
+<p>背景：本地项目使用的 BouncyCastle 1.61 版本，但第三方 SDK 要求使用 1.70 版本，导致 jar 包冲突的问题。</p>
+<h3 id="方案一使用shade插件实现隔离">方案一：使用Shade插件实现隔离</h3>
+<h4 id="pom文件配置插件">pom文件配置插件</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;plugin&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.maven.plugins<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>maven-shade-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>3.2.4<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;executions&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;execution&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;phase&gt;</span>package<span style="color:#f92672">&lt;/phase&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;goals&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;goal&gt;</span>shade<span style="color:#f92672">&lt;/goal&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/goals&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;configuration&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">&lt;!-- 将org.bouncycastle包的类重定位到shaded.org.bouncycastle --&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;relocations&gt;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&lt;relocation&gt;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">&lt;pattern&gt;</span>org.bouncycastle<span style="color:#f92672">&lt;/pattern&gt;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">&lt;shadedPattern&gt;</span>shaded.org.bouncycastle<span style="color:#f92672">&lt;/shadedPattern&gt;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&lt;/relocation&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;/relocations&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">&lt;!-- 排除一些元数据文件 --&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;filters&gt;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&lt;filter&gt;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">&lt;artifact&gt;</span>*:*<span style="color:#f92672">&lt;/artifact&gt;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">&lt;excludes&gt;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#f92672">&lt;exclude&gt;</span>META-INF/*.SF<span style="color:#f92672">&lt;/exclude&gt;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#f92672">&lt;exclude&gt;</span>META-INF/*.DSA<span style="color:#f92672">&lt;/exclude&gt;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#f92672">&lt;exclude&gt;</span>META-INF/*.RSA<span style="color:#f92672">&lt;/exclude&gt;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#f92672">&lt;exclude&gt;</span>sdk.configure.properties<span style="color:#f92672">&lt;/exclude&gt;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">&lt;/excludes&gt;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&lt;/filter&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;/filters&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/configuration&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/execution&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/executions&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/plugin&gt;</span>
+</span></span></code></pre></div><h4 id="不希望打入项目的包可以scope配置为provided">不希望打入项目的包可以scope配置为provided</h4>
+<h4 id="项目打包完成后可以使用带有shaded-bouncycastle的jar包">项目打包完成后，可以使用带有Shaded BouncyCastle的jar包</h4>
+<h3 id="方案二自己定义classload实现隔离">方案二：自己定义ClassLoad实现隔离</h3>
+<h4 id="sdkclassloader类">SdkClassLoader类</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SdkClassLoader</span> <span style="color:#66d9ef">extends</span> URLClassLoader {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ClassLoader parent;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* The search path for classes and resources */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> URLClassPath ucp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* The context to be used when loading classes and resources */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> AccessControlContext acc;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SdkClassLoader</span>(URL<span style="color:#f92672">[]</span> urls, ClassLoader parent) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(urls, parent);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">parent</span> <span style="color:#f92672">=</span> parent;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">acc</span> <span style="color:#f92672">=</span> AccessController.<span style="color:#a6e22e">getContext</span>();
+</span></span><span style="display:flex;"><span>        ucp <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> URLClassPath(urls, acc);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> Class<span style="color:#f92672">&lt;?&gt;</span> loadClass(String name, <span style="color:#66d9ef">boolean</span> resolve) <span style="color:#66d9ef">throws</span> ClassNotFoundException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 尝试使用系统类加载器父类加载类（JDK类）</span>
+</span></span><span style="display:flex;"><span>        Class<span style="color:#f92672">&lt;?&gt;</span> c <span style="color:#f92672">=</span> getSystemClassLoader().<span style="color:#a6e22e">getParent</span>().<span style="color:#a6e22e">loadClass</span>(name);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 如果未找到，则委托给父类加载器加载类</span>
+</span></span><span style="display:flex;"><span>            c <span style="color:#f92672">=</span> parent.<span style="color:#a6e22e">loadClass</span>(name);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (resolve) {
+</span></span><span style="display:flex;"><span>            resolveClass(c);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> c;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printUrls</span>(URL<span style="color:#f92672">[]</span> urLs) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> urLs.<span style="color:#a6e22e">length</span> ; i <span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>            URL urL <span style="color:#f92672">=</span> urLs<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;urL = &#34;</span> <span style="color:#f92672">+</span> urL.<span style="color:#a6e22e">toExternalForm</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> Class<span style="color:#f92672">&lt;?&gt;</span> findClass(String name) <span style="color:#66d9ef">throws</span> ClassNotFoundException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="调用代码">调用代码</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>URL<span style="color:#f92672">[]</span> urls <span style="color:#f92672">=</span> getLibUrls(System.<span style="color:#a6e22e">getProperty</span>(<span style="color:#e6db74">&#34;sdk-lib&#34;</span>,<span style="color:#e6db74">&#34;path/to/lib&#34;</span>));
+</span></span><span style="display:flex;"><span>SdkClassLoader sdkClassLoader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SdkClassLoader(urls, ISpdbSdk.<span style="color:#a6e22e">class</span>.<span style="color:#a6e22e">getClassLoader</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Class<span style="color:#f92672">&lt;?&gt;</span> classes;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    classes <span style="color:#f92672">=</span> Class.<span style="color:#a6e22e">forName</span>(<span style="color:#e6db74">&#34;com.djbx.spdb.sdk.SpdbSdkImpl&#34;</span>, <span style="color:#66d9ef">true</span>, sdkClassLoader);
+</span></span><span style="display:flex;"><span>    spdbSdk<span style="color:#f92672">=</span>(ISpdbSdk) classes.<span style="color:#a6e22e">newInstance</span>();
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (ClassNotFoundException <span style="color:#f92672">|</span> InstantiationException <span style="color:#f92672">|</span> IllegalAccessException e) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>注意事项</strong></p>
+<ul>
+<li>接口类需要在系统默认 classLoader 加载，其他类，包括实现类等需要在自定义类加载器中加载。</li>
+<li>需要保证系统类加载器可以加载接口类。</li>
+</ul>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2025 The Marauders</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
