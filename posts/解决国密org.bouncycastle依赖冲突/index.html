@@ -272,66 +272,76 @@
 <h4 id="项目打包完成后可以使用带有shaded-bouncycastle的jar包">项目打包完成后，可以使用带有Shaded BouncyCastle的jar包</h4>
 <h4 id="补充此方案由于是修改了jar包的若使用-oracle-jdk-启动应用会导致出现以下错误"><strong>补充</strong>：此方案由于是修改了jar包的，若使用 oracle-jdk 启动应用，会导致出现以下错误：</h4>
 <pre tabindex="0"><code>Caused by: java.io.IOException: error constructing MAC: java.lang.SecurityException: JCE cannot authenticate the provider BC
-</code></pre><p>解决方式是使用非 oracle jdk，如 open jdk</p>
+</code></pre><p>主要原因为：OracleJDK验证了加密签名，而打包的过程破坏了验证BC库的签名
+解决方式为：使用非 oracle jdk，如 open jdk</p>
 <h3 id="方案二自己定义classload实现隔离">方案二：自己定义ClassLoad实现隔离</h3>
+<p>大概思路：自定义类加载器的父加载器为应用加载器（如tomcat为tomcat 的类加载器，weblogic为weblogic的类加载器），
+自定义类加载器加载类的时候，如果在配置的 jar 列表内找了的类，则加载成功
+没找到则委托给 parent 去加载，parent 一般加载顺序是 先加载 jdk的类，再加载 ext 的再加载 jre/lib 下的，最后加载应用 classpath 的</p>
 <h4 id="sdkclassloader类">SdkClassLoader类</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SdkClassLoader</span> <span style="color:#66d9ef">extends</span> URLClassLoader {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ClassLoader parent;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* The search path for classes and resources */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> URLClassPath ucp;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* The context to be used when loading classes and resources */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> AccessControlContext acc;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SdkClassLoader</span>(URL<span style="color:#f92672">[]</span> urls, ClassLoader parent) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(urls, parent);
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">parent</span> <span style="color:#f92672">=</span> parent;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">acc</span> <span style="color:#f92672">=</span> AccessController.<span style="color:#a6e22e">getContext</span>();
-</span></span><span style="display:flex;"><span>        ucp <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> URLClassPath(urls, acc);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;SdkClassLoader urls = %s%n&#34;</span>, Arrays.<span style="color:#a6e22e">toString</span>(urls));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (parent <span style="color:#66d9ef">instanceof</span> URLClassLoader){
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;ParentClassLoader[%s] urls = %s%n&#34;</span>, parent,Arrays.<span style="color:#a6e22e">toString</span>(((URLClassLoader) parent).<span style="color:#a6e22e">getURLs</span>()));
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;ParentClassLoader[%s]&#34;</span>, parent);
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> Class<span style="color:#f92672">&lt;?&gt;</span> loadClass(String name, <span style="color:#66d9ef">boolean</span> resolve) <span style="color:#66d9ef">throws</span> ClassNotFoundException {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 尝试使用系统类加载器父类加载类（JDK类）</span>
-</span></span><span style="display:flex;"><span>        Class<span style="color:#f92672">&lt;?&gt;</span> c <span style="color:#f92672">=</span> getSystemClassLoader().<span style="color:#a6e22e">getParent</span>().<span style="color:#a6e22e">loadClass</span>(name);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 如果未找到，则委托给父类加载器加载类</span>
-</span></span><span style="display:flex;"><span>            c <span style="color:#f92672">=</span> parent.<span style="color:#a6e22e">loadClass</span>(name);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> Class<span style="color:#f92672">&lt;?&gt;</span> loadClass(String name, <span style="color:#66d9ef">boolean</span> resolve) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">synchronized</span> (getClassLoadingLock(name)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 首先，检查类是否已经被加载</span>
+</span></span><span style="display:flex;"><span>            Class<span style="color:#f92672">&lt;?&gt;</span> c <span style="color:#f92672">=</span> findLoadedClass(name);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 尝试在当前类加载器中查找类</span>
+</span></span><span style="display:flex;"><span>                    c <span style="color:#f92672">=</span> findClass(name);
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">catch</span> (ClassNotFoundException e) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// doNothing</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(c <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>){
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 如果未找到，则委托给父类加载器加载类</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> (parent <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                            c <span style="color:#f92672">=</span> parent.<span style="color:#a6e22e">loadClass</span>(name);
+</span></span><span style="display:flex;"><span>                            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;parent:[&#34;</span><span style="color:#f92672">+</span>name<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;]&#34;</span>);
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (ClassNotFoundException e) {
+</span></span><span style="display:flex;"><span>                        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;[%s] in parent is null %n&#34;</span>,name);
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;this:[%s]%n&#34;</span> , name);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (resolve) {
+</span></span><span style="display:flex;"><span>                resolveClass(c);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> c;
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (resolve) {
-</span></span><span style="display:flex;"><span>            resolveClass(c);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> c;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printUrls</span>(URL<span style="color:#f92672">[]</span> urLs) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> urLs.<span style="color:#a6e22e">length</span> ; i <span style="color:#f92672">++</span>){
-</span></span><span style="display:flex;"><span>            URL urL <span style="color:#f92672">=</span> urLs<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>;
-</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;urL = &#34;</span> <span style="color:#f92672">+</span> urL.<span style="color:#a6e22e">toExternalForm</span>());
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> Class<span style="color:#f92672">&lt;?&gt;</span> findClass(String name) <span style="color:#66d9ef">throws</span> ClassNotFoundException {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h4 id="调用代码">调用代码</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>URL<span style="color:#f92672">[]</span> urls <span style="color:#f92672">=</span> getLibUrls(System.<span style="color:#a6e22e">getProperty</span>(<span style="color:#e6db74">&#34;sdk-lib&#34;</span>,<span style="color:#e6db74">&#34;path/to/lib&#34;</span>));
-</span></span><span style="display:flex;"><span>SdkClassLoader sdkClassLoader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SdkClassLoader(urls, ISpdbSdk.<span style="color:#a6e22e">class</span>.<span style="color:#a6e22e">getClassLoader</span>());
+</span></span><span style="display:flex;"><span>SdkClassLoader sdkClassLoader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SdkClassLoader(urls, ISdk.<span style="color:#a6e22e">class</span>.<span style="color:#a6e22e">getClassLoader</span>());
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Class<span style="color:#f92672">&lt;?&gt;</span> classes;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>    classes <span style="color:#f92672">=</span> Class.<span style="color:#a6e22e">forName</span>(<span style="color:#e6db74">&#34;com.djbx.spdb.sdk.SpdbSdkImpl&#34;</span>, <span style="color:#66d9ef">true</span>, sdkClassLoader);
-</span></span><span style="display:flex;"><span>    spdbSdk<span style="color:#f92672">=</span>(ISpdbSdk) classes.<span style="color:#a6e22e">newInstance</span>();
+</span></span><span style="display:flex;"><span>    classes <span style="color:#f92672">=</span> Class.<span style="color:#a6e22e">forName</span>(<span style="color:#e6db74">&#34;xxx.xxx.iSdkImpl&#34;</span>, <span style="color:#66d9ef">true</span>, sdkClassLoader);
+</span></span><span style="display:flex;"><span>    iSdk<span style="color:#f92672">=</span>(ISdk) classes.<span style="color:#a6e22e">newInstance</span>();
 </span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (ClassNotFoundException <span style="color:#f92672">|</span> InstantiationException <span style="color:#f92672">|</span> IllegalAccessException e) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>注意事项</strong></p>
 <ul>
-<li>接口类需要在系统默认 classLoader 加载，其他类，包括实现类等需要在自定义类加载器中加载。</li>
+<li>接口类需要在系统默认 classLoader加载（通过 classLoader 的 parent 传进来），否则会提示强转失败，其他类，包括实现类等需要在自定义类加载器中加载。</li>
 <li>需要保证系统类加载器可以加载接口类。</li>
 </ul>
 
