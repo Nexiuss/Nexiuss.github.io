@@ -233,6 +233,11 @@
         <h1 id="解决bouncycastle依赖冲突的两种方案"><strong>解决BouncyCastle依赖冲突的两种方案</strong></h1>
 <p>背景：本地项目使用的 BouncyCastle 1.61 版本，但第三方 SDK 要求使用 1.70 版本，导致 jar 包冲突的问题。</p>
 <h3 id="方案一使用shade插件实现隔离">方案一：使用Shade插件实现隔离</h3>
+<ol>
+<li>首先建立一个工具工程引入需要shade jar 包</li>
+<li>配置 maven-shade插件，通过 pattern shadedPattern属性来配置要更改的包的名字</li>
+<li>使用shade 后的jar包，import 更改后的包名字，若有反射调用，也反射更改后的包名字</li>
+</ol>
 <h4 id="pom文件配置插件">pom文件配置插件</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;plugin&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.maven.plugins<span style="color:#f92672">&lt;/groupId&gt;</span>
