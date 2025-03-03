@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>教程 on Nexius</title>
+    <link>https://nexiuss.github.io/tags/%E6%95%99%E7%A8%8B/</link>
+    <description>Recent content in 教程 on Nexius</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 03 Mar 2025 11:14:23 +0800</lastBuildDate>
+    <atom:link href="https://nexiuss.github.io/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GIMP 克隆</title>
+      <link>https://nexiuss.github.io/posts/gimp-%E5%85%8B%E9%9A%86/</link>
+      <pubDate>Mon, 03 Mar 2025 11:14:23 +0800</pubDate>
+      <guid>https://nexiuss.github.io/posts/gimp-%E5%85%8B%E9%9A%86/</guid>
+      <description>&lt;h1 id=&#34;gimp-克隆&#34;&gt;GIMP 克隆&lt;/h1&gt;&#xA;&lt;h1 id=&#34;克隆工具的基本操作步骤&#34;&gt;克隆工具的基本操作步骤&lt;/h1&gt;&#xA;&lt;h3 id=&#34;1-打开图片并选择克隆工具&#34;&gt;1. 打开图片并选择克隆工具&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;打开需要编辑的图片。&lt;/li&gt;&#xA;&lt;li&gt;在左侧工具栏中找到 克隆工具（图标类似橡皮图章，或按快捷键 C）。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;2-设置克隆源点&#34;&gt;2. 设置克隆源点&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;按住 Command 键（⌘），同时用鼠标点击图片中想要复制的区域（即克隆源点）。此时光标会变成十字准星，表示已取样。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;3-adjust画笔属性&#34;&gt;3. Adjust画笔属性&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;右键点击画布，打开画笔选项。&lt;/li&gt;&#xA;&lt;li&gt;调整以下属性：&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;大小&lt;/strong&gt;：拖动滑块或使用 [ 和 ] 键快速缩放。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;硬度&lt;/strong&gt;：硬度越低，边缘越柔和。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;不透明度/流量&lt;/strong&gt;：控制克隆效果的透明度。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;4-开始克隆&#34;&gt;4. 开始克隆&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;松开 Command 键，在目标区域按住鼠标左键涂抹，源点的内容会复制到涂抹处。&lt;/li&gt;&#xA;&lt;li&gt;提示：保持鼠标移动与源点同步，避免错位。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;注意事项&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;如果原图是来自非 jpg 或 png 图片，那么需要新建一个图层做涂抹动作，否则将不能生效（设置克隆源点应该在原图层）。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;5-高级设置可选&#34;&gt;5. 高级设置（可选）&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;对齐模式：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;无对齐：每次松开鼠标后重新从源点开始。&lt;/li&gt;&#xA;&lt;li&gt;对齐：保持源点与涂抹位置的相对距离（适合连续修复）。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;源类型：在工具选项中可切换为“图案”而非图片内容。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>
