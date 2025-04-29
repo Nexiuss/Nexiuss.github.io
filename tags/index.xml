@@ -6,8 +6,36 @@
     <description>Recent content in Tags on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Apr 2025 10:41:12 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 29 Apr 2025 14:43:10 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git</title>
+      <link>https://nexiuss.github.io/tags/git/</link>
+      <pubDate>Tue, 29 Apr 2025 14:43:10 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MAC</title>
+      <link>https://nexiuss.github.io/tags/mac/</link>
+      <pubDate>Tue, 29 Apr 2025 14:43:10 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/mac/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Socket5</title>
+      <link>https://nexiuss.github.io/tags/socket5/</link>
+      <pubDate>Tue, 29 Apr 2025 14:43:10 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/socket5/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>代理</title>
+      <link>https://nexiuss.github.io/tags/%E4%BB%A3%E7%90%86/</link>
+      <pubDate>Tue, 29 Apr 2025 14:43:10 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/%E4%BB%A3%E7%90%86/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Blog</title>
       <link>https://nexiuss.github.io/tags/blog/</link>
@@ -55,13 +83,6 @@
       <link>https://nexiuss.github.io/tags/%E5%9B%BD%E5%AF%86/</link>
       <pubDate>Thu, 23 Jan 2025 09:29:10 +0800</pubDate>
       <guid>https://nexiuss.github.io/tags/%E5%9B%BD%E5%AF%86/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>MAC</title>
-      <link>https://nexiuss.github.io/tags/mac/</link>
-      <pubDate>Wed, 08 Jan 2025 10:47:57 +0800</pubDate>
-      <guid>https://nexiuss.github.io/tags/mac/</guid>
       <description></description>
     </item>
     <item>

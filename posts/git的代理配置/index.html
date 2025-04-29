@@ -17,26 +17,26 @@
     
 
     
-    <title>MAC</title>
-    <meta name="description" content="Sky above, sand below and peace within">
-    <meta name="keywords" content='blog, gokarna, hugo'>
+    <title>Git的代理配置</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, git, 代理, socket5, mac'>
 
-    <meta property="og:url" content="https://nexiuss.github.io/tags/mac/">
+    <meta property="og:url" content="https://nexiuss.github.io/posts/git%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="MAC">
-    <meta property="og:description" content="Sky above, sand below and peace within">
-    <meta property="og:image" content="https://nexiuss.github.io/images/logo.jpg">
-    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta property="og:title" content="Git的代理配置">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/path/to/image.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/path/to/image.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MAC">
-    <meta name="twitter:description" content="Sky above, sand below and peace within">
-    <meta property="twitter:domain" content="https://nexiuss.github.io/tags/mac/">
-    <meta property="twitter:url" content="https://nexiuss.github.io/tags/mac/">
-    <meta name="twitter:image" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta name="twitter:title" content="Git的代理配置">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/git%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/git%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/path/to/image.png">
 
     
-    <link rel="canonical" href="https://nexiuss.github.io/tags/mac/">
+    <link rel="canonical" href="https://nexiuss.github.io/posts/git%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/">
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -181,45 +181,104 @@
     </nav>
 </header>
 <main id="content">
-    <div class="container list-posts">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Git的代理配置</h1>
 
-    <h1 class="list-title">mac</h1>
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">April 29, 2025
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/git">git</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/%E4%BB%A3%E7%90%86">代理</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/socket5">socket5</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/mac">mac</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="git的代理配置">Git的代理配置</h1>
+<h2 id="httphttps使用-httphttps-方式-clone-代码">http/https(使用 http/https 方式 clone 代码)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global http.proxy http://127.0.0.1:1080
+</span></span></code></pre></div><h2 id="ssh使用-ssh-方式-clone-代码">ssh(使用 ssh 方式 clone 代码)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Host github.com
+</span></span><span style="display:flex;"><span>        Hostname ssh.github.com
+</span></span><span style="display:flex;"><span>        Port <span style="color:#ae81ff">443</span>
+</span></span><span style="display:flex;"><span>        User git
+</span></span><span style="display:flex;"><span>        ProxyCommand nc -v -x 127.0.0.1:1080 %h %p
+</span></span></code></pre></div>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
 
     
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
 
-    <h2 class="posts-year">2025</h2><div class="post-title">
-     <a href="https://nexiuss.github.io/posts/git%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/" class="post-link">Git的代理配置</a>
-     
-     
-     
-     
+        window.onscroll = function() {
+            scrollFunction()
+        };
 
-     
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
 
-     
-      <div class="flex-break"></div>
-      <span class="post-date">April 29, 2025</span>
-     
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
 </div>
-<div class="post-title">
-     <a href="https://nexiuss.github.io/posts/mac%E7%A6%81%E6%AD%A2%E6%88%96%E5%90%AF%E7%94%A8%E7%94%9F%E6%88%90.ds_strore%E6%96%87%E4%BB%B6/" class="post-link">MAC禁止或启用生成.DS_Strore文件</a>
-     
-     
-     
-     
 
-     
 
-     
-      <div class="flex-break"></div>
-      <span class="post-date">January 8, 2025</span>
-     
-</div>
 
     
-
-</div>
-
 
         </main><footer class="footer">
     

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Socket5 on Nexius</title>
+    <link>https://nexiuss.github.io/tags/socket5/</link>
+    <description>Recent content in Socket5 on Nexius</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 29 Apr 2025 14:43:10 +0800</lastBuildDate>
+    <atom:link href="https://nexiuss.github.io/tags/socket5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git的代理配置</title>
+      <link>https://nexiuss.github.io/posts/git%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Tue, 29 Apr 2025 14:43:10 +0800</pubDate>
+      <guid>https://nexiuss.github.io/posts/git%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;h1 id=&#34;git的代理配置&#34;&gt;Git的代理配置&lt;/h1&gt;&#xA;&lt;h2 id=&#34;httphttps使用-httphttps-方式-clone-代码&#34;&gt;http/https(使用 http/https 方式 clone 代码)&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git config --global http.proxy http://127.0.0.1:1080&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;ssh使用-ssh-方式-clone-代码&#34;&gt;ssh(使用 ssh 方式 clone 代码)&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Host github.com&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Hostname ssh.github.com&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Port &lt;span style=&#34;color:#ae81ff&#34;&gt;443&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        User git&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ProxyCommand nc -v -x 127.0.0.1:1080 %h %p&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>
