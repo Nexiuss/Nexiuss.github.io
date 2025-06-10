@@ -6,8 +6,15 @@
     <description>Recent content in Blog on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Jun 2025 10:12:36 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jun 2025 18:39:39 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Oracle中utf 8中文占用</title>
+      <link>https://nexiuss.github.io/posts/oracle%E4%B8%ADutf-8%E4%B8%AD%E6%96%87%E5%8D%A0%E7%94%A8/</link>
+      <pubDate>Tue, 10 Jun 2025 18:39:39 +0800</pubDate>
+      <guid>https://nexiuss.github.io/posts/oracle%E4%B8%ADutf-8%E4%B8%AD%E6%96%87%E5%8D%A0%E7%94%A8/</guid>
+      <description>&lt;h1 id=&#34;oracle中utf-8中文占用&#34;&gt;Oracle中utf 8中文占用&lt;/h1&gt;&#xA;&lt;h2 id=&#34;储存原理&#34;&gt;储存原理&lt;/h2&gt;&#xA;&lt;p&gt;UTF-8 是一种可变长 Unicode 编码：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;基本 ASCII 字符（如英文字母、数字）占用 1 个字节。&lt;/li&gt;&#xA;&lt;li&gt;绝大多数常用汉字及其他 Unicode 扩展字符（涵盖中日韩等文字）占用 3 个字节&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;字段长度限制的影响&#34;&gt;字段长度限制的影响&lt;/h2&gt;&#xA;&lt;p&gt;Oracle 中 VARCHAR2(N) 默认定义的是字节长度（BYTE 语义）：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;VARCHAR2(10) 表示最多存储 10 个字节。&lt;/li&gt;&#xA;&lt;li&gt;在 UTF-8 数据库中，最多可存储 3 个中文字符（3 字符 * 3 字节/字符 = 9 字节），剩余 1 字节不足以存储第 4 个汉字&lt;/li&gt;&#xA;&lt;li&gt;若需按字符数定义长度，需显式指定 CHAR 语义：VARCHAR2(10 CHAR）&#xA;此时表示最多存储 10 个字符，不论字符类型：&lt;/li&gt;&#xA;&lt;li&gt;可存 10 个汉字（共占用 30 字节）&lt;/li&gt;&#xA;&lt;li&gt;或 10 个英文字母（共占用 10 字节）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;验证方法&#34;&gt;验证方法&lt;/h2&gt;&#xA;&lt;p&gt;查询数据库字符集：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;SELECT&lt;/span&gt; USERENV(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;LANGUAGE&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt; dual; &lt;span style=&#34;color:#75715e&#34;&gt;-- 结果应包含 AL32UTF8 或 UTF8&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;SELECT&lt;/span&gt; value &lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt; NLS_DATABASE_PARAMETERS &lt;span style=&#34;color:#66d9ef&#34;&gt;WHERE&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;parameter&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;NLS_CHARACTERSET&amp;#39;&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;-- 结果应为 AL32UTF8 或 UTF8&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查询单个汉字字节长度：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>权威主义和共识主义</title>
       <link>https://nexiuss.github.io/posts/%E6%9D%83%E5%A8%81%E4%B8%BB%E4%B9%89%E5%92%8C%E5%85%B1%E8%AF%86%E4%B8%BB%E4%B9%89/</link>
