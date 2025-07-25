@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Spring缓存</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, spring, cache, spring-boot, spring-cloud, Caffeine, redis, @Cacheable'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/spring%E7%BC%93%E5%AD%98/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Spring缓存">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/images/20250711110117.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/20250711110117.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Spring缓存">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/spring%E7%BC%93%E5%AD%98/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/spring%E7%BC%93%E5%AD%98/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/20250711110117.png">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/spring%E7%BC%93%E5%AD%98/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.9a920d7dabdbad8363b6a0a94e29a9dfebdb7ee64cfcb193a0145e512ef2bdab.js" integrity="sha256-mpINfavbrYNjtqCpTimp3&#43;vbfuZM/LGToBReUS7yvas="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Spring缓存</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">July 11, 2025
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/spring">spring</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/cache">cache</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/spring-boot">spring-boot</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/spring-cloud">spring-cloud</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/caffeine">Caffeine</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/redis">redis</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/@cacheable">@Cacheable</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="spring缓存">Spring缓存</h1>
+<h3 id="spring缓存介绍">Spring缓存介绍</h3>
+<p>@Cacheable 是 Spring Framework 提供的一个注解，用于方法级别的缓存管理。当一个被标注为 @Cacheable 的方法被调用时，它会先检查缓存中是否有对应的结果。如果有，则直接返回缓存结果，而不会执行方法逻辑。如果没有，则执行方法逻辑并将结果存入缓存，以便下次调用时直接使用缓存值。</p>
+<h3 id="作用">作用</h3>
+<p>@Cacheable 注解的作用是将方法的返回值缓存起来，以提高系统的性能。当一个方法被多次调用时，如果缓存中已经存在该方法的返回值，则可以直接从缓存中获取，而不需要再次执行方法逻辑。这样可以避免重复计算，提高系统的响应速度。</p>
+<ol>
+<li>提升性能：避免重复调用耗时的计算或 I/O 操作（如数据库查询或远程调用）。</li>
+<li>减少资源消耗：减少系统对外部依赖（如数据库、API）的访问频率。</li>
+<li>简单易用：通过注解配置，无需显式管理缓存逻辑。</li>
+</ol>
+<h3 id="使用场景">使用场景</h3>
+<p>@Cacheable 注解适用于以下场景：</p>
+<ol>
+<li>数据库查询：对于频繁查询的数据，可以使用 @Cacheable 注解将查询结果缓存起来，避免重复查询数据库。</li>
+<li>计算密集型任务：对于计算密集型任务，可以使用 @Cacheable 注解将计算结果缓存起来，避免重复计算。</li>
+<li>外部服务调用：对于外部服务调用，可以使用 @Cacheable 注解将调用结果缓存起来，避免重复调用外部服务。</li>
+<li>高并发场景：对于高并发场景，可以使用 @Cacheable 注解将热点数据缓存起来，避免热点数据的频繁访问。</li>
+</ol>
+<h3 id="heading"></h3>
+<pre tabindex="0"><code>@Cacheable(
+    cacheNames = ..., // 缓存的名字（可理解为缓存的分类）
+    key = ...,        // 缓存的键（默认使用方法参数作为键）
+    unless = ...,     // 条件表达式，返回 true 时不会缓存
+    condition = ...   // 条件表达式，返回 true 时才缓存
+)
+</code></pre><h3 id="caffeine-本地缓存">Caffeine 本地缓存</h3>
+<p>Caffeine 是一个高性能、本地缓存库，提供类似于 Guava Cache 的功能，并且性能更优</p>
+<h3 id="二级缓存">二级缓存</h3>
+<p>先查本地Caffeine缓存，未命中再查Redis缓存，最后才查数据库。缓存更新时会同时更新两级缓存。可以根据实际需求调整缓存过期时间和大小等参数。</p>
+<h3 id="代码">代码</h3>
+<p>pom.xml</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependencies&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Spring Boot Starter --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Caffeine 缓存 --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;groupId&gt;</span>com.github.ben-manes.caffeine<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;artifactId&gt;</span>caffeine<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;version&gt;</span>3.1.8<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Redis --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-starter-data-redis<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependencies&gt;</span>
+</span></span></code></pre></div><p>CacheConfig.java</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@EnableCaching</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CacheConfig</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> CacheManager <span style="color:#a6e22e">cacheManager</span>(RedisConnectionFactory redisConnectionFactory) {
+</span></span><span style="display:flex;"><span>        CaffeineCacheManager caffeineCacheManager <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CaffeineCacheManager();
+</span></span><span style="display:flex;"><span>        caffeineCacheManager.<span style="color:#a6e22e">setCaffeine</span>(Caffeine.<span style="color:#a6e22e">newBuilder</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">initialCapacity</span>(100)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">maximumSize</span>(1000)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">expireAfterWrite</span>(10, TimeUnit.<span style="color:#a6e22e">MINUTES</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        RedisCacheManager redisCacheManager <span style="color:#f92672">=</span> RedisCacheManager.<span style="color:#a6e22e">builder</span>(redisConnectionFactory)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">cacheDefaults</span>(RedisCacheConfiguration.<span style="color:#a6e22e">defaultCacheConfig</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">entryTtl</span>(Duration.<span style="color:#a6e22e">ofMinutes</span>(30)))
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> TwoLevelCacheManager(caffeineCacheManager, redisCacheManager);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>TwoLevelCacheManager.java</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TwoLevelCacheManager</span> <span style="color:#66d9ef">implements</span> CacheManager {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> CacheManager caffeineCacheManager;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> CacheManager redisCacheManager;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TwoLevelCacheManager</span>(CacheManager caffeine, CacheManager redis) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">caffeineCacheManager</span> <span style="color:#f92672">=</span> caffeine;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">redisCacheManager</span> <span style="color:#f92672">=</span> redis;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Cache <span style="color:#a6e22e">getCache</span>(String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> TwoLevelCache(name,
+</span></span><span style="display:flex;"><span>            caffeineCacheManager.<span style="color:#a6e22e">getCache</span>(name),
+</span></span><span style="display:flex;"><span>            redisCacheManager.<span style="color:#a6e22e">getCache</span>(name));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 其他必要方法...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>TwoLevelCache.java</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TwoLevelCache</span> <span style="color:#66d9ef">implements</span> Cache {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Cache caffeineCache;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Cache redisCache;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TwoLevelCache</span>(String name, Cache caffeine, Cache redis) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">caffeineCache</span> <span style="color:#f92672">=</span> caffeine;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">redisCache</span> <span style="color:#f92672">=</span> redis;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ValueWrapper <span style="color:#a6e22e">get</span>(Object key) {
+</span></span><span style="display:flex;"><span>        ValueWrapper value <span style="color:#f92672">=</span> caffeineCache.<span style="color:#a6e22e">get</span>(key);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(value <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            value <span style="color:#f92672">=</span> redisCache.<span style="color:#a6e22e">get</span>(key);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(value <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                caffeineCache.<span style="color:#a6e22e">put</span>(key, value.<span style="color:#a6e22e">get</span>());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> value;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 实现其他Cache接口方法...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>example</p>
+<pre tabindex="0"><code>@Service
+public class UserService {
+    @Cacheable(value = &#34;users&#34;, key = &#34;#userId&#34;)
+    public User getUserById(Long userId) {
+        // 数据库查询逻辑
+        return userRepository.findById(userId).orElse(null);
+    }
+
+    @CacheEvict(value = &#34;users&#34;, key = &#34;#userId&#34;)
+    public void updateUser(User user) {
+        // 更新数据库
+        userRepository.save(user);
+    }
+}
+</code></pre>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2025 The Marauders</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
