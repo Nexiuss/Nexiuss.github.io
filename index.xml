@@ -6,8 +6,15 @@
     <description>Recent content on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 25 Jul 2025 17:53:21 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Sep 2025 16:11:41 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HibernateTemplate工作原理</title>
+      <link>https://nexiuss.github.io/posts/hibernatetemplate%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Fri, 26 Sep 2025 16:11:41 +0800</pubDate>
+      <guid>https://nexiuss.github.io/posts/hibernatetemplate%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</guid>
+      <description>&lt;h1 id=&#34;hibernatetemplate工作原理&#34;&gt;HibernateTemplate工作原理&lt;/h1&gt;&#xA;&lt;p&gt;HibernateTemplate的生成SQL的过程实际上是Hibernate核心机制的体现，它同时依赖于hbm文件(或注解)的映射元数据和实体对象的反射机制&lt;/p&gt;&#xA;&lt;h2 id=&#34;工作机制详解&#34;&gt;工作机制详解&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;HibernateTemplate的角色&#xA;HibernateTemplate是Spring对Hibernate的封装工具类，其save方法最终会通过回调机制(HibernateCallback)委托给底层的Hibernate Session执行。这种设计模式(Template Method)简化了事务管理和异常处理，但SQL生成仍由Hibernate原生机制完成&lt;/li&gt;&#xA;&lt;li&gt;SQL生成的双重依赖&#xA;映射元数：hbm文件或注解定义了实体类与数据库表的映射关系（如表名、字段名、主键等），这是SQL语句结构的基础&#xA;对象反射：运行时通过反射获取实体对象的当前属性值，动态填充SQL参数&#xA;例如插入User对象时，Hibernate会结合User.hbm.xml定义的字段映射和对象实例的name/age等属性值生成完整INSERT语句&lt;/li&gt;&#xA;&lt;li&gt;具体执行流程&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;HibernateTemplate.save()&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ Session.save()&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ 通过EntityPersister解析映射元数据&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ 反射获取属性值&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ 生成带参数的SQL&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ 执行JDBC操作&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;&#xA;&lt;li&gt;技术实现特点&#xA;元数据优先：如果没有hbm文件或注解定义映射关系，仅靠反射无法确定表结构和字段类型&#xA;动态适配：同一映射配置可服务于不同对象实例，反射机制确保每次插入都能获取实时数据&#xA;性能优化：Hibernate会缓存生成的SQL模板，仅反射获取值部分需要实时计算&#xA;这种设计实现了ORM的核心价值：开发者操作对象，框架自动处理数据库交互细节。&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>Maven中profiles实践</title>
       <link>https://nexiuss.github.io/posts/maven%E4%B8%ADprofiles%E5%AE%9E%E8%B7%B5/</link>

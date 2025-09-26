@@ -17,26 +17,26 @@
     
 
     
-    <title>K8s</title>
-    <meta name="description" content="Sky above, sand below and peace within">
-    <meta name="keywords" content='blog, gokarna, hugo'>
+    <title>HibernateTemplate工作原理</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, Hibernate'>
 
-    <meta property="og:url" content="https://nexiuss.github.io/tags/k8s/">
+    <meta property="og:url" content="https://nexiuss.github.io/posts/hibernatetemplate%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="K8s">
-    <meta property="og:description" content="Sky above, sand below and peace within">
-    <meta property="og:image" content="https://nexiuss.github.io/images/logo.jpg">
-    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta property="og:title" content="HibernateTemplate工作原理">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/images/20250926161141.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/20250926161141.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="K8s">
-    <meta name="twitter:description" content="Sky above, sand below and peace within">
-    <meta property="twitter:domain" content="https://nexiuss.github.io/tags/k8s/">
-    <meta property="twitter:url" content="https://nexiuss.github.io/tags/k8s/">
-    <meta name="twitter:image" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta name="twitter:title" content="HibernateTemplate工作原理">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/hibernatetemplate%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/hibernatetemplate%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/20250926161141.png">
 
     
-    <link rel="canonical" href="https://nexiuss.github.io/tags/k8s/">
+    <link rel="canonical" href="https://nexiuss.github.io/posts/hibernatetemplate%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -181,31 +181,120 @@
     </nav>
 </header>
 <main id="content">
-    <div class="container list-posts">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>HibernateTemplate工作原理</h1>
 
-    <h1 class="list-title">k8s</h1>
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">September 26, 2025
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/hibernate">Hibernate</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="hibernatetemplate工作原理">HibernateTemplate工作原理</h1>
+<p>HibernateTemplate的生成SQL的过程实际上是Hibernate核心机制的体现，它同时依赖于hbm文件(或注解)的映射元数据和实体对象的反射机制</p>
+<h2 id="工作机制详解">工作机制详解</h2>
+<ul>
+<li>HibernateTemplate的角色
+HibernateTemplate是Spring对Hibernate的封装工具类，其save方法最终会通过回调机制(HibernateCallback)委托给底层的Hibernate Session执行。这种设计模式(Template Method)简化了事务管理和异常处理，但SQL生成仍由Hibernate原生机制完成</li>
+<li>SQL生成的双重依赖
+映射元数：hbm文件或注解定义了实体类与数据库表的映射关系（如表名、字段名、主键等），这是SQL语句结构的基础
+对象反射：运行时通过反射获取实体对象的当前属性值，动态填充SQL参数
+例如插入User对象时，Hibernate会结合User.hbm.xml定义的字段映射和对象实例的name/age等属性值生成完整INSERT语句</li>
+<li>具体执行流程</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>HibernateTemplate.save()
+</span></span><span style="display:flex;"><span>→ Session.save()
+</span></span><span style="display:flex;"><span>→ 通过EntityPersister解析映射元数据
+</span></span><span style="display:flex;"><span>→ 反射获取属性值
+</span></span><span style="display:flex;"><span>→ 生成带参数的SQL
+</span></span><span style="display:flex;"><span>→ 执行JDBC操作
+</span></span></code></pre></div><ul>
+<li>技术实现特点
+元数据优先：如果没有hbm文件或注解定义映射关系，仅靠反射无法确定表结构和字段类型
+动态适配：同一映射配置可服务于不同对象实例，反射机制确保每次插入都能获取实时数据
+性能优化：Hibernate会缓存生成的SQL模板，仅反射获取值部分需要实时计算
+这种设计实现了ORM的核心价值：开发者操作对象，框架自动处理数据库交互细节。</li>
+</ul>
+
+        
+    </div>
+    <script src="https://utteranc.es/client.js"
+        repo="nexiuss/utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <div class="prev-next">
+        
+    </div>
 
     
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
 
-    <h2 class="posts-year">2024</h2><div class="post-title">
-     <a href="https://nexiuss.github.io/posts/docker%E5%90%AF%E5%8A%A8/" class="post-link">Docker启动</a>
-     
-     
-     
-     
+        window.onscroll = function() {
+            scrollFunction()
+        };
 
-     
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
 
-     
-      <div class="flex-break"></div>
-      <span class="post-date">September 12, 2024</span>
-     
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    
+    
 </div>
+
+
 
     
-
-</div>
-
 
         </main><footer class="footer">
     
