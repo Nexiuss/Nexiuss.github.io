@@ -6,6 +6,7 @@
     <style>
         :root {
             --accent-color: #FF4D4D;
+            --font-size: 1.1rem;
         }
     </style>
 
@@ -95,45 +96,45 @@
         <div class="nav-links">
             
             <div class="nav-link">
-                <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                <a href="https://nexiuss.github.io/" aria-label="" ><span data-feather='home'></span> 首页 </a>
             </div>
             
             <div class="nav-link">
-                <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                <a href="https://nexiuss.github.io/posts/" aria-label="" ><span data-feather='book'></span> 文章 </a>
             </div>
             
             <div class="nav-link">
-                <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                <a href="https://nexiuss.github.io/projects/" aria-label="" ><span data-feather='code'></span> 项目 </a>
             </div>
             
             <div class="nav-link">
-                <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                <a href="https://nexiuss.github.io/tags/" aria-label="" ><span data-feather='tag'></span> 标签 </a>
             </div>
             
             <div class="nav-link">
-                <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                <a href="https://github.com/nexiuss" aria-label="github" ><span data-feather='github'></span>  </a>
             </div>
             
             <div class="nav-link">
-                <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                <a href="https://github.com/nexiuss" aria-label="buymeacoffee" ><span data-feather='coffee'></span>  </a>
             </div>
             
             <div class="nav-link">
-                <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                <a href="https://nexiuss.github.io/index.xml" aria-label="rss" ><span data-feather='rss'></span>  </a>
             </div>
             
 
             <span class="nav-icons-divider"></span>
             <div class="nav-link dark-theme-toggle">
-                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
-                <a>
+                <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                <a aria-hidden="true" role="switch">
                     <span class="theme-toggle-icon" data-feather="moon"></span>
                 </a>
             </div>
 
             <div class="nav-link" id="hamburger-menu-toggle">
                 <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
-                <a>
+                <a aria-checked="false" aria-labelledby="hamburger-menu-toggle" id="hamburger-menu-toggle-target" role="switch">
                     <span data-feather="menu"></span>
                 </a>
             </div>
@@ -171,7 +172,7 @@
                 
                 <li class="nav-item dark-theme-toggle">
                     <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
-                    <a>
+                    <a role="switch">
                         <span class="theme-toggle-icon" data-feather="moon"></span>
                     </a>
                 </li>
@@ -183,7 +184,7 @@
 <main id="content">
     <div class="container list-posts">
 
-    <h1 class="list-title">redis</h1>
+    <h1 class="list-title"></h1>
 
     
 
@@ -212,10 +213,28 @@
     
 
     
-    <span>&copy; 2025 The Marauders</span>
+
     
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2025 The Marauders</span>
+    
+
     <span>
-        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/gokarna-theme/gokarna-hugo">Gokarna</a>
     </span>
 </footer>
 </body>
