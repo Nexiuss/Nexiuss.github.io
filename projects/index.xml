@@ -9,13 +9,6 @@
     <atom:link href="https://nexiuss.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello, world!</title>
-      <link>https://nexiuss.github.io/projects/kmp-devtoy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://nexiuss.github.io/projects/kmp-devtoy/</guid>
-      <description>&lt;h1 id=&#34;projects&#34;&gt;Projects&lt;/h1&gt;&#xA;&lt;p&gt;Keep an eye on this space for my upcoming projects&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Hello, world!</title>
       <link>https://nexiuss.github.io/projects/nexius-blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://nexiuss.github.io/projects/nexius-blog/</guid>
@@ -27,6 +20,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://nexiuss.github.io/projects/ros/</guid>
       <description>&lt;h1 id=&#34;projects&#34;&gt;Projects&lt;/h1&gt;&#xA;&lt;h1 id=&#34;ros-vuenodejs餐馆点餐系统&#34;&gt;ros-vue+Nodejs餐馆点餐系统&lt;/h1&gt;&#xA;&lt;h4 id=&#34;项目地址&#34;&gt;项目地址&lt;/h4&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/Nexiuss/ros&#34;&gt;https://github.com/Nexiuss/ros&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h4 id=&#34;介绍说明&#34;&gt;介绍说明&lt;/h4&gt;&#xA;&lt;p&gt;该项目基于vue、node以及MySQL数据库。分为移动端的前台点餐和后台数据管理两个部分。&lt;/p&gt;&#xA;&lt;h4 id=&#34;移动端&#34;&gt;移动端&lt;/h4&gt;&#xA;&lt;p&gt;使用了原生vue进行构建页面，通过axios进行后台数据调用。&#xA;功能： 客人通过扫描桌面的二维码进入到移动点餐页面，该过程中实现了桌号的绑定，通过桌号标识实现单点数据同信。&lt;/p&gt;&#xA;&lt;h4 id=&#34;后台管理系统&#34;&gt;后台管理系统&lt;/h4&gt;&#xA;&lt;p&gt;登录： node+MySQL+token实现&#xA;功能： 后台用户管理、菜品管理、客服点菜管理&lt;/p&gt;&#xA;&lt;h4 id=&#34;部署&#34;&gt;部署&lt;/h4&gt;&#xA;&lt;p&gt;查看doc文档&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>KMP-DevToy</title>
+      <link>https://nexiuss.github.io/projects/kmp-devtoy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexiuss.github.io/projects/kmp-devtoy/</guid>
+      <description>&lt;h1 id=&#34;kmp-devtoy&#34;&gt;KMP-DevToy&lt;/h1&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kotlinlang.org/docs/multiplatform.html&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/Kotlin-Multiplatform-7F52FF?logo=kotlin&amp;amp;logoColor=white&#34; alt=&#34;Kotlin&#34;&gt;&lt;/a&gt;&#xA;&lt;a href=&#34;https://developer.android.com/develop/ui/compose&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/Jetpack-Compose-4285F4?logo=jetpackcompose&amp;amp;logoColor=white&#34; alt=&#34;Compose&#34;&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;h2 id=&#34;项目简介&#34;&gt;项目简介&lt;/h2&gt;&#xA;&lt;p&gt;这是一个基于 Kotlin Multiplatform (KMP) 技术实现的开发工具，参考了 devToy 工具的设计理念。项目采用现代化的 Compose 跨平台框架，支持在多个桌面平台上运行。&lt;/p&gt;&#xA;&lt;h2 id=&#34;核心特性&#34;&gt;核心特性&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;‌&lt;strong&gt;跨平台支持&lt;/strong&gt;‌: 基于 Kotlin Multiplatform，实现代码在多个平台间的共享&lt;/li&gt;&#xA;&lt;li&gt;‌&lt;strong&gt;现代化 UI&lt;/strong&gt;‌: 使用 Jetpack Compose 构建响应式用户界面&lt;/li&gt;&#xA;&lt;li&gt;‌&lt;strong&gt;桌面应用&lt;/strong&gt;‌: 专为桌面环境优化的原生体验&lt;/li&gt;&#xA;&lt;li&gt;‌&lt;strong&gt;简洁高效&lt;/strong&gt;‌: 轻量级工具，快速启动和运行&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;示例图片&#34;&gt;示例图片&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/example.png&#34; alt=&#34;example.png&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;参考文档&#34;&gt;参考文档&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://gabrieldrn.github.io/carbon-compose/&#34;&gt;Carbon Compose&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://developer.android.com/develop/ui/compose/documentation?hl=zh-cn&#34;&gt;compose Android Document&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;环境要求&#34;&gt;环境要求&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Gradle 8.0 或更高版本&lt;/li&gt;&#xA;&lt;li&gt;Kotlin 1.9.0 或更高版本&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;项目运行命令&#34;&gt;项目运行命令:&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;on macOS/Linux&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./gradlew :composeApp:run&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;&#xA;&lt;li&gt;on Windows&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.&lt;span style=&#34;color:#ae81ff&#34;&gt;\g&lt;/span&gt;radlew.bat :composeApp:run&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Learn more about &lt;a href=&#34;https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html&#34;&gt;Kotlin Multiplatform&lt;/a&gt;…&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
