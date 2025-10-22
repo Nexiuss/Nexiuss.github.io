@@ -9,6 +9,13 @@
     <atom:link href="https://nexiuss.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello, world!</title>
+      <link>https://nexiuss.github.io/projects/kmp-devtoy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexiuss.github.io/projects/kmp-devtoy/</guid>
+      <description>&lt;h1 id=&#34;projects&#34;&gt;Projects&lt;/h1&gt;&#xA;&lt;p&gt;Keep an eye on this space for my upcoming projects&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hello, world!</title>
       <link>https://nexiuss.github.io/projects/nexius-blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://nexiuss.github.io/projects/nexius-blog/</guid>
