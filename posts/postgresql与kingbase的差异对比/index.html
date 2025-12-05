@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+            --font-size: 1.1rem;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>PostgreSQL与Kingbase的差异对比</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/postgresql%E4%B8%8Ekingbase%E7%9A%84%E5%B7%AE%E5%BC%82%E5%AF%B9%E6%AF%94/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PostgreSQL与Kingbase的差异对比">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/images/20251205153635.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/20251205153635.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PostgreSQL与Kingbase的差异对比">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/postgresql%E4%B8%8Ekingbase%E7%9A%84%E5%B7%AE%E5%BC%82%E5%AF%B9%E6%AF%94/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/postgresql%E4%B8%8Ekingbase%E7%9A%84%E5%B7%AE%E5%BC%82%E5%AF%B9%E6%AF%94/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/20251205153635.png">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/postgresql%E4%B8%8Ekingbase%E7%9A%84%E5%B7%AE%E5%BC%82%E5%AF%B9%E6%AF%94/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" aria-label="" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" aria-label="" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" aria-label="" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" aria-label="" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="github" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="buymeacoffee" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" aria-label="rss" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                <a aria-hidden="true" role="switch">
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a aria-checked="false" aria-labelledby="hamburger-menu-toggle" id="hamburger-menu-toggle-target" role="switch">
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a role="switch">
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>PostgreSQL与Kingbase的差异对比</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">
+              
+
+              December 5, 2025
+
+              
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="postgresql-与-kingbase-的差异对比">PostgreSQL 与 Kingbase 的差异对比</h1>
+<p>Kingbase 是基于开源数据库 PostgreSQL 开发的，大部分功能与 PostgreSQL 兼容。Kingbase 8 是基于 PostgreSQL 9.6 的。本文列举发现的 PostgreSQL 9.6 与 Kingbase 8 的差异对比。</p>
+<h2 id="1-jdbc">1 JDBC</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left">postgresql 9.6</th>
+          <th style="text-align: left">kingbase 8</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">driver_class</td>
+          <td style="text-align: left">org.postgresql.Driver</td>
+          <td style="text-align: left">com.kingbase8.Driver</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">url</td>
+          <td style="text-align: left">jdbc:postgresql://127.0.0.1:5432/postgres</td>
+          <td style="text-align: left">jdbc:kingbase8://127.0.0.1:54321/kingbase</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">jdbc 的 jar</td>
+          <td style="text-align: left">postgresql.jdbc-9.0.jar<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->org.postgresql<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->postgresql.jdbc<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->9.0<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+          <td style="text-align: left">kingbase8-8.2.0.jar<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->com.kingbase8<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->kingbase8-jdbc<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->8.2.0<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">hibernate 的 jar</td>
+          <td style="text-align: left">hibernate-5.0.12.jar<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->org.hibernate<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->hibernate<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->5.0.12<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+          <td style="text-align: left">hibernate-3.6.0-dialect-1.0.jar<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->com.kingbase<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->hibernate-3.6.0-dialect<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->1.0<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">hibernate 方言</td>
+          <td style="text-align: left">org.hibernate.dialect.PostgreSQL9Dialect</td>
+          <td style="text-align: left">org.hibernate.dialect.Kingbase8Dialect</td>
+      </tr>
+  </tbody>
+</table>
+<p>这里 127.0.0.1 表示本地的 ip 地址。
+5432 是 postgresql 的默认端口；54321 则是达梦的默认端口。
+postgres 是 postgresql 默认的数据库名，kingbase 是 Kingbase 默认的数据库名。
+这些参数可根据实际调整。</p>
+<h2 id="2-命令程序">2 命令程序</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">postgresql 9.6</th>
+          <th style="text-align: left">kingbase 8</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">pgbench</td>
+          <td style="text-align: left">kbbench</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">postgres</td>
+          <td style="text-align: left">kingbase</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">psql</td>
+          <td style="text-align: left">ksql</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_archivecleanup</td>
+          <td style="text-align: left">sys_archivecleanup</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_basebackup</td>
+          <td style="text-align: left">sys_basebackup</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_bulkload</td>
+          <td style="text-align: left">sys_bulkload</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_config</td>
+          <td style="text-align: left">sys_config</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_controldata</td>
+          <td style="text-align: left">sys_controldata</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_ctl</td>
+          <td style="text-align: left">sys_ctl</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_dump</td>
+          <td style="text-align: left">sys_dump</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_dumpall</td>
+          <td style="text-align: left">sys_dumpall</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_hm</td>
+          <td style="text-align: left">sys_hm</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_isready</td>
+          <td style="text-align: left">sys_isready</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pglogical_create_subscriber</td>
+          <td style="text-align: left">syslogical_create_subscriber</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_receivexlog</td>
+          <td style="text-align: left">sys_receivexlog</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_recvlogical</td>
+          <td style="text-align: left">sys_recvlogical</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_resetxlog</td>
+          <td style="text-align: left">sys_resetxlog</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_restore</td>
+          <td style="text-align: left">sys_restore</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_rewind</td>
+          <td style="text-align: left">sys_rewind</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_rman</td>
+          <td style="text-align: left">sys_rman</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_test_fsync</td>
+          <td style="text-align: left">sys_test_fsync</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_test_timing</td>
+          <td style="text-align: left">sys_test_timing</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_upgrade</td>
+          <td style="text-align: left">sys_upgrade</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_xlogdump</td>
+          <td style="text-align: left">sys_xlogdump</td>
+      </tr>
+  </tbody>
+</table>
+<p>可以看到，这里 kingbase 只是将 postgresql 的表的前缀从 pg 改成了 sys 或者 kb。</p>
+<h2 id="3-系统表和视图">3 系统表和视图</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">postgresql 9.6</th>
+          <th style="text-align: left">kingbase 8</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">pg_aggregate</td>
+          <td style="text-align: left">sys_aggregate</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_am</td>
+          <td style="text-align: left">sys_am</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_amop</td>
+          <td style="text-align: left">sys_amop</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_amproc</td>
+          <td style="text-align: left">sys_amproc</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_attrdef</td>
+          <td style="text-align: left">sys_attrdef</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_attribute</td>
+          <td style="text-align: left">sys_attribute</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_authid</td>
+          <td style="text-align: left">sys_authid</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_auth_members</td>
+          <td style="text-align: left">sys_auth_members</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_cast</td>
+          <td style="text-align: left">sys_cast</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_class</td>
+          <td style="text-align: left">sys_class</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_collation</td>
+          <td style="text-align: left">sys_collation</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_constraint</td>
+          <td style="text-align: left">sys_constraint</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_conversion</td>
+          <td style="text-align: left">sys_conversion</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_database</td>
+          <td style="text-align: left">sys_database</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_db_role_setting</td>
+          <td style="text-align: left">sys_db_role_setting</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_default_acl</td>
+          <td style="text-align: left">sys_default_acl</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_depend</td>
+          <td style="text-align: left">sys_depend</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_description</td>
+          <td style="text-align: left">sys_description</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_enum</td>
+          <td style="text-align: left">sys_enum</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_event_trigger</td>
+          <td style="text-align: left">sys_event_trigger</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_extension</td>
+          <td style="text-align: left">sys_extension</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_foreign_data_wrapper</td>
+          <td style="text-align: left">sys_foreign_data_wrapper</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_foreign_server</td>
+          <td style="text-align: left">sys_foreign_server</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_foreign_table</td>
+          <td style="text-align: left">sys_foreign_table</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_index</td>
+          <td style="text-align: left">sys_index</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_inherits</td>
+          <td style="text-align: left">sys_inherits</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_init_privs</td>
+          <td style="text-align: left">sys_init_privs</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_language</td>
+          <td style="text-align: left">sys_language</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_largeobject</td>
+          <td style="text-align: left">sys_largeobject</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_largeobject_metadata</td>
+          <td style="text-align: left">sys_largeobject_metadata</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_namespace</td>
+          <td style="text-align: left">sys_namespace</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_opclass</td>
+          <td style="text-align: left">sys_opclass</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_operator</td>
+          <td style="text-align: left">sys_operator</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_opfamily</td>
+          <td style="text-align: left">sys_opfamily</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_partitioned_table</td>
+          <td style="text-align: left">sys_partitioned_table</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_pltemplate</td>
+          <td style="text-align: left">sys_pltemplate</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_policy</td>
+          <td style="text-align: left">sys_policy</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_proc</td>
+          <td style="text-align: left">sys_proc</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_publication</td>
+          <td style="text-align: left">sys_publication</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_publication_rel</td>
+          <td style="text-align: left">sys_publication_rel</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_range</td>
+          <td style="text-align: left">sys_range</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_replication_origin</td>
+          <td style="text-align: left">sys_replication_origin</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_rewrite</td>
+          <td style="text-align: left">sys_rewrite</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_seclabel</td>
+          <td style="text-align: left">sys_seclabel</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_sequence</td>
+          <td style="text-align: left">sys_sequence</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_shdepend</td>
+          <td style="text-align: left">sys_shdepend</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_shdescription</td>
+          <td style="text-align: left">sys_shdescription</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_shseclabel</td>
+          <td style="text-align: left">sys_shseclabel</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_statistic</td>
+          <td style="text-align: left">sys_statistic</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_statistic_ext</td>
+          <td style="text-align: left">sys_statistic_ext</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_subscription</td>
+          <td style="text-align: left">sys_subscription</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_subscription_rel</td>
+          <td style="text-align: left">sys_subscription_rel</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_tablespace</td>
+          <td style="text-align: left">sys_tablespace</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_transform</td>
+          <td style="text-align: left">sys_transform</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_trigger</td>
+          <td style="text-align: left">sys_trigger</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_ts_config</td>
+          <td style="text-align: left">sys_ts_config</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_ts_config_map</td>
+          <td style="text-align: left">sys_ts_config_map</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_ts_dict</td>
+          <td style="text-align: left">sys_ts_dict</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_ts_parser</td>
+          <td style="text-align: left">sys_ts_parser</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_ts_template</td>
+          <td style="text-align: left">sys_ts_template</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_type</td>
+          <td style="text-align: left">sys_type</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_user_mapping</td>
+          <td style="text-align: left">sys_user_mapping</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">System Views</td>
+          <td style="text-align: left">sysstem Views</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_available_extensions</td>
+          <td style="text-align: left">sys_available_extensions</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_available_extension_versions</td>
+          <td style="text-align: left">sys_available_extension_versions</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_config</td>
+          <td style="text-align: left">sys_config</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_cursors</td>
+          <td style="text-align: left">sys_cursors</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_file_settings</td>
+          <td style="text-align: left">sys_file_settings</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_group</td>
+          <td style="text-align: left">sys_group</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_hba_file_rules</td>
+          <td style="text-align: left">sys_hba_file_rules</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_indexes</td>
+          <td style="text-align: left">sys_indexes</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_locks</td>
+          <td style="text-align: left">sys_locks</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_matviews</td>
+          <td style="text-align: left">sys_matviews</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_policies</td>
+          <td style="text-align: left">sys_policies</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_prepared_statements</td>
+          <td style="text-align: left">sys_prepared_statements</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_prepared_xacts</td>
+          <td style="text-align: left">sys_prepared_xacts</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_publication_tables</td>
+          <td style="text-align: left">sys_publication_tables</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_replication_origin_status</td>
+          <td style="text-align: left">sys_replication_origin_status</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_replication_slots</td>
+          <td style="text-align: left">sys_replication_slots</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_roles</td>
+          <td style="text-align: left">sys_roles</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_rules</td>
+          <td style="text-align: left">sys_rules</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_seclabels</td>
+          <td style="text-align: left">sys_seclabels</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_sequences</td>
+          <td style="text-align: left">sys_sequences</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_settings</td>
+          <td style="text-align: left">sys_settings</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_shadow</td>
+          <td style="text-align: left">sys_shadow</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_stats</td>
+          <td style="text-align: left">sys_stats</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_tables</td>
+          <td style="text-align: left">sys_tables</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_timezone_abbrevs</td>
+          <td style="text-align: left">sys_timezone_abbrevs</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_timezone_names</td>
+          <td style="text-align: left">sys_timezone_names</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_user</td>
+          <td style="text-align: left">sys_user</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_user_mappings</td>
+          <td style="text-align: left">sys_user_mappings</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">pg_views</td>
+          <td style="text-align: left">sys_views</td>
+      </tr>
+  </tbody>
+</table>
+<p>可以看到，这里 kingbase 只是将 postgresql 的表的前缀从 pg 改成了 sys。</p>
+<h2 id="4-创建函数的语法">4 创建函数的语法</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">差异项/数据库</th>
+          <th style="text-align: left">postgresql 9.6</th>
+          <th style="text-align: left">kingbase 8</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">函数定义</td>
+          <td style="text-align: left">create or replace function f(a int)<!-- raw HTML omitted -->returns int as<!-- raw HTML omitted -->$$<!-- raw HTML omitted -->begin<!-- raw HTML omitted -->return 0;<!-- raw HTML omitted -->end;<!-- raw HTML omitted -->$$ language plpgsql;</td>
+          <td style="text-align: left">create or replace internal function f(a int)<!-- raw HTML omitted -->returns int as<!-- raw HTML omitted -->$$<!-- raw HTML omitted -->begin<!-- raw HTML omitted -->return 0;<!-- raw HTML omitted -->end;<!-- raw HTML omitted -->$$ language plsql ;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">函数中声明变量</td>
+          <td style="text-align: left">create or replace function f(a int)<!-- raw HTML omitted -->returns int as<!-- raw HTML omitted -->declare a int;<!-- raw HTML omitted -->declare b varchar(32);<!-- raw HTML omitted -->$$<!-- raw HTML omitted -->begin<!-- raw HTML omitted -->return 0;<!-- raw HTML omitted -->end;<!-- raw HTML omitted -->$$ language plpgsql;</td>
+          <td style="text-align: left">create or replace internal function f(a int)<!-- raw HTML omitted -->returns int as<!-- raw HTML omitted -->$$<!-- raw HTML omitted -->declare<!-- raw HTML omitted -->a int;<!-- raw HTML omitted -->b varchar(32);<!-- raw HTML omitted -->begin<!-- raw HTML omitted -->return 0;<!-- raw HTML omitted -->end;<!-- raw HTML omitted -->$$ language plsql;</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="5-其他要注意的事项">5 其他要注意的事项</h2>
+<p>如果需要程序保持对 postgresql 的兼容性，需要在 kingbase 的配置文件 kingbase.conf 中修改或新增下面几个参数：</p>
+<pre tabindex="0"><code>char_default_type = &#39;char&#39;
+ora_func_style = false
+ora_numop_style = false
+ora_input_emptystr_isnull = false
+ora_plsql_style = false
+ora_date_style = &#39;off&#39;
+ora_format_style = &#39;off&#39;
+</code></pre><p>下面是这几个参数的含义。</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">参数</th>
+          <th style="text-align: left">含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">char_default_type</td>
+          <td style="text-align: left">VARCHAR 类型的长度单位。char 表示以字符位单位，byte 表示以字节为单位。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ora_func_style</td>
+          <td style="text-align: left">设置兼容 Oracle 函数行为，默认为 true 启用状态。当设置 true 时，sequence.nextval 兼容 Oracle 的 Sequence 伪列行为。比如,SELECT SEQ.NEXTVAL AS A, SEQ.NEXTVAL AS B FROM DUAL，结果 A B 值相同。ltrim/rtrim/btrim 兼容 Oracle 对应函数行为，最长的只包含 characters 只能是一个字符。textcat 兼容 Oracle 字符串连接 NULL 时候，结果为字符串本身。regexp_replace 兼容 Oracle 该函数行为，regexp_replace 参数中有 NULL 出现，当做空串处理。当关闭（false）ora_func_style 时，上述函数表现为原有形式。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ora_numop_style</td>
+          <td style="text-align: left">是否兼容 oracle 数学运算符的用法。默认为 true。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ora_input_emptystr_isnull</td>
+          <td style="text-align: left">设置空串输入的输入形式（空串或 NULL）及部分函数返回值空串输出形式（空串或 NULL），默认为 true 启用状态。当启用（true）ora_input_emptystr_isnull 时，若输入空串，则空串将变成 NULL 的形式输入。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ora_plsql_style</td>
+          <td style="text-align: left">是否是 oracle 的 plsql 风格。默认是 true。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ora_date_style</td>
+          <td style="text-align: left">是否是 oracle 的日期风格。默认是 true。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ora_format_style</td>
+          <td style="text-align: left">是否是 oracle 的格式风格。默认是 true。</td>
+      </tr>
+  </tbody>
+</table>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2025 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/gokarna-theme/gokarna-hugo">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
