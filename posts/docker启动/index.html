@@ -427,120 +427,27 @@ ENTRYPOINT java ${JAVA_OPTS} ${SKYWALKING_CONF} ${NACOS_DEFAULT} ${NACOS_CONF} $
 <pre tabindex="0"><code>docker run -d -p 8666:8666 \
 --name gateway \
 -e NACOS_CONF=&#34;-Dspring.cloud.nacos.config.namespace=ats-dd -Dspring.cloud.nacos.server-addr=host.docker.internal:8848&#34; gateway/v1
-</code></pre><h3 id="oracle">oracle</h3>
-<p>MAC Apple chip（MAC m1、m2芯片，ARM架构）因为底层不支持oracle，需要colima来或者其他反正来虚拟化X86
-方案支持：
-1.colima <a href="https://github.com/abiosoft/colima/blob/main/docs/FAQ.md">colima参考文档</a>
-2.Buildx <a href="https://juejin.cn/post/7000018934686547999">Buildx参考文档</a>
-经过多方面考虑，决定使用colima</p>
-<h4 id="colima废弃">colima(废弃)</h4>
-<ol>
-<li>安装colima（默认已经安装docker）
-<code>brew install colima</code></li>
-<li>启动colima
-<code>colima start --arch x86_64 --memory 3 --network-address</code>
-&ndash;network-address的命令在mac才有效，表示映射本地网络，且需首次需要输入密码，重启colima才能生效</li>
-<li>检查colima状态
-<code>colima list</code></li>
-<li>启动oracle容器</li>
-</ol>
-<ul>
-<li>oracle19C
-Oracle 12C引入了CDB与PDB的新特性，在ORACLE 12C数据库引入的多租用户环境（Multitenant Environment）中，允许一个数据库容器（CDB）承载多个可插拔数据库（PDB）
-参考<a href="https://blog.csdn.net/Mr_Gent/article/details/109996420">oracle19C</a></li>
-</ul>
-<pre tabindex="0"><code>docker run -d --name ora19c \
---privileged \
---memory=4096M \
--p 1523:1521/tcp -p 5502:5500/tcp \
--e ORACLE_SID=ORCLCDB \
--e ORACLE_PDB=ORCLPDB \
--e ORACLE_PWD=WElcome12345## \
--e INIT_SGA_SIZE=2048M \
--e INIT_PGA_SIZE=500MB \
--e ORACLE_EDITION=EE \
--e ORACLE_CHARACTERSET=AL32UTF8 \
--e ENABLE_ARCHIVELOG=true \
--v /Users/bcurtis/Build_Software/data/19c:/opt/oracle/oradata \
-container-registry.oracle.com/database/enterprise:19.3.0.0
-</code></pre><ul>
-<li>oracle12C
-参考文档：<a href="https://oralytics.com/2022/09/22/running-oracle-database-on-docker-on-apple-m1-chip/">M1 启动oracle</a></li>
-</ul>
-<pre tabindex="0"><code>docker run -d -p 1521:1521 \
--e ORACLE_PASSWORD=123456 \
--v oracle-volume:/Users/nexius/Docker/oracle/oradata gvenzl/oracle-xe
-</code></pre><ol start="5">
-<li>配置与登录
-登录system
-<code>sqlplus system/123456@//localhost/XEPDB1</code>
-创建用户
-<code>create user nexius identified by 123456 default tablespace users</code>
-分配权限
-<code>grant connect, resource to nexius;</code>
-退出登录
-<code>exit</code>
-重新登录
-<code>sqlplus nexius/123456@//localhost/XEPDB1</code>
-6.切换docker context
-docker 查看上下文
-<code>ocker context ls</code>
-docker 切换上下文
-<code>docker context use colima</code></li>
-<li>停止colima
-<code>colima stop</code></li>
-</ol>
-<h4 id="最新-2023-08-23">最新 2023-08-23</h4>
-<p>安装后，不确定性能问题，还是效率问题，电脑发热比较严重，方案废弃</p>
-<h3 id="oracle19c-docker-m2正式版">oracle19c docker m2（正式版）</h3>
-<h4 id="参考文档">参考文档：</h4>
-<p><a href="https://zenn.dev/gentaro_23/articles/001-oracle-container">https://zenn.dev/gentaro_23/articles/001-oracle-container</a></p>
-<h4 id="准备">准备</h4>
-<p>安装介质下载地址：
-<a href="https://www.oracle.com/database/technologies/oracle19c-linux-arm64-downloads.html">https://www.oracle.com/database/technologies/oracle19c-linux-arm64-downloads.html</a>
-docker image下载地址：
-<a href="https://github.com/oracle/docker-images.git">https://github.com/oracle/docker-images.git</a></p>
-<h4 id="构建">构建</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 创建目录</span>
-</span></span><span style="display:flex;"><span>mkdir ~/oracle
-</span></span><span style="display:flex;"><span>cd ~/oracle
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 下载</span>
-</span></span><span style="display:flex;"><span>git clone https://github.com/oracle/docker-images.git
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 拷贝</span>
-</span></span><span style="display:flex;"><span>cp LINUX.ARM64_1919000_db_home.zip ~/oracle/docker-images/OracleDatabase/SingleInstance/dockerfiles/19.3.0/
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 构建</span>
-</span></span><span style="display:flex;"><span>cd ~/oracle/docker-images/OracleDatabase/SingleInstance/dockerfiles
-</span></span><span style="display:flex;"><span>./buildContainerImage.sh -v 19.3.0 -e
-</span></span></code></pre></div><h4 id="启动容器">启动容器</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name oracle19c <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 1521:1521 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 5500:5500 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/oracle/oradata/oracle19c:/opt/oracle/oradata <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--ulimit nofile<span style="color:#f92672">=</span>1024:65536 --ulimit nproc<span style="color:#f92672">=</span>2047:16384 --ulimit stack<span style="color:#f92672">=</span>10485760:33554432 --ulimit memlock<span style="color:#f92672">=</span><span style="color:#ae81ff">3221225472</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e ORACLE_PWD<span style="color:#f92672">=</span>password1234 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>oracle/database:19.3.0-ee
-</span></span></code></pre></div><p>容器将自动初始化，并拷贝文件</p>
-<h4 id="检查">检查</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查询oracle信息详情</span>
-</span></span><span style="display:flex;"><span>lsnrctl status
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看oralce服务信息</span>
-</span></span><span style="display:flex;"><span>lsnrctl services
-</span></span></code></pre></div><h4 id="连接">连接</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it oracle19c sqlplus sys/&lt;your password&gt;@//localhost:1521/&lt;your service name&gt; as sysdba
-</span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus system/&lt;your password&gt;@//localhost:1521/&lt;your service name&gt;
-</span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus pdbadmin/&lt;your password&gt;@//localhost:1521/&lt;Your PDB name&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如</span>
-</span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus sys/password1234@//localhost:1521/orclcdb as sysdba
-</span></span><span style="display:flex;"><span>docker exec -it oracle19c sqlplus system/password1234@//localhost:1521/orclcdb
-</span></span></code></pre></div><h4 id="切换pdb">切换PDB</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span><span style="color:#75715e">-- 查看当前PDB
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">show</span> con_name
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 查看所有PDB
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> name,open_mode <span style="color:#66d9ef">from</span> v$pdbs;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 切换PDB
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">session</span> <span style="color:#66d9ef">set</span> container<span style="color:#f92672">=</span>ORCLPDB1;
-</span></span></code></pre></div><h4 id="扩展-oracle实例-orclpdb1和orclcdb的区别">扩展 ：oracle实例 ORCLPDB1和orclcdb的区别</h4>
+</code></pre><h3 id="oracle苹果芯片">oracle(苹果芯片)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name oracle -d -p 1521:1521 bladex/oracle:19c-arm
+</span></span></code></pre></div><h4 id="授权">授权</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 连接容器</span>
+</span></span><span style="display:flex;"><span>docker exec -it oracle /bin/bash
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sysdba登录</span>
+</span></span><span style="display:flex;"><span>sqlplus / as sysdba;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 显示初始化的 pdbs</span>
+</span></span><span style="display:flex;"><span>show pdbs;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 修改system用户的密码</span>
+</span></span><span style="display:flex;"><span>alter user system identified by system;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 修改sys用户的密码</span>
+</span></span><span style="display:flex;"><span>alter user sys identified by sys;
+</span></span></code></pre></div><h4 id="创建用户">创建用户</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#使用ORCLPDB PDB访问</span>
+</span></span><span style="display:flex;"><span>alter session set container <span style="color:#f92672">=</span> ORCLPDB;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#创建用户</span>
+</span></span><span style="display:flex;"><span>create user yourusername identified by youruserpwd;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#授予权限</span>
+</span></span><span style="display:flex;"><span>grant connect,resource,dba to yourusername;
+</span></span></code></pre></div><h4 id="扩展-oracle实例-orclpdb和orclcdb的区别">扩展 ：oracle实例 ORCLPDB和orclcdb的区别</h4>
 <p>oracle从12c开始增加了增加了CDB和PDB的概念，数据库引入的多租用户环境（Multitenant Environment）中，允许一个数据库容器（CDB）承载多个可插拔数据库（PDB）。CDB全称为Container Database，中文翻译为数据库容器，PDB全称为Pluggable Database，即可插拔数据库。在ORACLE 12C之前，实例与数据库是一对一或多对一关系（RAC）：即一个实例只能与一个数据库相关联，数据库可以被多个实例所加载。而实例与数据库不可能是一对多的关系。当进入ORACLE 12C后，实例与数据库可以是一对多的关系</p>
 <ul>
 <li>jdbc:oracle:thin:@//xxx:1521/ORCLPDB1：此URL连接到名为“ORCLPDB1.在Oracle多租户体系结构中，容器数据库（CDB）可以托管多个PDB。PDB充当CDB内的单独数据库。当您想要直接连接到特定PDB时，将使用此URL</li>
@@ -548,20 +455,9 @@ docker image下载地址：
 选择使用哪个URL取决于应用程序的要求：</li>
 </ul>
 <ol>
-<li>如果您的应用程序需要与特定的PDB进行交互，例如执行SQL语句或在该PDB中执行数据访问操作，则应在连接中使用jdbc:oracle:thin:@//xxx:1521/ORCLPDB1</li>
+<li>如果您的应用程序需要与特定的PDB进行交互，例如执行SQL语句或在该PDB中执行数据访问操作，则应在连接中使用jdbc:oracle:thin:@//xxx:1521/ORCLPDB</li>
 <li>如果您的应用程序需要管理访问权限或需要在CDB级别执行任务，则可以使用jdbc:oracle:thin:@//xxx:1521/ORCLCDB</li>
 </ol>
-<h4 id="配置-1">配置</h4>
-<h5 id="创建目录">创建目录</h5>
-<p><code>create directory mydump as '/opt/oracle/oradata/dump'</code></p>
-<h5 id="创建表空间">创建表空间</h5>
-<p><code>CREATE TABLESPACE TS_ECP DATAFILE  '/opt/oracle/oradata/tablespace/TS_ECP' SIZE 200 M AUTOEXTEND ON NEXT 200 M;</code></p>
-<h4 id="创建用户">创建用户</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">user</span> oracleuser identified <span style="color:#66d9ef">by</span> <span style="color:#ae81ff">123456</span> <span style="color:#66d9ef">default</span> tablespace TS_TABLE_TMS;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 授权
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">grant</span> <span style="color:#66d9ef">connect</span>,resource,dba <span style="color:#66d9ef">TO</span> oracleuser;
-</span></span></code></pre></div><p>参考文档：
-<a href="https://blog.csdn.net/qq_31835117/article/details/105258811">https://blog.csdn.net/qq_31835117/article/details/105258811</a></p>
 <h3 id="dm8">DM8</h3>
 <p>达梦8
 pull镜像</p>
