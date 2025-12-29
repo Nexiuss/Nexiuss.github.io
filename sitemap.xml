@@ -2,19 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://nexiuss.github.io/tags/altstore/</loc>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/posts/altstore%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8Emacos/</loc>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
+  </url><url>
     <loc>https://nexiuss.github.io/tags/blog/</loc>
-    <lastmod>2025-12-05T15:36:35+08:00</lastmod>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/tags/ios/</loc>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/tags/ipa/</loc>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/tags/macos/</loc>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
   </url><url>
     <loc>https://nexiuss.github.io/</loc>
-    <lastmod>2025-12-05T15:36:35+08:00</lastmod>
-  </url><url>
-    <loc>https://nexiuss.github.io/posts/postgresql%E4%B8%8Ekingbase%E7%9A%84%E5%B7%AE%E5%BC%82%E5%AF%B9%E6%AF%94/</loc>
-    <lastmod>2025-12-05T15:36:35+08:00</lastmod>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
   </url><url>
     <loc>https://nexiuss.github.io/posts/</loc>
-    <lastmod>2025-12-05T15:36:35+08:00</lastmod>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
   </url><url>
     <loc>https://nexiuss.github.io/tags/</loc>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/tags/%E7%AD%BE%E5%90%8D/</loc>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/tags/%E8%87%AA%E7%AD%BE%E5%90%8D/</loc>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/tags/%E8%AF%81%E4%B9%A6/</loc>
+    <lastmod>2025-12-29T17:06:40+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/posts/postgresql%E4%B8%8Ekingbase%E7%9A%84%E5%B7%AE%E5%BC%82%E5%AF%B9%E6%AF%94/</loc>
     <lastmod>2025-12-05T15:36:35+08:00</lastmod>
   </url><url>
     <loc>https://nexiuss.github.io/posts/%E9%97%AD%E5%8C%85/</loc>
