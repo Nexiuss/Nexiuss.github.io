@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>会计 on Nexius</title>
+    <link>https://nexiuss.github.io/tags/%E4%BC%9A%E8%AE%A1/</link>
+    <description>Recent content in 会计 on Nexius</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 04 Jan 2026 15:28:32 +0800</lastBuildDate>
+    <atom:link href="https://nexiuss.github.io/tags/%E4%BC%9A%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IFRS17保险合同准则深度解读文档</title>
+      <link>https://nexiuss.github.io/posts/ifrs17%E4%BF%9D%E9%99%A9%E5%90%88%E5%90%8C%E5%87%86%E5%88%99%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB%E6%96%87%E6%A1%A3/</link>
+      <pubDate>Sun, 04 Jan 2026 15:28:32 +0800</pubDate>
+      <guid>https://nexiuss.github.io/posts/ifrs17%E4%BF%9D%E9%99%A9%E5%90%88%E5%90%8C%E5%87%86%E5%88%99%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB%E6%96%87%E6%A1%A3/</guid>
+      <description>&lt;p&gt;IFRS17 保险合同准则深度解读文档&lt;/p&gt;&#xA;&lt;p&gt;一、IFRS17 概述&#xA;IFRS17（国际财务报告准则第 17 号——保险合同）是国际会计准则理事会（IASB）于 2017 年 5 月正式发布的保险合同会计准则，旨在取代 2004 年发布的 IFRS4，提升保险行业财务信息的可比性、透明度和质量。该准则要求保险公司对保险合同进行更精细、更规范的会计处理，以准确反映保险业务的真实财务状况和经营成果。&lt;/p&gt;&#xA;&lt;p&gt;（一）发布背景&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;国际趋同需求：在 IFRS4 时期，各国保险会计准则存在较大差异，导致保险公司的财务信息缺乏可比性，盈利透明度较低，难以满足投资者、监管机构等对高质量财务信息的需求。&lt;/li&gt;&#xA;&lt;li&gt;业务特殊性：保险业务具有收入先于成本发生的特性，传统会计处理方式难以准确匹配收入与成本，IFRS17 通过新的确认和计量规则来解决这一问题。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;（二）中国版 IFRS17&#xA;2020 年 12 月，我国财政部发布了《企业会计准则第 25 号—保险合同》，即中国版 IFRS17，其内容与国际 IFRS17 基本无差异。该准则规定，在境内外同时上市的企业以及在境外上市并采用国际财务报告准则或企业会计准则编制财务报表的企业，自 2023 年 1 月 1 日起执行；其他执行企业会计准则的企业自 2026 年 1 月 1 日起执行，同时允许企业提前执行。&lt;/p&gt;&#xA;&lt;p&gt;二、IFRS17 的内在原理&#xA;（一）居间期望法（Building Block Approach）&#xA;IFRS17 采用居间期望法，将保险合同分解为不同的组成部分，包括现金流量概述、时间价值调整、风险调整和合同服务边际利润等。通过分别计算和分析这些组成部分，能够更精确地反映出与保险业务相关的风险和回报。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;现金流量概述：对保险合同未来现金流进行预测和概述，为后续计算提供基础数据。&lt;/li&gt;&#xA;&lt;li&gt;时间价值调整：考虑货币时间价值对现金流的影响，确保现金流现值计算的准确性。&lt;/li&gt;&#xA;&lt;li&gt;风险调整：反映保险公司承担的风险，如死亡率风险、长寿风险等，使财务报表更能体现保险业务的真实风险状况。&lt;/li&gt;&#xA;&lt;li&gt;合同服务边际利润：将保险合同产生的利润在保单期限内进行合理分摊，避免利润在首日集中确认。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;（二）承诺利差（Fulfilment Cash Flows）&#xA;承诺利差是指基于未来现金流量预测所测定的资产和负债价值之间的差异。它是衡量保险合同价值的重要指标，通过对承诺利差的计算，可以更准确地确定保险合同在经济上的价值，为相关各方提供更有意义的信息。&lt;/p&gt;&#xA;&lt;p&gt;三、IFRS17 对保险合同负债及损益的确认、计量与披露&#xA;（一）保险合同负债计量&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;一般模型&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;初始确认：在保险合同初始确认时，需确定合同服务边际（CSM）。CSM 是保险合同负债的重要组成部分，代表未来利润的现值。&lt;/li&gt;&#xA;&lt;li&gt;后续计量：采用滚动方式，将同一产品下的保单按一定标准分组（如年龄相近、性别相同、发单日相近、责任相同等），形成模型点（MP grouping），在每个模型点内，按照亏损组（A）、厚利组（B）和薄利组（C）进行分类。&#xA;&lt;ul&gt;&#xA;&lt;li&gt;亏损组（A）：CSM 为零，首日亏损保单被归入此类。&lt;/li&gt;&#xA;&lt;li&gt;厚利组（B）：CSM 为正，且利润丰厚。&lt;/li&gt;&#xA;&lt;li&gt;薄利组（C）：CSM 为正，但利润相对较少。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;CSM 吸收与释放：&#xA;&lt;ul&gt;&#xA;&lt;li&gt;吸收：CSM 可吸收未来履约现金流和风险调整实际与预期之间的偏差的一部分。例如，当实际死亡率低于预期时，产生的额外利润可被 CSM 吸收。&lt;/li&gt;&#xA;&lt;li&gt;释放：CSM 在保单期限内逐步释放，计入当期损益。释放方式包括：&#xA;&lt;ul&gt;&#xA;&lt;li&gt;锁定折现率摊销：采用初始确认时的折现率，将 CSM 按一定比例在保单期限内摊销。&lt;/li&gt;&#xA;&lt;li&gt;滚动方式：在每个评估时点，重新计算未来现金流，根据新的现金流情况调整 CSM 的释放金额。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;保费分配法（PAA）&#xA;对于某些特定类型的保险合同，如短期且保费与保险责任直接相关的合同，可选用保费分配法。该方法将保费收入在保险期间内平均分配，同时将相关成本与收入匹配确认。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;（二）损益确认&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
