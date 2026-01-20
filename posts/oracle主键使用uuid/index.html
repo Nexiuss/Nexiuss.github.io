@@ -18,26 +18,26 @@
     
 
     
-    <title>SQL</title>
-    <meta name="description" content="Sky above, sand below and peace within">
-    <meta name="keywords" content='blog, gokarna, hugo'>
+    <title>Oracle主键使用uuid</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, oracle, uuid, SQL'>
 
-    <meta property="og:url" content="https://nexiuss.github.io/tags/sql/">
+    <meta property="og:url" content="https://nexiuss.github.io/posts/oracle%E4%B8%BB%E9%94%AE%E4%BD%BF%E7%94%A8uuid/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="SQL">
-    <meta property="og:description" content="Sky above, sand below and peace within">
-    <meta property="og:image" content="https://nexiuss.github.io/images/logo.jpg">
-    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta property="og:title" content="Oracle主键使用uuid">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/images/20260120150147.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/20260120150147.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SQL">
-    <meta name="twitter:description" content="Sky above, sand below and peace within">
-    <meta property="twitter:domain" content="https://nexiuss.github.io/tags/sql/">
-    <meta property="twitter:url" content="https://nexiuss.github.io/tags/sql/">
-    <meta name="twitter:image" content="https://nexiuss.github.io/images/logo.jpg">
+    <meta name="twitter:title" content="Oracle主键使用uuid">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/oracle%E4%B8%BB%E9%94%AE%E4%BD%BF%E7%94%A8uuid/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/oracle%E4%B8%BB%E9%94%AE%E4%BD%BF%E7%94%A8uuid/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/20260120150147.png">
 
     
-    <link rel="canonical" href="https://nexiuss.github.io/tags/sql/">
+    <link rel="canonical" href="https://nexiuss.github.io/posts/oracle%E4%B8%BB%E9%94%AE%E4%BD%BF%E7%94%A8uuid/">
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -182,62 +182,168 @@
     </nav>
 </header>
 <main id="content">
-    <div class="container list-posts">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Oracle主键使用uuid</h1>
 
-    <h1 class="list-title"></h1>
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">
+              
+
+              January 20, 2026
+
+              
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/oracle">oracle</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/uuid">uuid</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/sql">SQL</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="oracle主键使用uuid">oracle主键使用uuid</h1>
+<h3 id="一oracle-b-树索引的插入逻辑">一、Oracle B 树索引的插入逻辑</h3>
+<p>Oracle 主键索引（B 树结构）的叶子节点是按主键值<strong>有序排列</strong>的双向链表，插入数据时的逻辑：</p>
+<ol>
+<li>找到主键值对应的叶子节点位置；</li>
+<li>若节点有空闲空间，直接插入；</li>
+<li>若节点已满（默认页填充率 <code>PCTFREE=10</code>，即 90% 满），触发<strong>页分裂</strong>：将原节点拆分为两个节点，重新分配数据，保持 B 树平衡。</li>
+</ol>
+<h3 id="二uuid-作为主键的性能问题根源">二、UUID 作为主键的性能问题根源</h3>
+<p>UUID 是 32 位的随机十六进制字符串（如 <code>8f9e7d6b-5c4a-3b2a-1d0e-9f8e7d6c5b4a</code>），其核心问题是<strong>值的随机性</strong>，与自增主键（如序列生成的数字）形成鲜明对比：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">维度</th>
+          <th style="text-align: left">自增主键（序列）</th>
+          <th style="text-align: left">UUID 主键</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">插入位置</td>
+          <td style="text-align: left">叶子节点<strong>末尾</strong>（顺序插入）</td>
+          <td style="text-align: left">叶子节点<strong>随机位置</strong></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">页分裂频率</td>
+          <td style="text-align: left">极低（仅当末尾节点满时分裂）</td>
+          <td style="text-align: left">极高（每次插入大概率碰满节点）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">索引页填充率</td>
+          <td style="text-align: left">高（约 85-90%）</td>
+          <td style="text-align: left">低（常降至 50% 以下）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">索引碎片化程度</td>
+          <td style="text-align: left">几乎无</td>
+          <td style="text-align: left">严重</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="具体性能问题表现">具体性能问题表现</h4>
+<ol>
+<li>
+<p><strong>插入性能大幅下降</strong></p>
+<ul>
+<li>频繁页分裂：每次分裂需要读写磁盘（拆节点、更新指针），是高开销操作；</li>
+<li>空间浪费：索引页填充率低，同样数据量下，UUID 主键索引的磁盘占用是自增主键的 2 倍以上；</li>
+<li>锁竞争：随机插入可能导致多个会话竞争同一索引页的锁，加剧插入延迟。</li>
+</ul>
+</li>
+<li>
+<p><strong>查询性能下降</strong></p>
+<ul>
+<li>碎片化导致索引页数量激增，查询时需要加载更多页（IO 次数增加）；</li>
+<li>B 树高度升高：自增主键的 B 树高度通常为 2（千万级数据），UUID 主键可能升至 3，查询时多一次磁盘 IO；</li>
+<li>范围查询低效：UUID 无业务顺序，<code>BETWEEN</code>/<code>ORDER BY</code> 等范围查询无法利用 B 树的有序性优势。</li>
+</ul>
+</li>
+<li>
+<p><strong>维护成本高</strong>
+为了缓解碎片化，你需要定期手动重建/重组索引（如 <code>ALTER INDEX idx_pk_uuid REBUILD ONLINE</code>），但：</p>
+<ul>
+<li>离线重建会锁表，影响业务；</li>
+<li>在线重建（ONLINE）虽不锁表，但会产生大量 redo/undo 日志，占用数据库资源。</li>
+</ul>
+</li>
+</ol>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
 
     
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
 
-    <h2 class="posts-year">2026</h2><div class="post-title">
-     <a href="https://nexiuss.github.io/posts/oracle%E4%B8%BB%E9%94%AE%E4%BD%BF%E7%94%A8uuid/" class="post-link">Oracle主键使用uuid</a>
-     
-     
-     
-     
+    window.onscroll = function() {
+        scrollFunction()
+    };
 
-     
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
 
-     
-      <div class="flex-break"></div>
-      <span class="post-date">January 20, 2026</span>
-     
-</div>
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
 
     
-
-    <h2 class="posts-year">2024</h2><div class="post-title">
-     <a href="https://nexiuss.github.io/posts/%E4%BD%BF%E7%94%A8timestamp%E6%9F%A5%E8%AF%A2date%E6%A0%BC%E5%BC%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88/" class="post-link">使用timeStamp查询date格式的数据库字段索引失效</a>
-     
-     
-     
-     
-
-     
-
-     
-      <div class="flex-break"></div>
-      <span class="post-date">November 22, 2024</span>
-     
+    
 </div>
-<div class="post-title">
-     <a href="https://nexiuss.github.io/posts/%E4%BA%8B%E5%8A%A1%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="post-link">事务工具类</a>
-     
-     
-     
-     
 
-     
 
-     
-      <div class="flex-break"></div>
-      <span class="post-date">November 21, 2024</span>
-     
-</div>
 
     
-
-</div>
-
 
         </main><footer class="footer">
     

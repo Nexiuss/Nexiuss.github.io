@@ -6,13 +6,34 @@
     <description>Recent content in Tags on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 05 Jan 2026 18:11:32 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 Jan 2026 15:01:47 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Blog</title>
       <link>https://nexiuss.github.io/tags/blog/</link>
-      <pubDate>Mon, 05 Jan 2026 18:11:32 +0800</pubDate>
+      <pubDate>Tue, 20 Jan 2026 15:01:47 +0800</pubDate>
       <guid>https://nexiuss.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Oracle</title>
+      <link>https://nexiuss.github.io/tags/oracle/</link>
+      <pubDate>Tue, 20 Jan 2026 15:01:47 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/oracle/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SQL</title>
+      <link>https://nexiuss.github.io/tags/sql/</link>
+      <pubDate>Tue, 20 Jan 2026 15:01:47 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/sql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Uuid</title>
+      <link>https://nexiuss.github.io/tags/uuid/</link>
+      <pubDate>Tue, 20 Jan 2026 15:01:47 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/uuid/</guid>
       <description></description>
     </item>
     <item>
@@ -314,20 +335,6 @@
       <link>https://nexiuss.github.io/tags/java/</link>
       <pubDate>Sat, 07 Dec 2024 11:21:14 +0800</pubDate>
       <guid>https://nexiuss.github.io/tags/java/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Oracle</title>
-      <link>https://nexiuss.github.io/tags/oracle/</link>
-      <pubDate>Fri, 22 Nov 2024 14:49:08 +0800</pubDate>
-      <guid>https://nexiuss.github.io/tags/oracle/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>SQL</title>
-      <link>https://nexiuss.github.io/tags/sql/</link>
-      <pubDate>Fri, 22 Nov 2024 14:49:08 +0800</pubDate>
-      <guid>https://nexiuss.github.io/tags/sql/</guid>
       <description></description>
     </item>
     <item>
