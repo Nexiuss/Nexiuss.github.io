@@ -2,11 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://nexiuss.github.io/tags/backpressure/</loc>
+    <lastmod>2026-01-27T10:09:57+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/posts/backpressure%E4%B8%8E%E8%83%8C%E5%8E%8B/</loc>
+    <lastmod>2026-01-27T10:09:57+08:00</lastmod>
+  </url><url>
     <loc>https://nexiuss.github.io/tags/blog/</loc>
-    <lastmod>2026-01-20T15:01:47+08:00</lastmod>
+    <lastmod>2026-01-27T10:09:57+08:00</lastmod>
   </url><url>
     <loc>https://nexiuss.github.io/</loc>
-    <lastmod>2026-01-20T15:01:47+08:00</lastmod>
+    <lastmod>2026-01-27T10:09:57+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/posts/</loc>
+    <lastmod>2026-01-27T10:09:57+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/tags/rxjava/</loc>
+    <lastmod>2026-01-27T10:09:57+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/tags/</loc>
+    <lastmod>2026-01-27T10:09:57+08:00</lastmod>
+  </url><url>
+    <loc>https://nexiuss.github.io/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/</loc>
+    <lastmod>2026-01-27T10:09:57+08:00</lastmod>
   </url><url>
     <loc>https://nexiuss.github.io/tags/oracle/</loc>
     <lastmod>2026-01-20T15:01:47+08:00</lastmod>
@@ -14,13 +32,7 @@
     <loc>https://nexiuss.github.io/posts/oracle%E4%B8%BB%E9%94%AE%E4%BD%BF%E7%94%A8uuid/</loc>
     <lastmod>2026-01-20T15:01:47+08:00</lastmod>
   </url><url>
-    <loc>https://nexiuss.github.io/posts/</loc>
-    <lastmod>2026-01-20T15:01:47+08:00</lastmod>
-  </url><url>
     <loc>https://nexiuss.github.io/tags/sql/</loc>
-    <lastmod>2026-01-20T15:01:47+08:00</lastmod>
-  </url><url>
-    <loc>https://nexiuss.github.io/tags/</loc>
     <lastmod>2026-01-20T15:01:47+08:00</lastmod>
   </url><url>
     <loc>https://nexiuss.github.io/tags/uuid/</loc>
