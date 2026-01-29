@@ -6,20 +6,41 @@
     <description>Recent content in Tags on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 27 Jan 2026 10:09:57 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 29 Jan 2026 14:41:02 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog</title>
+      <link>https://nexiuss.github.io/tags/blog/</link>
+      <pubDate>Thu, 29 Jan 2026 14:41:02 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Guava</title>
+      <link>https://nexiuss.github.io/tags/guava/</link>
+      <pubDate>Thu, 29 Jan 2026 14:41:02 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/guava/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hutool</title>
+      <link>https://nexiuss.github.io/tags/hutool/</link>
+      <pubDate>Thu, 29 Jan 2026 14:41:02 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/hutool/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>https://nexiuss.github.io/tags/java/</link>
+      <pubDate>Thu, 29 Jan 2026 14:41:02 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/java/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Backpressure</title>
       <link>https://nexiuss.github.io/tags/backpressure/</link>
       <pubDate>Tue, 27 Jan 2026 10:09:57 +0800</pubDate>
       <guid>https://nexiuss.github.io/tags/backpressure/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Blog</title>
-      <link>https://nexiuss.github.io/tags/blog/</link>
-      <pubDate>Tue, 27 Jan 2026 10:09:57 +0800</pubDate>
-      <guid>https://nexiuss.github.io/tags/blog/</guid>
       <description></description>
     </item>
     <item>
@@ -349,13 +370,6 @@
       <link>https://nexiuss.github.io/tags/jar/</link>
       <pubDate>Sat, 07 Dec 2024 11:21:14 +0800</pubDate>
       <guid>https://nexiuss.github.io/tags/jar/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Java</title>
-      <link>https://nexiuss.github.io/tags/java/</link>
-      <pubDate>Sat, 07 Dec 2024 11:21:14 +0800</pubDate>
-      <guid>https://nexiuss.github.io/tags/java/</guid>
       <description></description>
     </item>
     <item>

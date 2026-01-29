@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+            --font-size: 1.1rem;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Guave替代hutool</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, java, guava, hutool'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/guave%E6%9B%BF%E4%BB%A3hutool/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Guave替代hutool">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/images/20260129144102.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/20260129144102.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Guave替代hutool">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/guave%E6%9B%BF%E4%BB%A3hutool/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/guave%E6%9B%BF%E4%BB%A3hutool/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/20260129144102.png">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/guave%E6%9B%BF%E4%BB%A3hutool/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" aria-label="" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" aria-label="" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" aria-label="" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" aria-label="" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="github" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="buymeacoffee" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" aria-label="rss" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                <a aria-hidden="true" role="switch">
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a aria-checked="false" aria-labelledby="hamburger-menu-toggle" id="hamburger-menu-toggle-target" role="switch">
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a role="switch">
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Guave替代hutool</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">
+              
+
+              January 29, 2026
+
+              
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/java">java</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/guava">guava</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/hutool">hutool</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="guave替代hutool">Guave替代hutool</h1>
+<h2 id="背景">背景</h2>
+<p>Hutool已经被不够科技收购了，该公司前段时间因为其<strong><strong>在收购 AList 代码中悄悄收集用户设备信息</strong></strong>，而被推向过风口浪尖，业内人士认为其收购开源框架就是为了“投毒”，所以为此让收购框架损失了很多忠实的用户。为了规避风险，我们可以使用Guava来替代Hutool。</p>
+<h2 id="使用guava替代hutool">使用Guava替代Hutool</h2>
+<p>Guava是一个Java库，提供了许多实用的工具类和数据结构，可以替代Hutool中的许多功能。例如，Guava提供了ImmutableList、ImmutableMap等不可变集合，可以替代Hutool中的ImmutableList、ImmutableMap等不可变集合。此外，Guava还提供了许多实用的工具类，如Preconditions、Throwables等，可以替代Hutool中的Assert、ExceptionUtils等工具类。</p>
+<h2 id="示例代码">示例代码</h2>
+<p>以下是一个使用Guava替代Hutool的示例代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.base.Joiner;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.base.Optional;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.base.Splitter;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.base.Strings;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.cache.Cache;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.cache.CacheBuilder;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.collect.ImmutableList;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.collect.ImmutableMap;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.collect.Iterables;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.collect.Lists;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.collect.Maps;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.collect.Sets;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.common.collect.Streams;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.List;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Map;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Set;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.concurrent.ExecutionException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.concurrent.TimeUnit;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.stream.Stream;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Scratch</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> ExecutionException {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//## 字符串处理</span>
+</span></span><span style="display:flex;"><span>        String str <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 判空（替代StrUtil.isEmpty），空安全，返回boolean</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">boolean</span> isEmpty <span style="color:#f92672">=</span> Strings.<span style="color:#a6e22e">isNullOrEmpty</span>(str);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 判空白（替代StrUtil.isBlank）</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">boolean</span> isBlank <span style="color:#f92672">=</span> Strings.<span style="color:#a6e22e">isNullOrEmpty</span>(Strings.<span style="color:#a6e22e">emptyToNull</span>(str));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 集合拼接（替代StrUtil.join），支持自定义分隔符，自动过滤null</span>
+</span></span><span style="display:flex;"><span>        String join <span style="color:#f92672">=</span> Joiner.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;,&#34;</span>).<span style="color:#a6e22e">skipNulls</span>().<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#66d9ef">null</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>); <span style="color:#75715e">// 结果：a,b,c</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 字符串分割（替代StrUtil.split），支持去空白、忽略空值，返回不可变List</span>
+</span></span><span style="display:flex;"><span>        Iterable<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> split <span style="color:#f92672">=</span> Splitter.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;,&#34;</span>).<span style="color:#a6e22e">trimResults</span>().<span style="color:#a6e22e">omitEmptyStrings</span>().<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;a, ,b,,c&#34;</span>); <span style="color:#75715e">// 结果：[a,b,c]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ## 集合处理</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 快速创建集合（替代CollUtil.newArrayList/newHashSet），无需泛型重复声明</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> Lists.<span style="color:#a6e22e">newArrayList</span>(<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>);
+</span></span><span style="display:flex;"><span>        Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> Sets.<span style="color:#a6e22e">newHashSet</span>(1, 2, 3);
+</span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>String, Integer<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> Maps.<span style="color:#a6e22e">newHashMap</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 集合判空（替代CollUtil.isEmpty），空安全</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">boolean</span> collEmpty <span style="color:#f92672">=</span> Iterables.<span style="color:#a6e22e">isEmpty</span>(list);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 快速合并集合（替代CollUtil.addAll）</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list2 <span style="color:#f92672">=</span> Lists.<span style="color:#a6e22e">newArrayList</span>(<span style="color:#e6db74">&#34;d&#34;</span>, <span style="color:#e6db74">&#34;e&#34;</span>);
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> mergeList <span style="color:#f92672">=</span> Lists.<span style="color:#a6e22e">newArrayList</span>(Iterables.<span style="color:#a6e22e">concat</span>(list, list2)); <span style="color:#75715e">// 结果：[a,b,c,d,e]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 创建不可变集合（线程安全，替代CollUtil.unmodifiableList）</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> immutableList <span style="color:#f92672">=</span> ImmutableList.<span style="color:#a6e22e">of</span>(<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 分组</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;&gt;</span> groups <span style="color:#f92672">=</span> Lists.<span style="color:#a6e22e">partition</span>(list, 2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ## 缓存处理</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 创建缓存：最大容量100，写入后10分钟过期</span>
+</span></span><span style="display:flex;"><span>        Cache<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> cache <span style="color:#f92672">=</span> CacheBuilder.<span style="color:#a6e22e">newBuilder</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">maximumSize</span>(100)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">expireAfterWrite</span>(10, TimeUnit.<span style="color:#a6e22e">MINUTES</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 存值/取值（替代CacheUtil的get/put）</span>
+</span></span><span style="display:flex;"><span>        cache.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;key1&#34;</span>, <span style="color:#e6db74">&#34;value1&#34;</span>);
+</span></span><span style="display:flex;"><span>        cache.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;key1&#34;</span>, () <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;value1&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 移除缓存</span>
+</span></span><span style="display:flex;"><span>        cache.<span style="color:#a6e22e">invalidate</span>(<span style="color:#e6db74">&#34;key1&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ## map 创建（缺点，一经创建，不能新增）</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 方式1：ImmutableMap.of() - 适合少量键值对（最多支持5组k-v，超量用builder）</span>
+</span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> smallMap <span style="color:#f92672">=</span> ImmutableMap.<span style="color:#a6e22e">of</span>(
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;k1&#34;</span>, <span style="color:#e6db74">&#34;v1&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;k2&#34;</span>, <span style="color:#e6db74">&#34;v2&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;k3&#34;</span>, <span style="color:#e6db74">&#34;v3&#34;</span>
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 方式2：ImmutableMap.builder() - 适合任意数量键值对（最贴近MapBuilder链式风格）</span>
+</span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>Integer, String<span style="color:#f92672">&gt;</span> bigMap <span style="color:#f92672">=</span> ImmutableMap.<span style="color:#f92672">&lt;</span>Integer, String<span style="color:#f92672">&gt;</span>builder()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">put</span>(1, <span style="color:#e6db74">&#34;苹果&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">put</span>(2, <span style="color:#e6db74">&#34;香蕉&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">put</span>(3, <span style="color:#e6db74">&#34;橙子&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">put</span>(4, <span style="color:#e6db74">&#34;葡萄&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 支持批量put（Guava特有的，MapBuilder无此能力）</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">putAll</span>(ImmutableMap.<span style="color:#a6e22e">of</span>(5, <span style="color:#e6db74">&#34;芒果&#34;</span>, 6, <span style="color:#e6db74">&#34;草莓&#34;</span>))
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//Optional</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> nullList <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>; <span style="color:#75715e">// 模拟null列表</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> emptyList <span style="color:#f92672">=</span> Lists.<span style="color:#a6e22e">newArrayList</span>(); <span style="color:#75715e">// 模拟空列表</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 1. 空安全流：ofNullable() - 替代原生Stream.of()，处理null集合，避免NPE</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 原生Stream.of(nullList)会抛NPE，Guava Streams.ofNullable()返回空流</span>
+</span></span><span style="display:flex;"><span>        Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> safeStream <span style="color:#f92672">=</span> Streams.<span style="color:#a6e22e">stream</span>(nullList);
+</span></span><span style="display:flex;"><span>        Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> safeStream2 <span style="color:#f92672">=</span> Streams.<span style="color:#a6e22e">stream</span>(nullList);
+</span></span><span style="display:flex;"><span>        Streams.<span style="color:#a6e22e">concat</span>(safeStream, safeStream2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Optional<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span> objectOptional <span style="color:#f92672">=</span> Optional.<span style="color:#a6e22e">fromJavaUtil</span>(java.<span style="color:#a6e22e">util</span>.<span style="color:#a6e22e">Optional</span>.<span style="color:#a6e22e">empty</span>());
+</span></span><span style="display:flex;"><span>        objectOptional.<span style="color:#a6e22e">asSet</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;null列表转空安全流的元素数：&#34;</span> <span style="color:#f92672">+</span> safeStream.<span style="color:#a6e22e">count</span>()); <span style="color:#75715e">// 输出：0</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2026 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/gokarna-theme/gokarna-hugo">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
