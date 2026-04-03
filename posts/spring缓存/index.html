@@ -49,7 +49,7 @@
     <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
 
     
-    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
 
     
     
@@ -269,7 +269,7 @@
 <li>外部服务调用：对于外部服务调用，可以使用 @Cacheable 注解将调用结果缓存起来，避免重复调用外部服务。</li>
 <li>高并发场景：对于高并发场景，可以使用 @Cacheable 注解将热点数据缓存起来，避免热点数据的频繁访问。</li>
 </ol>
-<h3 id="heading"></h3>
+<h3></h3>
 <pre tabindex="0"><code>@Cacheable(
     cacheNames = ..., // 缓存的名字（可理解为缓存的分类）
     key = ...,        // 缓存的键（默认使用方法参数作为键）
@@ -282,7 +282,7 @@
 <p>先查本地Caffeine缓存，未命中再查Redis缓存，最后才查数据库。缓存更新时会同时更新两级缓存。可以根据实际需求调整缓存过期时间和大小等参数。</p>
 <h3 id="代码">代码</h3>
 <p>pom.xml</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependencies&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependencies&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Spring Boot Starter --&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependency&gt;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
@@ -303,7 +303,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependencies&gt;</span>
 </span></span></code></pre></div><p>CacheConfig.java</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@EnableCaching</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CacheConfig</span> {
 </span></span><span style="display:flex;"><span>
@@ -324,7 +324,7 @@
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>TwoLevelCacheManager.java</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TwoLevelCacheManager</span> <span style="color:#66d9ef">implements</span> CacheManager {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TwoLevelCacheManager</span> <span style="color:#66d9ef">implements</span> CacheManager {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> CacheManager caffeineCacheManager;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> CacheManager redisCacheManager;
 </span></span><span style="display:flex;"><span>
@@ -343,7 +343,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 其他必要方法...</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>TwoLevelCache.java</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TwoLevelCache</span> <span style="color:#66d9ef">implements</span> Cache {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TwoLevelCache</span> <span style="color:#66d9ef">implements</span> Cache {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> String name;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Cache caffeineCache;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Cache redisCache;

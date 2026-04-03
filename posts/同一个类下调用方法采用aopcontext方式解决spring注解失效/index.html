@@ -49,7 +49,7 @@
     <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
 
     
-    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
 
     
     
@@ -229,7 +229,7 @@
 <h2 id="解决方法">解决方法</h2>
 <p>使用AopContext来获取当前线程的AOP代理对象，然后通过该对象调用被注解的方法。这样可以确保注解生效。</p>
 <p>示例：@Transaction 注解的方法，在方法内部调用的话，如果是直接调用，那么事务不会生效。需要通过AopContext获取代理对象，然后调用被注解的方法。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Transactional</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Transactional</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">transactionTask</span>(String keyword) {
 </span></span><span style="display:flex;"><span>    doSth();
 </span></span><span style="display:flex;"><span>}
@@ -243,7 +243,7 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="配置要求">配置要求</h2>
 <p>为了使 AopContext.currentProxy() 正常工作，需要在 Spring 的配置中启用 AOP 代理的暴露。这通常通过在配置类上添加 @EnableAspectJAutoProxy(exposeProxy = true) 注解来实现</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@EnableAspectJAutoProxy</span>(exposeProxy <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringConfiguration</span> {
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 其他配置代码</span>

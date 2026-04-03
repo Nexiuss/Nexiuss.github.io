@@ -49,7 +49,7 @@
     <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
 
     
-    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
 
     
     
@@ -241,7 +241,7 @@
 <li>对于查询结果为null的key，也进行缓存</li>
 <li>设置较短的过期时间(如30秒-1分钟)</li>
 <li>示例代码：
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String value <span style="color:#f92672">=</span> redis.<span style="color:#a6e22e">get</span>(key);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String value <span style="color:#f92672">=</span> redis.<span style="color:#a6e22e">get</span>(key);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (value <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
 </span></span><span style="display:flex;"><span>    value <span style="color:#f92672">=</span> db.<span style="color:#a6e22e">get</span>(key);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (value <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
@@ -295,7 +295,7 @@
 <li>当缓存失效时，使用分布式锁控制只有一个线程去重建缓存</li>
 <li>其他线程等待或返回旧值</li>
 <li>示例伪代码：
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getData</span>(String key) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getData</span>(String key) {
 </span></span><span style="display:flex;"><span>    String value <span style="color:#f92672">=</span> redis.<span style="color:#a6e22e">get</span>(key);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (value <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (lock.<span style="color:#a6e22e">tryLock</span>()) { <span style="color:#75715e">// 获取分布式锁</span>

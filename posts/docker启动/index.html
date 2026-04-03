@@ -49,7 +49,7 @@
     <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
 
     
-    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
 
     
     
@@ -269,14 +269,14 @@
 <p>拉镜像
 <code>docker pull rocketmqinc/rocketmq</code></p>
 <p>启动nameserver</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--privileged<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name rmqnamesrv <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/namesrv/logs:/root/logs  <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/namesrv/store:/root/store <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>apache/rocketmq sh mqnamesrv
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--privileged<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--name rmqnamesrv <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/namesrv/logs:/root/logs  <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/namesrv/store:/root/store <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>apache/rocketmq sh mqnamesrv
 </span></span></code></pre></div><p>启动broker</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 10911:10911 -p 10909:10909 -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/broker/logs:/root/logs -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/broker/store:/root/store --name rmqbrokerv2 --link rmqnamesrv:namesrv -e <span style="color:#e6db74">&#34;NAMESRV_ADDR=namesrv:9876&#34;</span> dyrnq/rocketmq:4.8.0 sh mqbroker -c ../conf/broker.conf
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 10911:10911 -p 10909:10909 -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/broker/logs:/root/logs -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/data/broker/store:/root/store --name rmqbrokerv2 --link rmqnamesrv:namesrv -e <span style="color:#e6db74">&#34;NAMESRV_ADDR=namesrv:9876&#34;</span> dyrnq/rocketmq:4.8.0 sh mqbroker -c ../conf/broker.conf
 </span></span></code></pre></div><h3 id="zookeeper">zookeeper</h3>
 <p><code>docker run -d --name zookeeper -p 2181:2181 zookeeper </code></p>
 <h3 id="nacos">nacos</h3>
@@ -325,20 +325,20 @@
 <ul>
 <li>启动命令</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name nacos-server <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 8848:8848 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 9848:9848 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 9849:9849 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MODE<span style="color:#f92672">=</span>standalone <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e SPRING_DATASOURCE_PLATFORM<span style="color:#f92672">=</span>mysql <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_HOST<span style="color:#f92672">=</span>host.docker.internal <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">3306</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_USER<span style="color:#f92672">=</span>root <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_PASSWORD<span style="color:#f92672">=</span><span style="color:#ae81ff">123456</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_DB_NAME<span style="color:#f92672">=</span>nacos <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e TIME_ZONE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Asia/Shanghai&#39;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-d nacos/nacos-server:v2.2.3-slim
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--name nacos-server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-p 8848:8848 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-p 9848:9848 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-p 9849:9849 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MODE<span style="color:#f92672">=</span>standalone <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e SPRING_DATASOURCE_PLATFORM<span style="color:#f92672">=</span>mysql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_HOST<span style="color:#f92672">=</span>host.docker.internal <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">3306</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_USER<span style="color:#f92672">=</span>root <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_PASSWORD<span style="color:#f92672">=</span><span style="color:#ae81ff">123456</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_DB_NAME<span style="color:#f92672">=</span>nacos <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e TIME_ZONE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Asia/Shanghai&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-d nacos/nacos-server:v2.2.3-slim
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 拷贝配置</span>
 </span></span><span style="display:flex;"><span>docker cp -a nacos-server:/home/nacos /Users/nexius/Docker/nacos
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 关闭该容器</span>
@@ -347,22 +347,22 @@
 </span></span><span style="display:flex;"><span>docker rm nacos-server
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#再次运行</span>
 </span></span><span style="display:flex;"><span>docker run <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name nacos-server <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 8848:8848 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 9848:9848 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-p 9849:9849 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MODE<span style="color:#f92672">=</span>standalone <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e SPRING_DATASOURCE_PLATFORM<span style="color:#f92672">=</span>mysql <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_HOST<span style="color:#f92672">=</span>host.docker.internal <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">3306</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_USER<span style="color:#f92672">=</span>root <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_PASSWORD<span style="color:#f92672">=</span><span style="color:#ae81ff">123456</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e MYSQL_SERVICE_DB_NAME<span style="color:#f92672">=</span>nacos <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e TIME_ZONE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Asia/Shanghai&#39;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/nacos/conf:/home/nacos/conf <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/nacos/logs:/home/nacos/logs <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/nacos/data:/home/nacos/data <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-d nacos/nacos-server:v2.2.3-slim
+</span></span></span><span style="display:flex;"><span>--name nacos-server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-p 8848:8848 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-p 9848:9848 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-p 9849:9849 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MODE<span style="color:#f92672">=</span>standalone <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e SPRING_DATASOURCE_PLATFORM<span style="color:#f92672">=</span>mysql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_HOST<span style="color:#f92672">=</span>host.docker.internal <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">3306</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_USER<span style="color:#f92672">=</span>root <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_PASSWORD<span style="color:#f92672">=</span><span style="color:#ae81ff">123456</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e MYSQL_SERVICE_DB_NAME<span style="color:#f92672">=</span>nacos <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e TIME_ZONE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Asia/Shanghai&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /Users/nexius/Docker/nacos/conf:/home/nacos/conf <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /Users/nexius/Docker/nacos/logs:/home/nacos/logs <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /Users/nexius/Docker/nacos/data:/home/nacos/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-d nacos/nacos-server:v2.2.3-slim
 </span></span></code></pre></div><h3 id="oceanbase">oceanbase</h3>
 <pre tabindex="0"><code># 根据当前容器部署最大规格的实例
 docker run -p 2881:2881 --name obstandalone -d oceanbase/oceanbase-ce
@@ -428,9 +428,9 @@ ENTRYPOINT java ${JAVA_OPTS} ${SKYWALKING_CONF} ${NACOS_DEFAULT} ${NACOS_CONF} $
 --name gateway \
 -e NACOS_CONF=&#34;-Dspring.cloud.nacos.config.namespace=ats-dd -Dspring.cloud.nacos.server-addr=host.docker.internal:8848&#34; gateway/v1
 </code></pre><h3 id="oracle苹果芯片">oracle(苹果芯片)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name oracle -d -p 1521:1521 bladex/oracle:19c-arm
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name oracle -d -p 1521:1521 bladex/oracle:19c-arm
 </span></span></code></pre></div><h4 id="授权">授权</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 连接容器</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 连接容器</span>
 </span></span><span style="display:flex;"><span>docker exec -it oracle /bin/bash
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># sysdba登录</span>
 </span></span><span style="display:flex;"><span>sqlplus / as sysdba;
@@ -441,7 +441,7 @@ ENTRYPOINT java ${JAVA_OPTS} ${SKYWALKING_CONF} ${NACOS_DEFAULT} ${NACOS_CONF} $
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 修改sys用户的密码</span>
 </span></span><span style="display:flex;"><span>alter user sys identified by sys;
 </span></span></code></pre></div><h4 id="创建用户">创建用户</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#使用ORCLPDB PDB访问</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#使用ORCLPDB PDB访问</span>
 </span></span><span style="display:flex;"><span>alter session set container <span style="color:#f92672">=</span> ORCLPDB;
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#创建用户</span>
 </span></span><span style="display:flex;"><span>create user yourusername identified by youruserpwd;
@@ -461,27 +461,27 @@ ENTRYPOINT java ${JAVA_OPTS} ${SKYWALKING_CONF} ${NACOS_DEFAULT} ${NACOS_CONF} $
 <h3 id="dm8">DM8</h3>
 <p>达梦8
 pull镜像</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull qinchz/dm8-arm64
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull qinchz/dm8-arm64
 </span></span></code></pre></div><p>启动</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 5236:5236 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name dm8 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/dm8/data:/home/dmdba/data <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>qinchz/dm8-arm64
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 5236:5236 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--name dm8 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /Users/nexius/Docker/dm8/data:/home/dmdba/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>qinchz/dm8-arm64
 </span></span></code></pre></div><p>初始化数据库</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 查询表空间
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> tablespace_name <span style="color:#66d9ef">from</span> dba_tablespaces;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 查询表空间
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> tablespace_name <span style="color:#66d9ef">from</span> dba_tablespaces;
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- 查询用户
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> username <span style="color:#66d9ef">from</span> dba_users;
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> username <span style="color:#66d9ef">from</span> dba_users;
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- 创建表空间
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> TABLESPACE  TEST DATAFILE <span style="color:#e6db74">&#39;TEST.DBF&#39;</span> <span style="color:#66d9ef">SIZE</span> <span style="color:#ae81ff">300</span>;
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> TABLESPACE  TEST DATAFILE <span style="color:#e6db74">&#39;TEST.DBF&#39;</span> <span style="color:#66d9ef">SIZE</span> <span style="color:#ae81ff">300</span>;
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- 创建用户
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">user</span> nexius identified <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#34;123456789&#34;</span> <span style="color:#66d9ef">default</span> tablespace TEST <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">index</span> tablespace TEST;
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">user</span> nexius identified <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#34;123456789&#34;</span> <span style="color:#66d9ef">default</span> tablespace TEST <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">index</span> tablespace TEST;
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- 授权
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">grant</span> <span style="color:#e6db74">&#34;RESOURCE&#34;</span>,<span style="color:#e6db74">&#34;PUBLIC&#34;</span>,<span style="color:#e6db74">&#34;DBA&#34;</span>,<span style="color:#e6db74">&#34;VTI&#34;</span> <span style="color:#66d9ef">to</span> nexius;
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">grant</span> <span style="color:#e6db74">&#34;RESOURCE&#34;</span>,<span style="color:#e6db74">&#34;PUBLIC&#34;</span>,<span style="color:#e6db74">&#34;DBA&#34;</span>,<span style="color:#e6db74">&#34;VTI&#34;</span> <span style="color:#66d9ef">to</span> nexius;
 </span></span></code></pre></div><h4 id="dem-达梦统一运维监控">DEM 达梦统一运维监控</h4>
 <p><a href="https://blog.csdn.net/qinchaozengh/article/details/128038287">参考文档</a>
 docker-compose</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;2.1&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;2.1&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">tomcat</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">user</span>: <span style="color:#ae81ff">root</span>
@@ -501,14 +501,14 @@ docker-compose</p>
 </span></span><span style="display:flex;"><span>      <span style="color:#75715e">#- /Users/chaz/dev/docker/data/dm8/bin:/opt/dmdbms/bin</span>
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/etc/localtime:/etc/localtime</span>
 </span></span></code></pre></div><h3 id="minio">minio</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker run -p 9000:9000 -p 9090:9090 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name minio <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-d --restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e <span style="color:#e6db74">&#34;MINIO_ACCESS_KEY=mbti&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-e <span style="color:#e6db74">&#34;MINIO_SECRET_KEY=mbti@123&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /Users/nexius/Docker/minio/data:/data <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>minio/minio server <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>/data --console-address <span style="color:#e6db74">&#34;:9090&#34;</span> -address <span style="color:#e6db74">&#34;:9000&#34;</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker run -p 9000:9000 -p 9090:9090 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--name minio <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-d --restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e <span style="color:#e6db74">&#34;MINIO_ACCESS_KEY=mbti&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-e <span style="color:#e6db74">&#34;MINIO_SECRET_KEY=mbti@123&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /Users/nexius/Docker/minio/data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>minio/minio server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>/data --console-address <span style="color:#e6db74">&#34;:9090&#34;</span> -address <span style="color:#e6db74">&#34;:9000&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span></code></pre></div>
         
     </div>

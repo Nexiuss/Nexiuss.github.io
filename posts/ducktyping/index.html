@@ -49,7 +49,7 @@
     <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
 
     
-    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
 
     
     
@@ -227,7 +227,7 @@
 <h3 id="鸭子类型duck-typing的定义">鸭子类型（Duck Typing）的定义</h3>
 <p>鸭子类型是一种动态类型语言的编程风格，其核心思想是:“如果对象的行为像鸭子（具备特定方法或属性），那么它就是鸭子”它不依赖显式继承或接口声明，而是通过运行时检查对象是否具备所需行为来判断类型合法性</p>
 <h3 id="鸭子类型duck-typing的示例">鸭子类型（Duck Typing）的示例</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Duck</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Duck</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">quack</span>(self):
 </span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Quack&#34;</span>)
 </span></span><span style="display:flex;"><span>
@@ -261,45 +261,45 @@
 <ol>
 <li>接口的隐式实现</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义接口 Duck，要求实现 Quack() 方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Duck</span> <span style="color:#66d9ef">interface</span> {
-</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">Quack</span>() <span style="color:#66d9ef">string</span> <span style="color:#75715e">// 鸭子必须会“嘎嘎”叫
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义接口 Duck，要求实现 Quack() 方法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Duck</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">Quack</span>() <span style="color:#66d9ef">string</span> <span style="color:#75715e">// 鸭子必须会“嘎嘎”叫</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现 Duck 接口的结构体：RealDuck（真实鸭子）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">RealDuck</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现 Duck 接口的结构体：RealDuck（真实鸭子）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">RealDuck</span> <span style="color:#66d9ef">struct</span>{}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#a6e22e">RealDuck</span>) <span style="color:#a6e22e">Quack</span>() <span style="color:#66d9ef">string</span> {
-</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Quack! Quack!&#34;</span> <span style="color:#75715e">// 真实鸭子的叫声
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Quack! Quack!&#34;</span> <span style="color:#75715e">// 真实鸭子的叫声</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现 Duck 接口的结构体：ToyDuck（玩具鸭子）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ToyDuck</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现 Duck 接口的结构体：ToyDuck（玩具鸭子）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ToyDuck</span> <span style="color:#66d9ef">struct</span>{}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">ToyDuck</span>) <span style="color:#a6e22e">Quack</span>() <span style="color:#66d9ef">string</span> {
-</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Squeak! Squeak!&#34;</span> <span style="color:#75715e">// 玩具鸭子的叫声
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Squeak! Squeak!&#34;</span> <span style="color:#75715e">// 玩具鸭子的叫声</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 接收 Duck 接口的函数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">MakeDuckQuack</span>(<span style="color:#a6e22e">d</span> <span style="color:#a6e22e">Duck</span>) {
-</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Quack</span>()) <span style="color:#75715e">// 调用接口的 Quack 方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 接收 Duck 接口的函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">MakeDuckQuack</span>(<span style="color:#a6e22e">d</span> <span style="color:#a6e22e">Duck</span>) {
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Quack</span>()) <span style="color:#75715e">// 调用接口的 Quack 方法</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 实例化不同类型的鸭子
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   <span style="color:#a6e22e">real</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">RealDuck</span>{}
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 实例化不同类型的鸭子</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">real</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">RealDuck</span>{}
 </span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">toy</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ToyDuck</span>{}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 传递给函数时，无需关心具体类型，只要实现接口即可
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   <span style="color:#a6e22e">MakeDuckQuack</span>(<span style="color:#a6e22e">real</span>) <span style="color:#75715e">// 输出：Quack! Quack!
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   <span style="color:#a6e22e">MakeDuckQuack</span>(<span style="color:#a6e22e">toy</span>)  <span style="color:#75715e">// 输出：Squeak! Squeak!
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 传递给函数时，无需关心具体类型，只要实现接口即可</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">MakeDuckQuack</span>(<span style="color:#a6e22e">real</span>) <span style="color:#75715e">// 输出：Quack! Quack!</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">MakeDuckQuack</span>(<span style="color:#a6e22e">toy</span>)  <span style="color:#75715e">// 输出：Squeak! Squeak!</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>关键点</p>
 <ul>
 <li>接口隐式实现：<code>RealDuck</code> 和 <code>ToyDuck</code> 没有显式声明实现 Duck 接口，但通过实现 <code>Quack()</code> 方法，隐式满足接口要求。</li>
@@ -308,48 +308,48 @@
 <ol start="2">
 <li>鸭子类型的核心特性：动态行为匹配</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义接口：Bird，要求实现 Fly() 和 Sing() 方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Bird</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义接口：Bird，要求实现 Fly() 和 Sing() 方法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Bird</span> <span style="color:#66d9ef">interface</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Fly</span>() <span style="color:#66d9ef">string</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Sing</span>() <span style="color:#66d9ef">string</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 结构体：Eagle（老鹰）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Eagle</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 结构体：Eagle（老鹰）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Eagle</span> <span style="color:#66d9ef">struct</span>{}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">e</span> <span style="color:#a6e22e">Eagle</span>) <span style="color:#a6e22e">Fly</span>() <span style="color:#66d9ef">string</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Flying high in the sky!&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">e</span> <span style="color:#a6e22e">Eagle</span>) <span style="color:#a6e22e">Sing</span>() <span style="color:#66d9ef">string</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Screech! Screech!&#34;</span> <span style="color:#75715e">// 老鹰的叫声
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Screech! Screech!&#34;</span> <span style="color:#75715e">// 老鹰的叫声</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 结构体：Parrot（鹦鹉）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Parrot</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 结构体：Parrot（鹦鹉）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Parrot</span> <span style="color:#66d9ef">struct</span>{}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Parrot</span>) <span style="color:#a6e22e">Fly</span>() <span style="color:#66d9ef">string</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Flapping wings!&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Parrot</span>) <span style="color:#a6e22e">Sing</span>() <span style="color:#66d9ef">string</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello! I&#39;m a parrot!&#34;</span> <span style="color:#75715e">// 鹦鹉模仿人类说话
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello! I&#39;m a parrot!&#34;</span> <span style="color:#75715e">// 鹦鹉模仿人类说话</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 将不同鸟类传递给函数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">makeBirdFlyAndSing</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">b</span> <span style="color:#a6e22e">Bird</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 将不同鸟类传递给函数</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">makeBirdFlyAndSing</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">b</span> <span style="color:#a6e22e">Bird</span>) {
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Fly:&#34;</span>, <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Fly</span>())
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Sing:&#34;</span>, <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Sing</span>())
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">makeBirdFlyAndSing</span>(<span style="color:#a6e22e">Eagle</span>{}) <span style="color:#75715e">// 输出：Fly... 和 Screech...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">makeBirdFlyAndSing</span>(<span style="color:#a6e22e">Parrot</span>{}) <span style="color:#75715e">// 输出：Fly... 和 Hello...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">makeBirdFlyAndSing</span>(<span style="color:#a6e22e">Eagle</span>{}) <span style="color:#75715e">// 输出：Fly... 和 Screech...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">makeBirdFlyAndSing</span>(<span style="color:#a6e22e">Parrot</span>{}) <span style="color:#75715e">// 输出：Fly... 和 Hello...</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>关键点</p>
 <ul>
 <li>动态行为匹配：只要类型实现了接口的所有方法，无论类型是 <code>Eagle</code> 还是 <code>Parrot</code>，都可以被 <code>Bird</code> 接口接受。</li>
@@ -358,12 +358,12 @@
 <ol start="3">
 <li>接口嵌套与组合：复杂场景</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义基础接口
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Animal</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义基础接口</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Animal</span> <span style="color:#66d9ef">interface</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Move</span>() <span style="color:#66d9ef">string</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -371,15 +371,15 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span>() <span style="color:#66d9ef">string</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 组合接口：定义一个更复杂的接口
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PetAnimal</span> <span style="color:#66d9ef">interface</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Animal</span>   <span style="color:#75715e">// 继承 Animal 接口
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Pet</span>      <span style="color:#75715e">// 继承 Pet 接口
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Play</span>()   <span style="color:#75715e">// 新增 Play 方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 组合接口：定义一个更复杂的接口</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PetAnimal</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Animal</span>   <span style="color:#75715e">// 继承 Animal 接口</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Pet</span>      <span style="color:#75715e">// 继承 Pet 接口</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Play</span>()   <span style="color:#75715e">// 新增 Play 方法</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现 PetAnimal 接口的结构体：Dog
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现 PetAnimal 接口的结构体：Dog</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">struct</span>{}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">d</span> <span style="color:#a6e22e">Dog</span>) <span style="color:#a6e22e">Move</span>() <span style="color:#66d9ef">string</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Running on four legs&#34;</span>
@@ -396,12 +396,12 @@
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">buddy</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Dog</span>{}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 验证接口实现
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pa</span> <span style="color:#a6e22e">PetAnimal</span> = <span style="color:#a6e22e">buddy</span> <span style="color:#75715e">// 隐式实现 PetAnimal 接口
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">pa</span>.<span style="color:#a6e22e">Move</span>())   <span style="color:#75715e">// 输出：Running on four legs
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">pa</span>.<span style="color:#a6e22e">Name</span>())   <span style="color:#75715e">// 输出：Buddy
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">pa</span>.<span style="color:#a6e22e">Play</span>()                <span style="color:#75715e">// 输出：Chasing the ball!
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 验证接口实现</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pa</span> <span style="color:#a6e22e">PetAnimal</span> = <span style="color:#a6e22e">buddy</span> <span style="color:#75715e">// 隐式实现 PetAnimal 接口</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">pa</span>.<span style="color:#a6e22e">Move</span>())   <span style="color:#75715e">// 输出：Running on four legs</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">pa</span>.<span style="color:#a6e22e">Name</span>())   <span style="color:#75715e">// 输出：Buddy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pa</span>.<span style="color:#a6e22e">Play</span>()                <span style="color:#75715e">// 输出：Chasing the ball!</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>关键点</p>
 <ul>
 <li>接口嵌套：PetAnimal 继承了 Animal 和 Pet 接口，并新增 Play() 方法。</li>
@@ -410,7 +410,7 @@
 <ol start="4">
 <li>鸭子类型 vs 静态类型检查</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 </span></span><span style="display:flex;"><span>
@@ -425,13 +425,13 @@
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s</span> <span style="color:#a6e22e">Swimmer</span> = <span style="color:#a6e22e">Fish</span>{} <span style="color:#75715e">// 鱼实现了 Swimmer 接口
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">Swim</span>())  <span style="color:#75715e">// 输出：Swimming in water!
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 错误示例：类型未实现接口
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// type Bird struct{} // 没有实现 Swim() 方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// var b Swimmer = Bird{} // 编译错误：Bird 不实现 Swim()
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s</span> <span style="color:#a6e22e">Swimmer</span> = <span style="color:#a6e22e">Fish</span>{} <span style="color:#75715e">// 鱼实现了 Swimmer 接口</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">Swim</span>())  <span style="color:#75715e">// 输出：Swimming in water!</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 错误示例：类型未实现接口</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// type Bird struct{} // 没有实现 Swim() 方法</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// var b Swimmer = Bird{} // 编译错误：Bird 不实现 Swim()</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>关键点</p>
 <ul>
 <li>静态类型检查：Go 在编译时会严格检查类型是否实现接口的所有方法，未实现则报错（如 Bird 的例子）。</li>

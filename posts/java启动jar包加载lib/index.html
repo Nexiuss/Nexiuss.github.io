@@ -49,7 +49,7 @@
     <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
 
     
-    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
 
     
     
@@ -234,11 +234,11 @@
         <h1 id="java启动jar包加载lib">Java启动jar包加载lib</h1>
 <h2 id="示例">示例</h2>
 <p>windows</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>@echo off
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>@echo off
 </span></span><span style="display:flex;"><span>java -cp <span style="color:#e6db74">&#34;lib/*;myapp.jar&#34;</span> com.example.MainClass
 </span></span></code></pre></div><p>linux</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>java -cp <span style="color:#e6db74">&#34;lib/*:myapp.jar&#34;</span> com.example.MainClass
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span>java -cp <span style="color:#e6db74">&#34;lib/*:myapp.jar&#34;</span> com.example.MainClass
 </span></span></code></pre></div><ol>
 <li>
 <p>-cp参数的作用
@@ -257,15 +257,15 @@
 <ol start="3">
 <li>如何指定多个类路径</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Unix/Linux/macOS</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Unix/Linux/macOS</span>
 </span></span><span style="display:flex;"><span>java -cp /path/to/lib1:/path/to/lib2:/path/to/classes MyApp
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Windows</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Windows</span>
 </span></span><span style="display:flex;"><span>java -cp C:<span style="color:#ae81ff">\p</span>ath<span style="color:#ae81ff">\t</span>o<span style="color:#ae81ff">\l</span>ib1;C:<span style="color:#ae81ff">\p</span>ath<span style="color:#ae81ff">\t</span>o<span style="color:#ae81ff">\l</span>ib2;C:<span style="color:#ae81ff">\p</span>ath<span style="color:#ae81ff">\t</span>o<span style="color:#ae81ff">\c</span>lasses MyApp
 </span></span></code></pre></div><ol start="4">
 <li>当类路径中包含空格时应如何处理
 如果类路径中包含空格，你需要将整个路径用引号括起来，以确保空格被正确处理。例如：</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Unix/Linux/macOS</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Unix/Linux/macOS</span>
 </span></span><span style="display:flex;"><span>java -cp <span style="color:#e6db74">&#34;/path/to/some directory with spaces/lib.jar:/other/path/classes&#34;</span> MyApp
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Windows</span>

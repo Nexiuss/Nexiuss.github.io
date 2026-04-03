@@ -49,7 +49,7 @@
     <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
 
     
-    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
 
     
     
@@ -234,7 +234,7 @@
 这些组件通过提供一致的API接口和灵活的扩展性，允许开发者能够以声明式的方式与数据库进行交互，大幅减少了样板代码。</li>
 </ul>
 <h3 id="12-开始使用-commons-dbutils">1.2 开始使用 commons-dbutils</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>commons-dbutils<span style="color:#f92672">&lt;/groupId&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>commons-dbutils<span style="color:#f92672">&lt;/artifactId&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>1.7<span style="color:#f92672">&lt;/version&gt;</span>
@@ -311,7 +311,7 @@ QueryRunner是针对简化基本数据库操作的轻量级工具。它使得开
 <li>在需要的地方通过连接池获取连接，并在使用完毕后归还。</li>
 </ol>
 <p>以HikariCP为例，配置连接池的基本代码如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.zaxxer.hikari.HikariConfig;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.zaxxer.hikari.HikariConfig;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.zaxxer.hikari.HikariDataSource;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 创建连接池配置对象</span>
@@ -332,7 +332,7 @@ QueryRunner是针对简化基本数据库操作的轻量级工具。它使得开
 </span></span><span style="display:flex;"><span>connection.<span style="color:#a6e22e">close</span>();
 </span></span></code></pre></div><h4 id="322-queryrunner在连接池环境下操作实例">3.2.2 QueryRunner在连接池环境下操作实例</h4>
 <p>在连接池环境下使用QueryRunner时，可以通过在创建QueryRunner实例时传入连接池的连接来实现。以下是操作实例：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>mons.<span style="color:#a6e22e">dbutils</span>.<span style="color:#a6e22e">QueryRunner</span>; mons.<span style="color:#a6e22e">dbutils</span>.<span style="color:#a6e22e">handlers</span>.<span style="color:#a6e22e">BeanHandler</span>; mons.<span style="color:#a6e22e">dbutils</span>.<span style="color:#a6e22e">handlers</span>.<span style="color:#a6e22e">BeanListHandler</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>mons.<span style="color:#a6e22e">dbutils</span>.<span style="color:#a6e22e">QueryRunner</span>; mons.<span style="color:#a6e22e">dbutils</span>.<span style="color:#a6e22e">handlers</span>.<span style="color:#a6e22e">BeanHandler</span>; mons.<span style="color:#a6e22e">dbutils</span>.<span style="color:#a6e22e">handlers</span>.<span style="color:#a6e22e">BeanListHandler</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 创建QueryRunner实例，传入连接池的数据源 QueryRunner runner = new QueryRunner(dataSource);</span>
 </span></span><span style="display:flex;"><span>
@@ -368,7 +368,7 @@ QueryRunner是针对简化基本数据库操作的轻量级工具。它使得开
 <h3 id="41-基本查询操作的实现">4.1 基本查询操作的实现</h3>
 <h4 id="411-使用queryrunner执行单条sql查询">4.1.1 使用QueryRunner执行单条SQL查询</h4>
 <p>在使用QueryRunner执行单条SQL查询时，我们首先要创建QueryRunner类的实例，并通过构造器传入数据源。然后利用execute方法来执行查询，并返回查询结果。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.Connection;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.Connection;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.SQLException;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">QueryRunnerExample</span> {
@@ -394,7 +394,7 @@ QueryRunner是针对简化基本数据库操作的轻量级工具。它使得开
 </span></span></code></pre></div><p><strong>逻辑分析</strong>： 在上述代码中，我们首先通过 DatabaseConnection.getConnection() 获取数据库连接，接着创建了 QueryRunner 的实例，并调用了其 query 方法。 query 方法的参数包括数据库连接、SQL查询语句、结果集处理器（这里使用了 ScalarHandler 来返回查询结果的单个值），以及用于查询条件的参数。</p>
 <h4 id="412-查询结果的封装和处理">4.1.2 查询结果的封装和处理</h4>
 <p>查询操作完成之后，通常需要对查询结果进行封装和处理。这通常涉及到结果集的映射，将结果集中的列转换为Java对象的属性。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.Connection;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.Connection;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.SQLException;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">QueryRunnerExample</span> {
@@ -421,7 +421,7 @@ QueryRunner是针对简化基本数据库操作的轻量级工具。它使得开
 <h2 id="42-更新操作的实现">4.2 更新操作的实现</h2>
 <h3 id="421-使用queryrunner执行数据更新">4.2.1 使用QueryRunner执行数据更新</h3>
 <p>使用<code>QueryRunner</code>进行数据更新操作和查询操作类似，但更新操作使用的是<code>update</code>方法而非<code>query</code>方法。下面的示例演示了如何插入一条新的用户记录到数据库。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.Connection;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.Connection;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.SQLException;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">QueryRunnerExample</span> {
@@ -448,7 +448,7 @@ QueryRunner是针对简化基本数据库操作的轻量级工具。它使得开
 </span></span></code></pre></div><p>逻辑分析： 在这段代码中，我们使用了 update 方法来执行插入操作。 update 方法同样需要数据库连接、SQL语句以及SQL语句中所需的参数。查询返回的是一个整数，表示受影响的行数。</p>
 <h4 id="422-更新操作的事务处理和结果验证">4.2.2 更新操作的事务处理和结果验证</h4>
 <p>事务处理在数据库更新操作中非常重要，它确保了一系列操作要么完全成功，要么完全失败，以维护数据的一致性。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.commons.dbutils.QueryRunner;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.commons.dbutils.QueryRunner;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.Connection;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.SQLException;
 </span></span><span style="display:flex;"><span>

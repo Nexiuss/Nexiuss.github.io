@@ -49,7 +49,7 @@
     <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
 
     
-    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
 
     
     
@@ -248,7 +248,7 @@
 <li>验证地址： {ip}:{host}/{project_name}/druid/login.html</li>
 </ol>
 <h2 id="修改tomcat下的webxml里面增加druid配置">修改tomcat下的web.xml，里面增加druid配置</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- druid view --&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- druid view --&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;servlet&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;servlet-name&gt;</span>DruidStatView<span style="color:#f92672">&lt;/servlet-name&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;servlet-class&gt;</span>com.alibaba.druid.support.http.StatViewServlet<span style="color:#f92672">&lt;/servlet-class&gt;</span>
@@ -306,7 +306,7 @@
 </span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/filter-mapping&gt;</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">&lt;!-- 连接池 启用 Web 监控统计功能   end--&gt;</span>
 </span></span></code></pre></div><h2 id="contextxml配置">context.xml配置</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;Resource</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;prpDataSource&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;Resource</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;prpDataSource&#34;</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">auth=</span><span style="color:#e6db74">&#34;Container&#34;</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;javax.sql.DataSource&#34;</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">factory=</span><span style="color:#e6db74">&#34;com.alibaba.druid.pool.DruidDataSourceFactory&#34;</span>

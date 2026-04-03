@@ -49,7 +49,7 @@
     <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
 
     
-    <script src="/js/bundle.min.a036ebe92c17ea3f0c07761c2135b82bec6f37c8efb7f49ddad1f28c22fc4769.js" integrity="sha256-oDbr6SwX6j8MB3YcITW4K&#43;xvN8jvt/Sd2tHyjCL8R2k="></script>
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
 
     
     
@@ -239,7 +239,7 @@ HibernateTemplate是Spring对Hibernate的封装工具类，其save方法最终�
 例如插入User对象时，Hibernate会结合User.hbm.xml定义的字段映射和对象实例的name/age等属性值生成完整INSERT语句</li>
 <li>具体执行流程</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>HibernateTemplate.save()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>HibernateTemplate.save()
 </span></span><span style="display:flex;"><span>→ Session.save()
 </span></span><span style="display:flex;"><span>→ 通过EntityPersister解析映射元数据
 </span></span><span style="display:flex;"><span>→ 反射获取属性值
