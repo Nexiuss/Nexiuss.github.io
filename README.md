@@ -1,2 +1,0 @@
-# Nexiuss.github.io
-index
