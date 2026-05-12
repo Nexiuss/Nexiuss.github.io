@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+            --font-size: 1.1rem;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Scala10大特性vsJava对照</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo, java, Scala'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/scala10%E5%A4%A7%E7%89%B9%E6%80%A7vsjava%E5%AF%B9%E7%85%A7/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Scala10大特性vsJava对照">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/images/20260512145940.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/20260512145940.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Scala10大特性vsJava对照">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/scala10%E5%A4%A7%E7%89%B9%E6%80%A7vsjava%E5%AF%B9%E7%85%A7/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/scala10%E5%A4%A7%E7%89%B9%E6%80%A7vsjava%E5%AF%B9%E7%85%A7/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/20260512145940.png">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/scala10%E5%A4%A7%E7%89%B9%E6%80%A7vsjava%E5%AF%B9%E7%85%A7/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" aria-label="" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" aria-label="" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" aria-label="" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" aria-label="" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="github" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="buymeacoffee" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" aria-label="rss" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                <a aria-hidden="true" role="switch">
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a aria-checked="false" aria-labelledby="hamburger-menu-toggle" id="hamburger-menu-toggle-target" role="switch">
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a role="switch">
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Scala10大特性vsJava对照</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">
+              
+
+              May 12, 2026
+
+              
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/java">java</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/scala">Scala</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="scala-10大特性-vs-java-对照">Scala 10大特性 vs Java 对照</h1>
+<hr>
+<h2 id="1-样例类-case-class">1. 样例类 Case Class</h2>
+<p><strong>作用</strong>：一键生成实体类，自带构造、解构、equals、toString、序列化，专为模式匹配而生。</p>
+<p>Scala</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#75715e">// 一行搞定数据实体
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>name<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span> age<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> u <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张三&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">20</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 自动解构、直接取值
+</span></span></span><span style="display:flex;"><span>println<span style="color:#f92672">(</span>u<span style="color:#f92672">.</span>name<span style="color:#f92672">,</span> u<span style="color:#f92672">.</span>age<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Java
+要手动写：私有成员、构造器、getter、toString、equals、hashCode，几十行模板代码。</p>
+<hr>
+<h2 id="2-模式匹配-match">2. 模式匹配 Match</h2>
+<p><strong>作用</strong>：增强版 switch，能匹配<strong>值、类型、样例类、集合、解构</strong>，碾压 Java if-else/switch。</p>
+<p>Scala</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> check<span style="color:#f92672">(</span>x<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Any</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> x <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#e6db74">&#34;数字1&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> s<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">s&#34;字符串：</span><span style="color:#e6db74">$s</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>n<span style="color:#f92672">,</span> a<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#e6db74">s&#34;用户：</span><span style="color:#e6db74">$n</span><span style="color:#e6db74">，年龄</span><span style="color:#e6db74">$a</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#e6db74">&#34;其他&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Java
+只能写 <code>if (x instanceof String)</code>、强转、逐个判断，极其啰嗦且不能解构对象。</p>
+<hr>
+<h2 id="3-解构赋值">3. 解构赋值</h2>
+<p><strong>作用</strong>：把对象/元组/集合直接拆成变量。</p>
+<p>Scala 元组解构</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> <span style="color:#f92672">(</span>a<span style="color:#f92672">,</span> b<span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">100</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Scala&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>println<span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>  <span style="color:#75715e">// 100
+</span></span></span></code></pre></div><p>Scala 样例类解构</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> age<span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;李四&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">25</span><span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Java
+无原生解构，只能逐个 get 赋值，没有语法层面支持。</p>
+<hr>
+<h2 id="4-函数式编程高阶函数--集合流式">4. 函数式编程（高阶函数 + 集合流式）</h2>
+<p><strong>作用</strong>：函数是一等公民，可传参、可返回，集合极简处理。</p>
+<p>Scala</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> list <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span><span style="color:#ae81ff">2</span><span style="color:#f92672">,</span><span style="color:#ae81ff">3</span><span style="color:#f92672">,</span><span style="color:#ae81ff">4</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 一行：过滤、映射、求和
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> res <span style="color:#66d9ef">=</span> list<span style="color:#f92672">.</span>filter<span style="color:#f92672">(</span><span style="color:#66d9ef">_</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">).</span>map<span style="color:#f92672">(</span><span style="color:#66d9ef">_</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">).</span>sum
+</span></span></code></pre></div><p>Java
+要用 Stream，但写法更繁琐，且不支持下划线简写、偏函数、柯里化。</p>
+<hr>
+<h2 id="5-多继承特质-trait">5. 多继承特质 Trait</h2>
+<p><strong>作用</strong>：Trait 可带<strong>字段+实现</strong>，类可以多继承多个 Trait，解决 Java 单继承痛点。</p>
+<p>Scala</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Run</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">def</span> run<span style="color:#f92672">()</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;跑起来&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Swim</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">def</span> swim<span style="color:#f92672">()</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;游起来&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Run</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">Swim</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> a <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Animal</span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>run<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>swim<span style="color:#f92672">()</span>
+</span></span></code></pre></div><p>Java
+接口只能默认方法，<strong>不能有可变状态字段</strong>，多组合非常别扭。</p>
+<hr>
+<h2 id="6-惰性求值-lazy-val">6. 惰性求值 lazy val</h2>
+<p><strong>作用</strong>：变量<strong>第一次使用时才初始化</strong>，延迟加载。</p>
+<p>Scala</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">lazy</span> <span style="color:#66d9ef">val</span> data <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;耗时初始化...&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">999</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;先执行这句&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>println<span style="color:#f92672">(</span>data<span style="color:#f92672">)</span> <span style="color:#75715e">// 这里才执行初始化
+</span></span></span></code></pre></div><p>Java
+没有原生 lazy，只能手动写<strong>双重检查锁、静态内部类</strong>实现懒加载。</p>
+<hr>
+<h2 id="7-隐式转换--隐式参数-implicit">7. 隐式转换 &amp; 隐式参数 implicit</h2>
+<p><strong>作用</strong>：不修改源码，<strong>给已有类动态加方法</strong>；自动注入参数。</p>
+<p>Scala 隐式扩展</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#75715e">// 给 String 新增一个方法
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">implicit</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StringExt</span><span style="color:#f92672">(</span>s<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> double <span style="color:#66d9ef">=</span> s <span style="color:#f92672">+</span> s
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">.</span>double<span style="color:#f92672">)</span> <span style="color:#75715e">// abcabc
+</span></span></span></code></pre></div><p>Java
+只能写工具类、装饰器、适配器，语法层面无法无缝扩展。</p>
+<hr>
+<h2 id="8-高级泛型协变逆变">8. 高级泛型：协变、逆变</h2>
+<p><strong>作用</strong>：控制泛型父子类型兼容关系，Java 只有粗糙的 <code>? extends / ? super</code>。</p>
+<p>Scala</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#75715e">// 协变 +
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">+T</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 逆变 -
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Action</span><span style="color:#f92672">[</span><span style="color:#66d9ef">-T</span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>含义：</p>
+<ul>
+<li><code>+T</code>：子类型泛型可以赋值给父类型</li>
+<li><code>-T</code>：反向兼容</li>
+</ul>
+<p>Java
+只能用通配符，语法晦涩、表达能力弱，不能在类定义上声明协变逆变。</p>
+<hr>
+<h2 id="9-高阶类型">9. 高阶类型</h2>
+<p><strong>作用</strong>：类型本身也可以当参数，Java 完全不支持。</p>
+<p>Scala</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#75715e">// M 是一个泛型容器类型，比如 List、Option
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> foo<span style="color:#f92672">[</span><span style="color:#66d9ef">M</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>, <span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>m<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">M</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>foo<span style="color:#f92672">(</span><span style="color:#a6e22e">List</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span><span style="color:#ae81ff">2</span><span style="color:#f92672">,</span><span style="color:#ae81ff">3</span><span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>foo<span style="color:#f92672">(</span><span style="color:#a6e22e">Option</span><span style="color:#f92672">(</span><span style="color:#ae81ff">10</span><span style="color:#f92672">))</span>
+</span></span></code></pre></div><p>Java
+只能固定泛型，<strong>不能把“容器类型”当作参数传入</strong>，做不了高阶抽象。</p>
+<hr>
+<h2 id="10-元编程编译期宏">10. 元编程（编译期宏）</h2>
+<p><strong>作用</strong>：在<strong>编译阶段自动生成代码</strong>，不用手写重复模板。</p>
+<p>Scala 示意（伪代码）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#75715e">// 编译期自动为类生成 JSON 序列化方法
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">@generateJson</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>name<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span> age<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Java
+只能用 APT 注解处理器、字节码插桩，笨重、限制多、语法不友好。</p>
+<hr>
+<h1 id="总结一句话">总结一句话</h1>
+<p>Java 是<strong>够用、规矩、保守</strong>；
+Scala 多出来的这 10 个特性，本质是：
+<strong>更简洁的语法 + 更强类型抽象 + 原生函数式 + 编译期编程 + 自由扩展能力</strong>。</p>
+<p>需要我给你整理一份 <strong>Java开发者快速上手Scala的极简语法速查表</strong>，以后写代码直接对照着用吗？</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2026 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/gokarna-theme/gokarna-hugo">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

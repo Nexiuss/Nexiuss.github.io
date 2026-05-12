@@ -6,20 +6,34 @@
     <description>Recent content in Tags on Nexius</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 02 May 2026 15:01:51 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 14:59:40 +0800</lastBuildDate>
     <atom:link href="https://nexiuss.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog</title>
+      <link>https://nexiuss.github.io/tags/blog/</link>
+      <pubDate>Tue, 12 May 2026 14:59:40 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>https://nexiuss.github.io/tags/java/</link>
+      <pubDate>Tue, 12 May 2026 14:59:40 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scala</title>
+      <link>https://nexiuss.github.io/tags/scala/</link>
+      <pubDate>Tue, 12 May 2026 14:59:40 +0800</pubDate>
+      <guid>https://nexiuss.github.io/tags/scala/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Bash</title>
       <link>https://nexiuss.github.io/tags/bash/</link>
       <pubDate>Sat, 02 May 2026 15:01:51 +0800</pubDate>
       <guid>https://nexiuss.github.io/tags/bash/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Blog</title>
-      <link>https://nexiuss.github.io/tags/blog/</link>
-      <pubDate>Sat, 02 May 2026 15:01:51 +0800</pubDate>
-      <guid>https://nexiuss.github.io/tags/blog/</guid>
       <description></description>
     </item>
     <item>
@@ -76,13 +90,6 @@
       <link>https://nexiuss.github.io/tags/hutool/</link>
       <pubDate>Thu, 29 Jan 2026 14:41:02 +0800</pubDate>
       <guid>https://nexiuss.github.io/tags/hutool/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Java</title>
-      <link>https://nexiuss.github.io/tags/java/</link>
-      <pubDate>Thu, 29 Jan 2026 14:41:02 +0800</pubDate>
-      <guid>https://nexiuss.github.io/tags/java/</guid>
       <description></description>
     </item>
     <item>
