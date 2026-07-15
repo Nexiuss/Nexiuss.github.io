@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+            --font-size: 1.1rem;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Macos安装markitdown</title>
+    <meta name="description" content="A blog post">
+    <meta name="keywords" content='blog, gokarna, hugo'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/macos%E5%AE%89%E8%A3%85markitdown/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Macos安装markitdown">
+    <meta property="og:description" content="A blog post">
+    <meta property="og:image" content="https://nexiuss.github.io/images/20260715095414.png">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/20260715095414.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Macos安装markitdown">
+    <meta name="twitter:description" content="A blog post">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/macos%E5%AE%89%E8%A3%85markitdown/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/macos%E5%AE%89%E8%A3%85markitdown/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/20260715095414.png">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/macos%E5%AE%89%E8%A3%85markitdown/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" aria-label="" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" aria-label="" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" aria-label="" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" aria-label="" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="github" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="buymeacoffee" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" aria-label="rss" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                <a aria-hidden="true" role="switch">
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a aria-checked="false" aria-labelledby="hamburger-menu-toggle" id="hamburger-menu-toggle-target" role="switch">
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a role="switch">
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Macos安装markitdown</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">A blog post</small>
+	
+
+	
+          <p class="post-date">
+              
+
+              July 15, 2026
+
+              
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/blog">blog</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="macos-使用-microsoftmarkitdown-完整教程">macOS 使用 microsoft/markitdown 完整教程</h1>
+<p>MarkItDown 是微软开源的文档转 Markdown 工具，macOS 基于 Python 运行，下面分<strong>环境准备、安装、命令行使用、Python API、右键快捷操作、常见报错</strong>完整说明。</p>
+<h2 id="一前置环境macos-必装">一、前置环境（macOS 必装）</h2>
+<h3 id="1-安装-python-310">1. 安装 Python 3.10+</h3>
+<p>macOS 自带 Python2，需要装新版 Python：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install python@3.12
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证</span>
+</span></span><span style="display:flex;"><span>python3 --version
+</span></span></code></pre></div><h3 id="2-安装系统底层依赖ocrpdf-必备">2. 安装系统底层依赖（OCR/PDF 必备）</h3>
+<p>处理 PDF、图片OCR需要 poppler、tesseract：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install poppler tesseract
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如需中文OCR识别图片汉字</span>
+</span></span><span style="display:flex;"><span>brew install tesseract-lang
+</span></span></code></pre></div><h3 id="3-推荐创建虚拟环境避免依赖冲突">3. 推荐创建虚拟环境（避免依赖冲突）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 创建虚拟环境</span>
+</span></span><span style="display:flex;"><span>python3 -m venv ~/venv-markitdown
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 激活环境</span>
+</span></span><span style="display:flex;"><span>source ~/venv-markitdown/bin/activate
+</span></span></code></pre></div><p>终端出现 <code>(venv-markitdown)</code> 代表激活成功，后续所有安装/执行都在这个环境。</p>
+<h2 id="二安装-markitdown-两种方式">二、安装 markitdown 两种方式</h2>
+<h3 id="方式1pypi-一键安装推荐">方式1：PyPI 一键安装（推荐）</h3>
+<h4 id="-全功能版pdfwordpptexcelocr音频全部支持">① 全功能版（PDF/Word/PPT/Excel/OCR/音频全部支持）</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip3 install <span style="color:#e6db74">&#39;markitdown[all]&#39;</span>
+</span></span></code></pre></div><h4 id="-轻量化按需安装只装办公文档体积小">② 轻量化按需安装（只装办公文档，体积小）</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 仅 PDF + Word + PPT + Excel</span>
+</span></span><span style="display:flex;"><span>pip3 install <span style="color:#e6db74">&#39;markitdown[pdf,docx,pptx,xlsx]&#39;</span>
+</span></span></code></pre></div><p>可选模块：</p>
+<ul>
+<li><code>image</code>：图片OCR</li>
+<li><code>audio-transcription</code>：mp3/wav 语音转文字</li>
+<li><code>youtube-transcription</code>：油管字幕提取</li>
+</ul>
+<h4 id="验证安装">验证安装</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown --version
+</span></span></code></pre></div><p>输出版本号即安装成功。</p>
+<h3 id="方式2源码安装适合二次开发修改源码">方式2：源码安装（适合二次开发/修改源码）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/microsoft/markitdown.git
+</span></span><span style="display:flex;"><span>cd markitdown
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 本地可编辑模式安装</span>
+</span></span><span style="display:flex;"><span>pip3 install -e <span style="color:#e6db74">&#39;packages/markitdown[all]&#39;</span>
+</span></span></code></pre></div><h2 id="三macos-终端命令行常用用法">三、macOS 终端命令行常用用法</h2>
+<h3 id="1-基础单文件转换">1. 基础单文件转换</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 直接输出md内容到终端</span>
+</span></span><span style="display:flex;"><span>markitdown 文档.pdf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 指定输出文件（推荐）</span>
+</span></span><span style="display:flex;"><span>markitdown 报告.docx -o 报告.md
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重定向写法等价</span>
+</span></span><span style="display:flex;"><span>markitdown 幻灯片.pptx &gt; 幻灯片.md
+</span></span></code></pre></div><h3 id="2-图片ocr提取文字截图照片">2. 图片OCR提取文字（截图、照片）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown 截图.png --enable-ocr -o 图片文字.md
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 中文图片识别</span>
+</span></span><span style="display:flex;"><span>markitdown 发票.jpg --enable-ocr --ocr-lang chi_sim -o 发票.md
+</span></span></code></pre></div><h3 id="3-音频转文字">3. 音频转文字</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown 会议录音.mp3 -o 会议纪要.md
+</span></span></code></pre></div><h3 id="4-批量转换当前目录所有pdfmacos-shell">4. 批量转换当前目录所有PDF（macOS shell）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> f in *.pdf; <span style="color:#66d9ef">do</span> markitdown <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> -o <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>f%.pdf<span style="color:#e6db74">}</span><span style="color:#e6db74">.md&#34;</span>; <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><h3 id="5-网页在线pdf链接直接转换">5. 网页/在线PDF链接直接转换</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown https://xxx.com/file.pdf -o 网页文档.md
+</span></span></code></pre></div><h3 id="6-查看帮助文档">6. 查看帮助文档</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown -h
+</span></span></code></pre></div><h2 id="四python-api-代码调用自动化脚本">四、Python API 代码调用（自动化脚本）</h2>
+<p>新建 <code>convert.py</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> markitdown <span style="color:#f92672">import</span> MarkItDown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 初始化转换器</span>
+</span></span><span style="display:flex;"><span>md_tool <span style="color:#f92672">=</span> MarkItDown()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 转换本地文件</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> md_tool<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#34;文档.docx&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 打印转换后的markdown文本</span>
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>text_content)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存到md文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;输出.md&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    f<span style="color:#f92672">.</span>write(result<span style="color:#f92672">.</span>text_content)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 读取元数据（标题、作者等）</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;文档标题：&#34;</span>, result<span style="color:#f92672">.</span>title)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;元数据：&#34;</span>, result<span style="color:#f92672">.</span>metadata)
+</span></span></code></pre></div><p>运行脚本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 convert.py
+</span></span></code></pre></div><h2 id="五进阶finder-右键一键转换不用敲终端">五、进阶：Finder 右键一键转换（不用敲终端）</h2>
+<p>社区提供 macOS 快捷操作 workflow：</p>
+<ol>
+<li>下载 workflow：https://github.com/danmunz/markitdown-quick-action</li>
+<li>将 <code>Markitdown.workflow</code> 放入文件夹：</li>
+</ol>
+<pre tabindex="0"><code>~/Library/Services/
+</code></pre><ol start="3">
+<li>系统设置 → 键盘 → 快捷键 → 服务，启用「Convert to Markdown」</li>
+<li>右键任意文档 → 快速操作 → Convert to Markdown，自动生成同目录 <code>.md</code> 文件</li>
+</ol>
+<h2 id="六macos-常见报错解决">六、macOS 常见报错解决</h2>
+<ol>
+<li>
+<p><code>zsh: command not found: markitdown</code></p>
+<ul>
+<li>未激活虚拟环境；或 pip3 安装路径没进PATH</li>
+<li>临时解决：<code>python3 -m markitdown.cli 文件.pdf</code></li>
+</ul>
+</li>
+<li>
+<p>OCR识别空白、乱码</p>
+<ul>
+<li>重装依赖：<code>brew reinstall tesseract tesseract-lang</code></li>
+<li>命令加参数 <code>--ocr-lang chi_sim</code></li>
+</ul>
+</li>
+<li>
+<p>docx/ppt转换失败</p>
+<ul>
+<li>重装完整依赖：<code>pip3 install 'markitdown[docx,pptx]' --upgrade</code></li>
+</ul>
+</li>
+<li>
+<p>权限报错（无法读取文件）</p>
+<ul>
+<li>终端执行前加 <code>chmod 644 文件名</code>，或把文件移到桌面再转换</li>
+</ul>
+</li>
+</ol>
+<h2 id="七退出虚拟环境">七、退出虚拟环境</h2>
+<p>用完工具关闭隔离环境：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>deactivate
+</span></span></code></pre></div>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2026 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/gokarna-theme/gokarna-hugo">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
