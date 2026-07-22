@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+            --font-size: 1.1rem;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>TOON数据格式</title>
+    <meta name="description" content="TOON数据格式">
+    <meta name="keywords" content='blog, gokarna, hugo, toon, json, LLM'>
+
+    <meta property="og:url" content="https://nexiuss.github.io/posts/toon%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TOON数据格式">
+    <meta property="og:description" content="TOON数据格式">
+    <meta property="og:image" content="https://nexiuss.github.io/images/TOON%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F.jpg">
+    <meta property="og:image:secure_url" content="https://nexiuss.github.io/images/TOON%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TOON数据格式">
+    <meta name="twitter:description" content="TOON数据格式">
+    <meta property="twitter:domain" content="https://nexiuss.github.io/posts/toon%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">
+    <meta property="twitter:url" content="https://nexiuss.github.io/posts/toon%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">
+    <meta name="twitter:image" content="https://nexiuss.github.io/images/TOON%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F.jpg">
+
+    
+    <link rel="canonical" href="https://nexiuss.github.io/posts/toon%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js" integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://nexiuss.github.io/">
+                <img src='/images/logo.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://nexiuss.github.io/">Nexius</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/" aria-label="" ><span data-feather='home'></span> 首页 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/posts/" aria-label="" ><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/projects/" aria-label="" ><span data-feather='code'></span> 项目 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/tags/" aria-label="" ><span data-feather='tag'></span> 标签 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="github" ><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/nexiuss" aria-label="buymeacoffee" ><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://nexiuss.github.io/index.xml" aria-label="rss" ><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                <a aria-hidden="true" role="switch">
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a aria-checked="false" aria-labelledby="hamburger-menu-toggle" id="hamburger-menu-toggle-target" role="switch">
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/" ><span data-feather='home'></span> 首页 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/posts/" ><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/projects/" ><span data-feather='code'></span> 项目 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/tags/" ><span data-feather='tag'></span> 标签 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/nexiuss" ><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://nexiuss.github.io/index.xml" ><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a role="switch">
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>TOON数据格式</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle">TOON数据格式</small>
+	
+
+	
+          <p class="post-date">
+              
+
+              July 22, 2026
+
+              
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/toon">toon</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/json">json</a></li>
+           
+         
+           
+             <li class="post-tag"><a href="https://nexiuss.github.io/tags/llm">LLM</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="toontoken-oriented-object-notation完整说明">TOON（Token-Oriented Object Notation）完整说明</h1>
+<p><strong>全称</strong>：Token-Oriented Object Notation，面向Token的对象表示法，后缀 <code>.toon</code>；2025年推出，<strong>专门为大模型LLM结构化输入设计的数据序列化格式</strong>。</p>
+<blockquote>
+<p>注意：不要和图形领域 Toon Shader（卡通渲染）混淆，二者完全无关。</p>
+</blockquote>
+<h2 id="一toon格式是什么">一、TOON格式是什么</h2>
+<p>TOON是<strong>JSON数据模型的无损紧凑编码格式</strong>：</p>
+<ul>
+<li>可以100%双向无损转换 JSON ↔ TOON，支持对象、数组、字符串、数字、布尔、null；</li>
+<li>语法融合两类风格：
+<ol>
+<li>嵌套对象：类似YAML，用<strong>缩进</strong>代替 <code>{}</code>；</li>
+<li>同构对象数组：类CSV表格，<strong>字段名只写一次</strong>，每行只放数值；</li>
+</ol>
+</li>
+<li>设计目标：<strong>减少送入LLM时的Token数量，同时提升模型解析准确率</strong>。</li>
+</ul>
+<h3 id="简单示例">简单示例</h3>
+<p><strong>JSON</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#f92672">&#34;users&#34;</span>: [{<span style="color:#f92672">&#34;id&#34;</span>:<span style="color:#ae81ff">1</span>,<span style="color:#f92672">&#34;name&#34;</span>:<span style="color:#e6db74">&#34;Alice&#34;</span>},{<span style="color:#f92672">&#34;id&#34;</span>:<span style="color:#ae81ff">2</span>,<span style="color:#f92672">&#34;name&#34;</span>:<span style="color:#e6db74">&#34;Bob&#34;</span>}]}
+</span></span></code></pre></div><p><strong>TOON</strong></p>
+<pre tabindex="0"><code>users[2]{id,name}:
+1,Alice
+2,Bob
+</code></pre><h2 id="二toon-解决什么核心问题">二、TOON 解决什么核心问题</h2>
+<p>传统场景向大模型传递批量结构化数据（知识库、列表、业务记录）时，<strong>JSON存在严重Token浪费</strong>：</p>
+<ol>
+<li>数组内每条记录重复书写<code>&quot;id&quot;:、&quot;name&quot;:</code>大量重复键名；</li>
+<li>大量括号、引号、逗号占用额外Token；</li>
+<li>Token变多带来三大痛点：
+<ul>
+<li>API调用费用更高；</li>
+<li>更容易触发上下文长度超限；</li>
+<li>超长文本下LLM更容易乱解析、字段丢失。</li>
+</ul>
+</li>
+</ol>
+<p><strong>TOON核心定位</strong>：
+日常代码依然使用JSON处理业务；<strong>仅在投喂数据给LLM前，把JSON转TOON</strong>，降低Token开销，提升解析稳定性。</p>
+<h2 id="三优点">三、优点</h2>
+<ol>
+<li><strong>Token显著节约</strong>
+同一份结构化数组数据，相比JSON减少 <strong>30%～60% Token</strong>；同构列表（订单、用户、日志）收益最大。</li>
+<li><strong>LLM识别准确率更高</strong>
+显式标注数组长度<code>[N]</code>与字段头<code>{field1,field2}</code>，给模型明确结构约束，减少幻觉、字段错乱。</li>
+<li><strong>可读性良好</strong>
+去除大量冗余标点，表格形式直观，人工调试比压缩JSON更容易阅读；不需要额外转义大量引号。</li>
+<li><strong>无损双向转换</strong>
+JSON具备的数据类型TOON全部支持，序列化/反序列化不会丢失信息。</li>
+<li><strong>多语言SDK成熟</strong>
+Python、TS/JS、Go、Rust、Java均有官方解析库，集成成本低。</li>
+<li><strong>区分优化不同结构</strong>
+扁平表格数组采用CSV风格极致压缩；深度嵌套对象使用缩进，兼顾两种场景。</li>
+</ol>
+<h2 id="四局限性适用边界非常关键">四、局限性（适用边界，非常关键）</h2>
+<ol>
+<li><strong>不适合通用网络API传输</strong>
+HTTP接口标准生态是JSON；没有浏览器原生解析支持，<strong>不能替代JSON作为通用接口格式</strong>。</li>
+<li><strong>深度不规则嵌套收益很差</strong>
+当对象层级极深、每条数据字段不统一（异构结构），TOON压缩优势大幅缩水，甚至略逊JSON。</li>
+<li><strong>生态普及度低</strong>
+不属于行业标准格式，缺少通用中间件、日志工具原生支持；团队外部协作不友好。</li>
+<li><strong>不适合持久化长期存储</strong>
+诞生时间短，规范还在迭代；数据持久存储优先JSON/Parquet等成熟方案。</li>
+<li><strong>对超短零散对象提升有限</strong>
+只有<strong>批量数组列表</strong>场景收益明显；单个简单对象，TOON和JSON差距很小。</li>
+<li><strong>存在分隔符冲突风险</strong>
+CSV风格逗号分隔，字段内容包含逗号时需要转义，增加编解码复杂度。</li>
+</ol>
+<h2 id="五适用场景-vs-不适用场景">五、适用场景 vs 不适用场景</h2>
+<p>✅ <strong>适合</strong></p>
+<ul>
+<li>RAG检索后，批量文档元数据送入LLM；</li>
+<li>批量业务数据表（用户、商品、订单）作为Prompt上下文；</li>
+<li>Agent工具调用，需要把多条记录传给大模型；</li>
+<li>需要控制Token成本、避免上下文溢出的长提示词工程。</li>
+</ul>
+<p>❌ <strong>不适合</strong></p>
+<ul>
+<li>Web前后端接口交互；</li>
+<li>数据库持久存储、消息队列标准消息体；</li>
+<li>对外公开开放API；</li>
+<li>深度嵌套、结构多变的复杂异构数据。</li>
+</ul>
+<h2 id="六一句话总结对比">六、一句话总结对比</h2>
+<ul>
+<li>JSON：通用、全场景标准，但是送入LLM存在大量冗余Token；</li>
+<li>TOON：<strong>LLM Prompt专用的轻量化交换格式</strong>，批量表格数据极致省Token；它是JSON的“LLM专用传输变体”，不是替代品，是补充方案。</li>
+</ul>
+<p>如果你需要，我可以给你一份：TOON、JSON、YAML三者横向对比表格，或者一段Python JSON ↔ TOON转换示例代码。</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2026 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/gokarna-theme/gokarna-hugo">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
